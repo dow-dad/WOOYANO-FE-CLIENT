@@ -7,12 +7,6 @@ function Application() {
 				<p>
 					입점 등록
 				</p>
-				<p>
-        입점 등록
-        </p>
-				<p>
-        입점 등록
-        </p>
 			</div>
 
 		</div>
