@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Application() {
+function SignUp() {
   return (
 		<div>
 			<div className='text-center mx-auto my-[60px]'>
@@ -13,4 +13,4 @@ function Application() {
   )
 }
 
-export default Application
+export default SignUp
