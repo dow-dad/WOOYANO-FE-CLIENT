@@ -1,11 +1,13 @@
 import React from 'react';
-import LoginForm from '@/components/pages/login/LoginForm';
+import HeaderLogo from '@/components/headerlogo/headerLogo';
+import LoginForm from '@/components/pages/login/loginForm';
 
 function Login() {
   return (
-    <>
-        <LoginForm/>
-    </>
+    <div>
+      <HeaderLogo/>
+      <LoginForm/>
+    </div>
   );
 }
 

@@ -1,16 +1,9 @@
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 
 function FindIdForm() {
   return (
     <div className='flex flex-col items-center'>
-      <Image
-      src={'/images/logo/logo2.png'}
-      alt='wooyano'
-      width={200}
-      height={200}
-      />
 
       <div className='flex row gap-3 mt-[60px] mb-[60px]'>
         <p>
@@ -19,7 +12,7 @@ function FindIdForm() {
         <p>
           |
         </p>
-        <p className='text-gray-400'><Link href = "/findpassword">
+        <p className='text-gray-400'><Link href = "/findpw">
           비밀번호 찾기
           </Link>
         </p>
@@ -31,7 +24,6 @@ function FindIdForm() {
         
         <p className='flex mb-3'>사업자등록번호</p>
         <input className='border-2 border-black w-[300px] mx-5 h-[35px] pl-3' type = "text" placeholder='사업자등록번호를 입력해주세요.'/>
-        
       </div>
         
       <div className='flex mt-8'>

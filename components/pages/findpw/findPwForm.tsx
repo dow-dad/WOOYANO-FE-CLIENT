@@ -89,7 +89,7 @@ function FindPasswordForm() {
             </button>
           </div>
         </div>
-        <button className='border-none bg-gray-300 text-black w-[350px] mx-auto h-[50px] rounded-lg pl-3'>인증완료</button>
+        <button className='border-none bg-gray-300 text-black w-[350px] mx-auto h-[50px] rounded-lg pl-3' onClick={()=>router.push("/chgpw")}>인증완료</button>
       </div>
       
 

@@ -1,15 +1,14 @@
 import HeaderLogo from '@/components/headerlogo/headerLogo'
-import FindIdForm from '@/components/pages/findid/findIdForm'
-
+import ChgPwForm from '@/components/pages/chgpw/chgPwForm'
 import React from 'react'
 
-function FindId() {
+function ChgPw() {
   return (
     <div>
       <HeaderLogo/>
-      <FindIdForm/>
+      <ChgPwForm/>
     </div>
   )
 }
 
-export default FindId
+export default ChgPw
