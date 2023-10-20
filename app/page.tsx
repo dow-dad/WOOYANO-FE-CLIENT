@@ -1,13 +1,12 @@
+import HeaderLogo from '@/components/headerlogo/headerLogo';
 import Link from 'next/link';
 import React from 'react';
 
 function Main() {
   return (
   <div className='text-center'>
-    <div className='flex justify-center mx-auto my-[100px] items-center border-2 border-black text-2xl w-[200px] h-[150px]'>
-      <p>
-        WOOYANO
-      </p>
+    <div className='mt-[100px]'>
+    <HeaderLogo/>
     </div>
 
       <div className='flex flex-col pt-10 gap-3'>
