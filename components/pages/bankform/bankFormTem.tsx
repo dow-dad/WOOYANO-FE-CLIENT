@@ -28,9 +28,15 @@ function BankFormTem() {
   return (
     <div className='flex flex-col items-center'>
       
-      <p className='text-center text-2xl my-10'>
-        입점 신청
-      </p>
+      <div className='flex flex-col items-center my-10 gap-5'>
+        <p className='text-3xl font-bold'>
+          입점 신청
+        </p>
+
+        <p className='text-base'>
+          정산 정보
+        </p>
+      </div>
 
       {
         bankform.map((item:bankFromType)=>(
@@ -40,7 +46,7 @@ function BankFormTem() {
             </p>
 
             <div className='mb-5 min-w-[300px]'>
-            <input className='flex mb-3 border-2 border-black w-full h-[35px] pl-3 ' type = "text" placeholder={item.contents}/>
+            <input className='flex mb-3 border-2 border-black w-full h-[35px] pl-3' type = "text" placeholder={item.contents}/>
             </div>
           </div>
         ))

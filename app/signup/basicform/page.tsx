@@ -1,6 +1,6 @@
 import React from 'react'
 import BasicFormTem from '@/components/pages/basicform/basicFormTem'
-import ProgressBar from '@/components/ui/formMenu2'
+import ProgressBar from '@/components/ui/progressBar'
 
 function BasicForm() {
   return (

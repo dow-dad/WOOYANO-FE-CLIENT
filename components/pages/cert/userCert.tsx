@@ -33,8 +33,10 @@ function UserCert() {
     })
   }
 
+
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col min-w-[300px] items-center'>
+
       <div className='flex flex-col items-center my-10 gap-5'>
         <p className='text-3xl font-bold'>
           입점 신청
@@ -68,13 +70,32 @@ function UserCert() {
                 value = {userCert.email}
                 />
 
-                <button className='ml-2 border-2 border-none bg-gray-300 h-[35px]' onClick={handleOpened}>
+                <button className='ml-2 border-2 border-none bg-gray-300 h-[35px] rounded-lg' onClick={handleOpened}>
                   인증요청
                 </button>
+                {/* 인증요청 버튼을 누르면 구분선 아래에 있는 항목에 따라 정렬이 변함 -> 어떻게 수정? */}
+              </div>
+
+              <div className = {`flex flex-col mt-[50px] gap-3 ${Opened?null:"hidden"}`}>
+
+                <div className='border-t border-black mt-3'/>
+      
+                <div className = 'flex mt-[30px]'>
+                  <input type = "text" placeholder='인증번호' className='border-2 border-black w-[200px] mx-auto mt-2 h-[35px] pl-3 mb-7'/>
+                  <button className='ml-2 border-none bg-gray-300 text-black w-[100px] mx-auto h-[50px] rounded-lg pl-1'>
+                  인증번호<br/> 
+                  재요청
+                  </button>
+                </div>
+                
+                <button className='mt-[100px] border-none bg-gray-300 text-black w-full mx-auto h-[50px] rounded-lg pl-3'
+                  onClick={()=>router.push("/signup/basicform")}>
+                  인증하기
+                </button>
+
               </div>
           </div>
-
-          </div>
+        </div>
 
       </div>
 

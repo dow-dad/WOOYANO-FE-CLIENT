@@ -1,5 +1,5 @@
 import ResultTem from '@/components/pages/result/resultTem'
-import ProgressBar from '@/components/ui/formMenu2'
+import ProgressBar from '@/components/ui/progressBar'
 
 import React from 'react'
 

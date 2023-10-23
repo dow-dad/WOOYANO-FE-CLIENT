@@ -14,7 +14,7 @@ function Main() {
           업체 로그인
         </Link>
         </button>
-        <button className='border-none bg-gray-300 text-black w-[300px] mx-auto h-[60px] rounded-lg pl-3'><Link href = "/signup/basicform">
+        <button className='border-none bg-gray-300 text-black w-[300px] mx-auto h-[60px] rounded-lg pl-3'><Link href = "/signup/cert">
           입점 신청
         </Link>
         </button>

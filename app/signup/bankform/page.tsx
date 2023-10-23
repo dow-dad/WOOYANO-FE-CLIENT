@@ -1,5 +1,5 @@
 import BankFormTem from '@/components/pages/bankform/bankFormTem'
-import ProgressBar from '@/components/ui/formMenu2'
+import ProgressBar from '@/components/ui/progressBar'
 import React from 'react'
 
 function BankForm() {
