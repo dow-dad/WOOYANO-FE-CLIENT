@@ -25,7 +25,7 @@ function LoginForm() {
                 로그인
                 </Link>
             </button>
-            <button className='border-none bg-gray-300 text-black w-[350px] mx-auto h-[50px] rounded-lg pl-3'><Link href = "/signup">
+            <button className='border-none bg-gray-300 text-black w-[350px] mx-auto h-[50px] rounded-lg pl-3'><Link href = "/signup/cert">
                 회원가입
                 </Link>
             </button>
