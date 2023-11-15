@@ -1,0 +1,45 @@
+import { Box, Button, InputAdornment, InputBase, Slide } from "@mui/material"; // CUSTOM ICON COMPONENT
+
+import SearchIcon from "icons/SearchIcon"; // --------------------------------------------------------
+
+// --------------------------------------------------------
+const SearchBar = ({
+  open,
+  handleClose
+}) => {
+  // SEARCH ICON IN INPUT BOX
+  const INPUT_ADORNMENT = <InputAdornment position="start">
+      <SearchIcon sx={{
+      color: "grey.400"
+    }} />
+    </InputAdornment>;
+  return <Slide direction="down" in={open} mountOnEnter unmountOnExit>
+      <Box sx={{
+      gap: 2,
+      left: 0,
+      top: -16,
+      height: 60,
+      zIndex: 9999,
+      boxShadow: 1,
+      width: "100%",
+      display: "flex",
+      padding: "0 1rem",
+      borderRadius: "4px",
+      alignItems: "center",
+      position: "absolute",
+      backgroundColor: "background.paper"
+    }}>
+        <InputBase fullWidth autoFocus placeholder="Search..." startAdornment={INPUT_ADORNMENT} sx={{
+        fontSize: 13,
+        fontWeight: 500,
+        flexGrow: 1
+      }} />
+
+        <Button variant="contained" onClick={handleClose}>
+          Search
+        </Button>
+      </Box>
+    </Slide>;
+};
+
+export default SearchBar;
