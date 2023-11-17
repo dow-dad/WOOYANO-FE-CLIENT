@@ -23,7 +23,6 @@ const ProfilePageView = () => {
           <TabPanel value="1">
             <Overview />
           </TabPanel>
-
           <TabPanel value="2">
             <Projects />
           </TabPanel>

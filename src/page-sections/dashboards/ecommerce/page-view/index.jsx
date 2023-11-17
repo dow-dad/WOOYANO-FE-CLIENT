@@ -21,31 +21,6 @@ const EcommercePageView = () => {
         {
         /* DAILY VISITORS CARD */
       }
-        <Grid item lg={3} sm={6} xs={12}>
-          <DailyVisitors />
-        </Grid>
-
-        {
-        /* AVERAGE DAILY SALES CARD */
-      }
-        <Grid item lg={3} sm={6} xs={12}>
-          <DailySales />
-        </Grid>
-
-        {
-        /* ORDER THIS MONTH CARD */
-      }
-        <Grid item lg={3} sm={6} xs={12}>
-          <Order />
-        </Grid>
-
-        {
-        /* MONTHLY EARNINGS CARD */
-      }
-        <Grid item lg={3} sm={6} xs={12}>
-          <Earnings />
-        </Grid>
-
         {
         /* SALES CARD */
       }
@@ -74,26 +49,8 @@ const EcommercePageView = () => {
           <TopSeller />
         </Grid>
 
-        {
-        /* RETURNING RATE CARD */
-      }
-        <Grid item md={4} xs={12}>
-          <ReturnRate />
-        </Grid>
-
-        {
-        /* TOP PRODUCTS CARD */
-      }
-        <Grid item md={8} xs={12}>
-          <TopProducts />
-        </Grid>
-
-        {
-        /* FOOTER CARD */
-      }
-        <Grid item xs={12}>
-          <Footer />
-        </Grid>
+        
+        
       </Grid>
     </Box>;
 };

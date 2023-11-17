@@ -9,6 +9,8 @@ import { inter } from "utils/font"; // RIGHT-TO-LEFT SUPPORT COMPONENT
 
 import { RTL } from "components/rtl"; // MULTI LANGUAGE FEATURE
 
+import DashboardLayout from "layouts/dashboard/DashboardLayout";
+
 import "i18n"; // THIRD PARTY LIBRARY CSS
 
 import "swiper/css";
@@ -25,17 +27,20 @@ export const metadata = {
 const RootLayout = ({
   children
 }) => {
-  return <html lang="en">
-      <body className={inter.className} suppressHydrationWarning>
-        <SettingsProvider>
-          <ThemeProvider>
-            <AuthProvider>
-              <RTL>{children}</RTL>
-            </AuthProvider>
-          </ThemeProvider>
-        </SettingsProvider>
-      </body>
-    </html>;
+  return <html lang="ko">
+    <body className={inter.className} suppressHydrationWarning>
+      <SettingsProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <RTL>
+              <DashboardLayout>{children}</DashboardLayout>
+            </RTL>
+          </AuthProvider>
+        </ThemeProvider>
+      </SettingsProvider>
+
+    </body>
+  </html>;
 };
 
 export default RootLayout;
