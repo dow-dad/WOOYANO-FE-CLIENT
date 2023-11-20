@@ -11,11 +11,11 @@ import { baseChartOptions } from "utils/baseChartOptions";
 const Sales = () => {
   const theme = useTheme(); // REACT CHART CATEGORIES LABEL
 
-  const chartCategories = ["SAT", "SUN", "MON", "TUE", "WED", "THU", "FRI"]; // REACT CHART DATA SERIES
+  const chartCategories = ["토", "일", "월", "화", "수", "목", "금"]; // REACT CHART DATA SERIES
 
   const chartSeries = [{
-    name: "Sales",
-    data: [38000, 48000, 50000, 40000, 42000, 30000, 33000]
+    name: "서비스 통계",
+    data: [58000, 68000, 50000, 40000, 92000, 40000, 73000]
   }]; // REACT CHART OPTIONS
 
   const chartOptions = merge(baseChartOptions(theme), {
@@ -27,7 +27,7 @@ const Sales = () => {
       strokeDashArray: 3,
       borderColor: theme.palette.divider
     },
-    colors: [theme.palette.primary.main, theme.palette.divider],
+    colors: [theme.palette.primary.main],
     xaxis: {
       categories: chartCategories,
       labels: {
@@ -40,10 +40,10 @@ const Sales = () => {
     yaxis: {
       min: 0,
       show: true,
-      max: 50000,
+      max: 100000,
       tickAmount: 5,
       labels: {
-        formatter: value => value / 1000 + "K",
+        formatter: value => value / 10000 + "만원",
         style: {
           colors: theme.palette.text.secondary
         }
@@ -74,11 +74,11 @@ const Sales = () => {
     pb: 1
   }}>
       <FlexBetween px={2}>
-        <Paragraph fontSize={18} fontWeight={500}>
-          Sales
+        <Paragraph fontSize={22} fontWeight={600}>
+          일주일 서비스 통계
         </Paragraph>
 
-        <MoreButton size="small" />
+        {/* <MoreButton size="small" /> */}
       </FlexBetween>
 
       <Chart type="bar" height={300} series={chartSeries} options={chartOptions} />

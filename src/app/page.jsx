@@ -1,5 +1,5 @@
-import LandingPageView from "page-sections/landing/page-view";
+import EcommercePageView from "page-sections/dashboards/ecommerce/page-view";
 
-const HomePage = () => <LandingPageView />;
+const HomePage = () => <EcommercePageView />;
 
 export default HomePage;
