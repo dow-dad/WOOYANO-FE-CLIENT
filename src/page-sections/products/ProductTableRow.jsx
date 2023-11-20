@@ -32,10 +32,7 @@ const ProductTableRow = ({
 
       <TableCell padding="normal">
         <FlexBox alignItems="center" gap={2}>
-          <Avatar variant="rounded" alt={product.name} src={product.image} sx={{
-          width: 50,
-          height: 50
-        }} />
+          
 
           <Box>
             <Paragraph fontWeight={500} color="text.primary" sx={{
@@ -53,18 +50,22 @@ const ProductTableRow = ({
 
       <TableCell padding="normal">{format(new Date(product.createdAt), "dd MMM yyyy")}</TableCell>
 
-      <TableCell padding="normal" sx={{ ...(product.stock === 0 && {
+      <TableCell  padding="normal" sx={{
+        
+        ...(product.stock === 0 && {
         color: "error.main"
       })
     }}>
+      <div style={{paddingLeft:18}}>
         {product.stock}
+      </div>
       </TableCell>
 
-      <TableCell padding="normal">${product.price}</TableCell>
+      <TableCell padding="normal">{product.price}원</TableCell>
 
-      <TableCell padding="normal">
+      {/* <TableCell padding="normal">
         {product.published ? <Chip label="Published" /> : <Chip label="Draft" color="secondary" />}
-      </TableCell>
+      </TableCell> */}
 
       <TableCell padding="normal" align="right">
         <TableMoreMenu open={openMenuEl} handleOpen={handleOpenMenu} handleClose={handleCloseOpenMenu}>

@@ -36,7 +36,7 @@ const QuillEditor = ({
   onChange
 }) => {
   return <EditorWrapper>
-      <ReactQuill theme="snow" value={value || ""} onChange={onChange} placeholder="The new iPad combines the power and capability of a computer with the ease of use and versatility you’d never expect from one. And now it’s even more versatile, with a larger 10.2‑inch Retina display, support" />
+      <ReactQuill theme="snow" value={value || ""} onChange={onChange} placeholder="상품의 정보를 작성해 주세요" />
     </EditorWrapper>;
 };
 

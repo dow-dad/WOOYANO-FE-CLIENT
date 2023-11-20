@@ -10,28 +10,23 @@ const headCells = [{
   id: "name",
   numeric: false,
   disablePadding: false,
-  label: "Product"
+  label: "상품명"
 }, {
   id: "createdAt",
   numeric: true,
   disablePadding: false,
-  label: "Created At"
+  label: "생성일"
 }, {
   id: "stock",
   numeric: true,
   disablePadding: false,
-  label: "Stock"
+  label: "최소시간"
 }, {
   id: "price",
   numeric: true,
   disablePadding: false,
-  label: "Price"
-}, {
-  id: "publish",
-  numeric: true,
-  disablePadding: false,
-  label: "Publish"
-}, {
+  label: "가격"
+},  {
   id: ""
 }];
 
@@ -59,7 +54,8 @@ const ProductTableHead = props => {
 
         {headCells.map(headCell => <TableCell key={headCell.id} padding={headCell.disablePadding ? "none" : "normal"} sortDirection={orderBy === headCell.id ? order : false} sx={{
         color: "text.primary",
-        fontWeight: 600
+        fontWeight: 600,
+        paddingY:3
       }}>
             <TableSortLabel active={orderBy === headCell.id} onClick={createSortHandler(headCell.id)} direction={orderBy === headCell.id ? order : "asc"}>
               {headCell.label}

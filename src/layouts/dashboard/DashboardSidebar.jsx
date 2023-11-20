@@ -8,6 +8,7 @@ import { Scrollbar } from "components/scrollbar";
 import { FlexBetween } from "components/flexbox";
 import MultiLevelMenu from "./MultiLevelMenu";
 import UserAccount from "../layout-parts/UserAccount"; // CUSTOM ICON COMPONENT
+import { H6 } from "components/typography";
 
 import ArrowLeftToLine from "icons/duotone/ArrowLeftToLine"; // STYLED COMPONENTS
 
@@ -23,39 +24,44 @@ const DashboardSidebar = () => {
 
   const COMPACT = sidebarCompact && !onHover ? 1 : 0;
   return <SidebarWrapper compact={sidebarCompact ? 1 : 0} onMouseEnter={() => setOnHover(true)} onMouseLeave={() => sidebarCompact && setOnHover(false)}>
-      <FlexBetween padding="1.5rem 1rem .5rem 2rem" height={TOP_HEADER_AREA}>
-        {
+    <FlexBetween padding="1.5rem 1rem .5rem 0.9rem" height={TOP_HEADER_AREA}>
+      {
         /* LOGO */
       }
-        <Link href="/">
-          <Box component="img" src="/static/logo/logo-svg.svg" alt="logo" width={30} />
-        </Link>
 
-        {
+      {!COMPACT ? <Link href="/">
+        <Box component="img" src="/static/logo/logo-svg.svg" alt="logo" width={120} paddingLeft={1.5}/>
+      </Link> : <Link href="/">
+        <Box component="img" src="/static/logo/character.svg" alt="logo" width={55} />
+      </Link>}
+      
+
+
+      {
         /* SIDEBAR COLLAPSE BUTTON */
       }
-        {!COMPACT ? <IconButton onClick={handleSidebarCompactToggle}>
-            <ArrowLeftToLine />
-          </IconButton> : null}
-      </FlexBetween>
+      {!COMPACT ? <IconButton onClick={handleSidebarCompactToggle}>
+        <ArrowLeftToLine />
+      </IconButton> : null}
+    </FlexBetween>
 
-      <Scrollbar autoHide clickOnTrack={false} sx={{
+    <Scrollbar autoHide clickOnTrack={false} sx={{
       overflowX: "hidden",
       maxHeight: `calc(100vh - ${TOP_HEADER_AREA}px)`
     }}>
-        <Box height="100%" px={2}>
-          {
+      <Box height="100%" px={2}>
+        {
           /* NAVIGATION ITEMS */
         }
-          <MultiLevelMenu sidebarCompact={!!COMPACT} />
+        <MultiLevelMenu sidebarCompact={!!COMPACT} />
 
-          {
+        {
           /* USER ACCOUNT INFO */
         }
-          {/* {!COMPACT ? <UserAccount /> : null} */}
-        </Box>
-      </Scrollbar>
-    </SidebarWrapper>;
+        {/* {!COMPACT ? <UserAccount /> : null} */}
+      </Box>
+    </Scrollbar>
+  </SidebarWrapper>;
 };
 
 export default DashboardSidebar;

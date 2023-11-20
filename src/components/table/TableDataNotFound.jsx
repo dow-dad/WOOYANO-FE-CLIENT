@@ -6,7 +6,7 @@ const TableDataNotFound = () => {
   return <TableRow>
       <TableCell colSpan={7}>
         <FlexRowAlign m={2} fontSize={18} minHeight={300} fontWeight={700} borderRadius={2} bgcolor="action.selected">
-          Data Not Found!
+          상품을 등록 해주세요!
         </FlexRowAlign>
       </TableCell>
     </TableRow>;

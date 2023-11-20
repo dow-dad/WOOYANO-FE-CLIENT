@@ -19,18 +19,11 @@ export const navigations = [
 }, {
   name: "서비스 예약 관리",
   icon: duotone.Invoice,
-  path: "dashboard/invoices"
+  path: "/dashboard/invoices"
 },{
   name: "상품 관리",
   icon: duotone.AdminEcommerce,
-  children: [{
-    name: "상품 리스트 조회",
-    path: "/dashboard/products/product-list-view"
-  }, 
-  {
-    name: "상품 등록",
-    path: "/dashboard/products/create-product"
-  }, ]
+  path: "/dashboard/products/product-list-view"
 },
 
 {

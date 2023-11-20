@@ -1,19 +1,17 @@
-import { Fragment } from "react";
-import { Box, Button, Card, Divider, Grid, styled, TextField, useTheme } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import LinearProgress from "@mui/material/LinearProgress";
-import { CameraAlt, KeyboardArrowDown, MoreHoriz } from "@mui/icons-material";
+'use client'
+import { Fragment, useState } from "react";
+import { Box, Button, Card, Divider, Grid, styled, TextField, useTheme, Badge, Stack, alpha } from "@mui/material";
 import * as Yup from "yup";
 import { useFormik } from "formik"; // CUSTOM ICON COMPONENTS
-
 import DateRange from "icons/DateRange";
-import Bratislava from "icons/Bratislava";
 import MapMarkerIcon from "icons/MapMarkerIcon"; // CUSTOM COMPONENTS
-
-import { AvatarBadge } from "components/avatar-badge";
 import { FlexBetween, FlexBox } from "components/flexbox";
 import { H6, Paragraph, Small } from "components/typography";
-import { AvatarLoading } from "components/avatar-loading"; // STYLED COMPONENTS
+import Globe from "icons/Globe";
+import UserOutlined from "icons/UserOutlined";
+import EmailOutlined from "icons/EmailOutlined";
+import BriefcaseOutlined from "icons/BriefcaseOutlined";
+import Call from "icons/Call";
 
 const ContentWrapper = styled(Box)(({
   theme
@@ -40,29 +38,29 @@ const CoverPicWrapper = styled(Box)(({
 
 const BasicInformation = () => {
   const theme = useTheme();
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
+  const hadleOpenModal = () => {
+    setIsOpenModal(!isOpenModal)
+  }
+
+
   const initialValues = {
-    firstName: "Pixy",
-    lastName: "Krovasky",
-    email: "uilib@gmail.com",
-    phone: "+443322221111",
-    organization: "UiLib",
-    department: "Develop",
-    country: "usa",
-    state: "New York",
-    address: "Corverview, Michigan",
-    zipCode: 4336
+    ceo_name: "임찬섭",
+    client_name: "(주)우야노 주식회사",
+    client_id: "wooyano@gmail.com",
+    client_phone: "010-9999-8888",
+    client_registration: "09-1234-5678",
+    client_address: "부산 광역시 해운대구 우동 리더스마크빌 스파로스 아카데미",
+
   };
   const validationSchema = Yup.object({
-    firstName: Yup.string().min(3, "Must be greater then 3 characters").required("First Name is Required!"),
-    lastName: Yup.string().required("Last Name is Required!"),
-    email: Yup.string().email("Invalid email address").required("Email is Required!"),
-    phone: Yup.string().min(9).required("Phone Number is required!"),
-    organization: Yup.string().required("Organization is Required!"),
-    department: Yup.string().required("Department is Required!"),
-    country: Yup.string().required("Country is Required!"),
-    state: Yup.string().required("State is Required!"),
-    address: Yup.string().required("Address is Required!"),
-    zipCode: Yup.number().required("Zip Code is Required!")
+    ceo_name: Yup.string().min(2, "2자 이상 작성해 주세요.").required("대표자명을 입력해 주세요."),
+    client_name: Yup.string().required("상호명을 입력해 주세요."),
+    client_id: Yup.string().email("유효한 이메일이 아닙니다.").required("이메일이 필요합니다."),
+    client_phone: Yup.string().min(9).required("사업자 전화번호를 입력해주세요."),
+    client_registration: Yup.string().required("사업자 번호를 입력해주세요."),
+    client_address: Yup.string().required("사업자 주소를 제대로 입력해주세요."),
   });
   const {
     values,
@@ -76,182 +74,179 @@ const BasicInformation = () => {
     validationSchema,
     onSubmit: values => console.log(values)
   });
-  return <Fragment>
-      <Card sx={{
-      padding: 3,
-      position: "relative"
-    }}>
+
+  console.log(values);
+  const renderClientEdit = () => {
+    return <>
+      <div onClick={() => hadleOpenModal()} style={{ background: "black", width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0, zIndex: 1200, opacity: 0.6 }}></div>
+      <div style={{ backgroundColor: "white", position: "absolute", width: "50vw", height: "65vh", zIndex: 1201, borderRadius: "10px", left: "27%", top:"50%" }}>
         {
+          /* BASIC INFORMATION FORM SECTION */
+        }
+        <Card sx={{
+          mt: 3
+        }}>
+          <H6 fontSize={14} px={3} py={2}>
+            회원 정보
+          </H6>
+
+          <Divider />
+
+          <form onSubmit={handleSubmit}>
+            <Box margin={3}>
+              <Grid container spacing={3}>
+                <Grid item sm={6} xs={12}>
+                  <TextField fullWidth name="ceo_name" label="대표자명" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.ceo_name} helperText={touched.ceo_name && errors.ceo_name} error={Boolean(touched.ceo_name && errors.ceo_name)} />
+                </Grid>
+
+                <Grid item sm={6} xs={12}>
+                  <TextField fullWidth name="client_name" label="상호명" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.client_name} helperText={touched.client_name && errors.client_name} error={Boolean(touched.client_name && errors.client_name)} />
+                </Grid>
+
+                <Grid item sm={6} xs={12}>
+                  <TextField fullWidth name="client_id" label="이메일" variant="outlined" onBlur={handleBlur} value={values.client_id} helperText={touched.client_id && errors.client_id} error={Boolean(touched.client_id && errors.client_id)} />
+                </Grid>
+
+                <Grid item sm={6} xs={12}>
+                  <TextField fullWidth name="client_phone" label="사업자 전화번호" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.client_phone} helperText={touched.client_phone && errors.client_phone} error={Boolean(touched.client_phone && errors.client_phone)} />
+                </Grid>
+
+                <Grid item sm={6} xs={12}>
+                  <TextField fullWidth name="client_registration" label="사업자 번호" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.client_registration} helperText={touched.client_registration && errors.client_registration} error={Boolean(touched.client_registration && errors.client_registration)} />
+                </Grid>
+
+                <Grid item sm={6} xs={12}>
+                  <TextField fullWidth name="client_address" label="사업자 주소" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.client_address} helperText={touched.client_address && errors.client_address} error={Boolean(touched.client_address && errors.client_address)} />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button type="submit" variant="contained">
+                    Save Changes
+                  </Button>
+                  <Button variant="outlined" sx={{
+                    ml: 2
+                  }}>
+                    Cancel
+                  </Button>
+                </Grid>
+
+
+              </Grid>
+            </Box>
+          </form>
+        </Card>
+      </div>
+    </>
+  }
+  return <Fragment>
+    {isOpenModal ? renderClientEdit() : null}
+    <Card sx={{
+      padding: 3,
+      position: "relative",
+    }}>
+      {
         /* COVER IMAGE SECTION */
       }
-        <CoverPicWrapper>
-          <img width="100%" height="100%" alt="Team Member" src="/static/cover/user-cover-pic.png" style={{
+      <CoverPicWrapper>
+        <img width="100%" height="100%" alt="Team Member" src="/static/cover/user-cover-pic.png" style={{
           objectFit: "cover"
         }} />
-        </CoverPicWrapper>
-
-        {
-        /* USER INFO SECTION */
-      }
-        <ContentWrapper>
-          <FlexBox justifyContent="center">
-            <AvatarBadge badgeContent={<label htmlFor="icon-button-file">
-                  <input type="file" accept="image/*" id="icon-button-file" style={{
-              display: "none"
-            }} />
-
-                  <IconButton aria-label="upload picture" component="span">
-                    <CameraAlt sx={{
-                fontSize: 16,
-                color: "grey.400"
-              }} />
-                  </IconButton>
-                </label>}>
-              <AvatarLoading borderSize={2} percentage={60} alt="Team Member" src="/static/user/user-11.png" sx={{
-              width: 100,
-              height: 100
-            }} />
-            </AvatarBadge>
-          </FlexBox>
-
-          <Box mt={2}>
-            <H6 fontSize={18} textAlign="center">
-              Pixy Krovasky
-            </H6>
-
-            <FlexBetween maxWidth={360} flexWrap="wrap" margin="auto" mt={1}>
-              <FlexBox alignItems="center" gap={1} color="grey.500">
-                <Bratislava sx={{
-                fontSize: 18
-              }} />
-                <Paragraph>Developer</Paragraph>
-              </FlexBox>
-
-              <FlexBox alignItems="center" gap={1} color="grey.500">
-                <MapMarkerIcon sx={{
-                fontSize: 18
-              }} />
-                <Paragraph>New York</Paragraph>
-              </FlexBox>
-
-              <FlexBox alignItems="center" gap={1} color="grey.500">
-                <DateRange sx={{
-                fontSize: 18
-              }} />
-                <Paragraph>Joined March 17</Paragraph>
-              </FlexBox>
-            </FlexBetween>
-
-            <FlexBetween marginTop={6} flexWrap="wrap">
-              <Box minWidth={200} color="grey.500" sx={{
-              [theme.breakpoints.down(600)]: {
-                minWidth: "100%",
-                mb: 2
-              }
-            }}>
-                <Paragraph mb={0.5}>Profile Completion</Paragraph>
-
-                <FlexBox alignItems="center" gap={1}>
-                  <LinearProgress value={60} color="success" variant="determinate" />
-                  <Small fontWeight={500}>60%</Small>
-                </FlexBox>
-              </Box>
-
-              <FlexBox gap={1}>
-                <Button size="small" color="secondary">
-                  Follow
-                </Button>
-
-                <Button size="small">Hire Me</Button>
-
-                <Button size="small" color="secondary" sx={{
-                minWidth: 0
-              }}>
-                  <MoreHoriz fontSize="small" />
-                </Button>
-              </FlexBox>
-            </FlexBetween>
-          </Box>
-        </ContentWrapper>
-      </Card>
+      </CoverPicWrapper>
 
       {
-      /* BASIC INFORMATION FORM SECTION */
-    }
-      <Card sx={{
-      mt: 3
+        /* USER INFO SECTION */
+      }
+      <ContentWrapper>
+
+
+        <Box mt={9}>
+          <H6 fontSize={18} textAlign="center">
+            (주)우야노 주식회사
+          </H6>
+
+          <FlexBetween maxWidth={330} flexWrap="wrap" margin="auto" mt={1}>
+            <FlexBox alignItems="center" gap={1} color="grey.500">
+              <MapMarkerIcon sx={{
+                fontSize: 18
+              }} />
+              <Paragraph>사업자 주소:{initialValues.client_address}</Paragraph>
+            </FlexBox>
+
+            <FlexBox alignItems="center" gap={1} color="grey.500">
+              <DateRange sx={{
+                fontSize: 18
+              }} />
+              <Paragraph>가입일:</Paragraph>
+            </FlexBox>
+          </FlexBetween>
+
+
+          <FlexBox mt={3} gap={1} justifyContent={"end"}>
+            <Badge color="secondary">
+              <Box fullWidth sx={{ border: 1, padding: 1, fontSize: 11, borderRadius: 2, color: "grey.500", backgroundColor: "grey.100", border: "grey" }}>
+                사업자 상태
+              </Box>
+            </Badge>
+
+          </FlexBox>
+
+        </Box>
+      </ContentWrapper>
+    </Card>
+
+
+
+    <Card sx={{
+      padding: 3
     }}>
-        <H6 fontSize={14} px={3} py={2}>
-          Basic Information
-        </H6>
+      <FlexBetween>
+        <H6 fontSize={16}>업체 상세 정보</H6>
+      </FlexBetween>
 
-        <Divider />
+      <Stack mt={3} spacing={2}>
+        <ListItem title="이메일" Icon={EmailOutlined} subTitle={`${initialValues.client_id}`} color={theme.palette.grey[400]} />
 
-        <form onSubmit={handleSubmit}>
-          <Box margin={3}>
-            <Grid container spacing={3}>
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth name="firstName" label="First Name" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.firstName} helperText={touched.firstName && errors.firstName} error={Boolean(touched.firstName && errors.firstName)} />
-              </Grid>
+        <ListItem Icon={Globe} title="Language" subTitle="English, Spanish" color={theme.palette.primary.main} />
 
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth name="lastName" label="Last Name" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.lastName} helperText={touched.lastName && errors.lastName} error={Boolean(touched.lastName && errors.lastName)} />
-              </Grid>
+        <ListItem title="사업자 이름" subTitle={`${initialValues.client_name}`} Icon={UserOutlined} color={theme.palette.warning[600]} />
 
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth name="email" label="Email" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.email} helperText={touched.email && errors.email} error={Boolean(touched.email && errors.email)} />
-              </Grid>
+        <ListItem Icon={MapMarkerIcon} title="주소" subTitle={`${initialValues.client_address}`} color={theme.palette.success.main} />
 
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth name="phone" label="Phone" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.phone} helperText={touched.phone && errors.phone} error={Boolean(touched.phone && errors.phone)} />
-              </Grid>
+        <ListItem title="사업자 번호" subTitle={`${initialValues.client_phone}`} Icon={Call} color={theme.palette.error.main} />
 
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth name="organization" variant="outlined" label="Organization" onBlur={handleBlur} onChange={handleChange} value={values.organization} helperText={touched.organization && errors.organization} error={Boolean(touched.organization && errors.organization)} />
-              </Grid>
-
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth name="department" variant="outlined" label="Department" onBlur={handleBlur} onChange={handleChange} value={values.department} helperText={touched.department && errors.department} error={Boolean(touched.department && errors.department)} />
-              </Grid>
-
-              <Grid item sm={6} xs={12}>
-                <TextField select fullWidth name="country" label="Country" variant="outlined" placeholder="Country" SelectProps={{
-                native: true,
-                IconComponent: KeyboardArrowDown
-              }} onBlur={handleBlur} onChange={handleChange} value={values.country} helperText={touched.country && errors.country} error={Boolean(touched.country && errors.country)}>
-                  <option value="usa">United States</option>
-                  <option value="uk">United Kingdom</option>
-                  <option value="uae">United Arab Emirates</option>
-                </TextField>
-              </Grid>
-
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth name="state" label="State" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.state} helperText={touched.state && errors.state} error={Boolean(touched.state && errors.state)} />
-              </Grid>
-
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth name="address" label="Address" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.address} helperText={touched.address && errors.address} error={Boolean(touched.address && errors.address)} />
-              </Grid>
-
-              <Grid item sm={6} xs={12}>
-                <TextField fullWidth type="number" name="zipCode" label="Zip Code" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.zipCode} helperText={touched.zipCode && errors.zipCode} error={Boolean(touched.zipCode && errors.zipCode)} />
-              </Grid>
-
-              <Grid item xs={12}>
-                <Button type="submit" variant="contained">
-                  Save Changes
-                </Button>
-                <Button variant="outlined" sx={{
-                ml: 2
-              }}>
-                  Cancel
-                </Button>
-              </Grid>
-            </Grid>
-          </Box>
-        </form>
-      </Card>
-    </Fragment>;
+        <ListItem Icon={BriefcaseOutlined} title="사업자 번호" subTitle={`${initialValues.client_registration}`} color={theme.palette.warning.main} />
+      </Stack>
+      <Button sx={{ marginTop: 3 }} type="submit" variant="contained" onClick={() => { hadleOpenModal() }}>
+        수정하기
+      </Button>
+    </Card>
+  </Fragment>
 };
+
+function ListItem({
+  title,
+  subTitle,
+  Icon,
+  color
+}) {
+  return <Stack direction="row" alignItems="center" spacing={1.5}>
+    <Stack alignItems="center" justifyContent="center" sx={{
+      width: 30,
+      height: 30,
+      borderRadius: "4px",
+      backgroundColor: alpha(color, 0.2)
+    }}>
+      <Icon sx={{
+        color
+      }} />
+    </Stack>
+
+    <Box>
+      <Small lineHeight={1} color="text.secondary">
+        {title}
+      </Small>
+      <H6 fontSize={14}>{subTitle}</H6>
+    </Box>
+  </Stack>;
+}
 
 export default BasicInformation;
