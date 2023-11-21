@@ -61,7 +61,7 @@ export default function SignUpResult(props) {
             <TextField
               fullWidth
               className="mt-1.5 "
-              defaultValue={`${signUpData.username}`}
+              defaultValue={`${signUpData.name}`}
               inputProps={{ readOnly: true }}
             />
           </Grid>

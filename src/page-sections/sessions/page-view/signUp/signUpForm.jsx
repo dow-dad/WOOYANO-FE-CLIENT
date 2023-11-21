@@ -2,7 +2,7 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 // import { DaumAddressType } from "@/types/DaumAddrssType";
 import Swal from "sweetalert2";
-// import PostCodeDaum from "@/components/widget/postCodeDaum";
+import PostCodeDaum from "components/findAddress/postCodeDaum";
 import {
   Button,
   Grid,
@@ -122,9 +122,9 @@ const SignUpForm = (props) => {
         <Paragraph>Name</Paragraph>
         <TextField
           fullWidth
-          id="username"
+          id="name"
           type="text"
-          value={signUpData.username}
+          value={signUpData.name}
           onChange={handleOnChange}
           inputProps={{ readOnly: true }}
         />
@@ -150,9 +150,7 @@ const SignUpForm = (props) => {
           value={signUpData.password}
           onChange={handleOnChange}
         />
-        <Box>
-          {/* <PasswordViewButton pwType={pwType} onClick={handlePwType} /> */}
-        </Box>
+        <Box></Box>
       </Box>
       <Box mt={1.5}>
         <Paragraph>Password Check</Paragraph>
@@ -197,14 +195,11 @@ const SignUpForm = (props) => {
       <Box mt={1.5}>
         <Grid>
           <Paragraph>Addess</Paragraph>
-
-          {/* <div>
-            <PostCodeDaum
-                  isView={isView}
-                  setIsView={setIsView}
-                  setAddressInfo={setAddressInfo}
-                />
-          </div> */}
+          <PostCodeDaum
+              isView={isView}
+              setIsView={setIsView}
+              setAddressInfo={setAddressInfo}
+            />
         </Grid>
         <Box display="flex" gap={1.5}>
           <TextField
@@ -214,8 +209,8 @@ const SignUpForm = (props) => {
             type="text"
             value={signUpData.localAddress}
             onChange={handleOnChange}
-            readOnly
-          />
+            inputProps={{ readOnly: true }}
+            />
           <Button
             onClick={() => {
               handleOpenModal();

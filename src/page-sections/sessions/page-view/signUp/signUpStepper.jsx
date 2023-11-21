@@ -18,7 +18,7 @@ export default function SignUpStepper() {
     email: "",
     password: "",
     secondPassword: "",
-    username: "",
+    name: "",
 
     localAddress: "",
     extraAddress: "",

@@ -44,10 +44,8 @@ export default function SignUpCertForm(props) {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Must be a valid email")
-      .max(255)
-      .required("Email is required"), // password: Yup.string()
+    email: Yup.string().email("이메일 형식으로 입력해주세요.").max(255).required("이메일을 입력해주세요."),
+    name: Yup.string().required("이름을 입력해주세요.")
   });
 
   const { errors, values, touched, handleBlur, handleChange, handleSubmit } =
@@ -75,28 +73,37 @@ export default function SignUpCertForm(props) {
     
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <DialogContentText>Name</DialogContentText>
             <TextField
               fullWidth
-              id="username"
+              id="name"
               type="name"
+              variant="outlined"
+              label="Name"
               placeholder="사장님 성함을 입력해주세요."
-              value={signUpData.username}
+              value={signUpData.name}
               onChange={handleOnChange}
+              onBlur={handleBlur}
+              helperText={touched.name && errors.name}
+              error={Boolean(
+                touched.name && errors.name
+              )}
             />
           </Grid>
           <Grid item xs={12}>
-            <DialogContentText>Company Email</DialogContentText>
             <TextField
               fullWidth
               id="email"
-              type="text"
+              type="email"
+              variant="outlined"
+              label = "Email"
               placeholder="ex) wooyano@example.com"
               value={signUpData.email}
               onChange={handleOnChange}
               onBlur={handleBlur}
               helperText={touched.email && errors.email}
-              error={Boolean(touched.email && errors.email)}
+              error={Boolean(
+                touched.email && errors.email
+              )}
             />
           </Grid>
           <Grid item xs={12}>

@@ -15,10 +15,6 @@ import Layout from "../Layout"; // CUSTOM COMPONENTS
 import { H5, H6, Paragraph } from "components/typography";
 import { FlexBetween, FlexBox, FlexRowAlign } from "components/flexbox"; // CUSTOM ICON COMPONENTS
 
-import Twitter from "icons/Twitter";
-import Facebook from "icons/Facebook";
-import GoogleIcon from "icons/GoogleIcon"; // STYLED COMPONENT
-
 const StyledButton = styled(ButtonBase)(({
   theme
 }) => ({

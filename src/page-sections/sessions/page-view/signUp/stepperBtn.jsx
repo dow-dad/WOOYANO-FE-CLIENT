@@ -20,7 +20,7 @@ export default function StepperBtn({
 
     if (stepId == 1) {
       console.log(signUpData.email);
-      if (signUpData.email === "" || signUpData.username === "") {
+      if (signUpData.email === "" || signUpData.name === "") {
         errorText.message = "모든 정보를 입력해주세요.";
       }
       if (errorText.message != "") {
@@ -89,9 +89,33 @@ export default function StepperBtn({
       },
     }).then((result) => {
       if (result.isConfirmed) {
+        signUpData.email = "",
+        signUpData.password= "",
+        signUpData.secondPassword= "",
+        signUpData.name= "",
+
+        signUpData.localAddress= "",
+        signUpData.extraAddress= "",
+        signUpData.localCode= 0,
+
+        signUpData.companyName= "",
+        signUpData.companyPhone= "",
+        signUpData.registerationNumber= "",
+        signUpData.registerationImage= "",
+
+        signUpData.bankHolder="",
+        signUpData.bankAccount="",
+        signUpData.bankName="",
+        signUpData.bankImage="",
+ 
+        signUpData.emailCertNumber= "",
+        signUpData.passwordCheck= false,
+        signUpData.nicknameCheck= false,
+        signUpData.emailformcheck= false,
         setStepId(stepId - 2);
         //모든 입력값 초기화
-      } else {
+      } 
+      else {
       }
     });
   };
