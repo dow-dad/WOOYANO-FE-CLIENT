@@ -40,13 +40,13 @@ const LoginPageView = () => {
   };
 
   const initialValues = {
-    email: "jason@ui-lib.com",
-    password: "dummyPass",
+    email: "",
+    password: "",
     remember: true
   };
   const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
-    password: Yup.string().min(6, "Password should be of minimum 6 characters length").required("Password is required")
+    email: Yup.string().email("이메일 형식을 지켜주세요.").max(255).required("이메일을 입력해주세요."),
+    password: Yup.string().required("비밀번호를 입력해주세요.")
   });
   const {
     errors,
@@ -76,9 +76,9 @@ const LoginPageView = () => {
       }}>Sign In</H5>
 
         <Paragraph mt={1} mb={6} color="text.secondary">
-          New user?{" "}
-          <Box fontWeight={500} component={Link} href="/register">
-            Create an Account
+          처음이신가요?{" "}
+          <Box fontWeight={800} component={Link} href="/register">
+            회원가입하기
           </Box>
         </Paragraph>
 
@@ -89,7 +89,7 @@ const LoginPageView = () => {
                 Login with your email id
               </H6>
 
-              <TextField fullWidth placeholder="Enter your work email" name="email" onBlur={handleBlur} value={values.email} onChange={handleChange} helperText={touched.email && errors.email} error={Boolean(touched.email && errors.email)} />
+              <TextField fullWidth placeholder="ex) wooyano@example.com" name="email" onBlur={handleBlur} value={values.email} onChange={handleChange} helperText={touched.email && errors.email} error={Boolean(touched.email && errors.email)} />
             </Grid>
 
             <Grid item xs={12}>
@@ -125,38 +125,6 @@ const LoginPageView = () => {
             </Grid>
           </Grid>
         </form>
-
-        <Divider sx={{
-        my: 4,
-        borderColor: "grey.200",
-        borderWidth: 1
-      }}>
-          <Paragraph color="text.secondary" px={1}>
-            OR
-          </Paragraph>
-        </Divider>
-
-        <FlexBox justifyContent="center" flexWrap="wrap" gap={2}>
-          <StyledButton onClick={handleGoogle}>
-            <GoogleIcon sx={{
-            fontSize: 18
-          }} />
-          </StyledButton>
-
-          <StyledButton>
-            <Facebook sx={{
-            color: "#2475EF",
-            fontSize: 18
-          }} />
-          </StyledButton>
-
-          <StyledButton>
-            <Twitter sx={{
-            color: "#45ABF7",
-            fontSize: 18
-          }} />
-          </StyledButton>
-        </FlexBox>
       </Box>
     </Layout>;
 };
