@@ -75,7 +75,8 @@ const BasicInformation = () => {
     onSubmit: values => console.log(values)
   });
 
-  console.log(values);
+  // console.log(values);
+
   const renderClientEdit = () => {
     return <>
       <div onClick={() => hadleOpenModal()} style={{ background: "black", width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0, zIndex: 1200, opacity: 0.6 }}></div>
@@ -96,15 +97,15 @@ const BasicInformation = () => {
             <Box margin={3}>
               <Grid container spacing={3}>
                 <Grid item sm={6} xs={12}>
-                  <TextField fullWidth name="ceo_name" label="대표자명" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.ceo_name} helperText={touched.ceo_name && errors.ceo_name} error={Boolean(touched.ceo_name && errors.ceo_name)} />
+                  <TextField fullWidth InputProps={{readOnly:true}} name="ceo_name" label="대표자명" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.ceo_name} helperText={touched.ceo_name && errors.ceo_name} error={Boolean(touched.ceo_name && errors.ceo_name)} />
                 </Grid>
 
                 <Grid item sm={6} xs={12}>
-                  <TextField fullWidth name="client_name" label="상호명" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.client_name} helperText={touched.client_name && errors.client_name} error={Boolean(touched.client_name && errors.client_name)} />
+                  <TextField fullWidth InputProps={{readOnly:true}} name="client_name" label="상호명" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.client_name} helperText={touched.client_name && errors.client_name} error={Boolean(touched.client_name && errors.client_name)} />
                 </Grid>
 
                 <Grid item sm={6} xs={12}>
-                  <TextField fullWidth name="client_id" label="이메일" variant="outlined" onBlur={handleBlur} value={values.client_id} helperText={touched.client_id && errors.client_id} error={Boolean(touched.client_id && errors.client_id)} />
+                  <TextField fullWidth InputProps={{readOnly:true}} name="client_id" label="이메일" variant="outlined" onBlur={handleBlur} value={values.client_id} helperText={touched.client_id && errors.client_id} error={Boolean(touched.client_id && errors.client_id)} />
                 </Grid>
 
                 <Grid item sm={6} xs={12}>
@@ -112,7 +113,7 @@ const BasicInformation = () => {
                 </Grid>
 
                 <Grid item sm={6} xs={12}>
-                  <TextField fullWidth name="client_registration" label="사업자 번호" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.client_registration} helperText={touched.client_registration && errors.client_registration} error={Boolean(touched.client_registration && errors.client_registration)} />
+                  <TextField fullWidth InputProps={{readOnly:true}} name="client_registration" label="사업자 번호" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.client_registration} helperText={touched.client_registration && errors.client_registration} error={Boolean(touched.client_registration && errors.client_registration)} />
                 </Grid>
 
                 <Grid item sm={6} xs={12}>
@@ -122,9 +123,13 @@ const BasicInformation = () => {
                   <Button type="submit" variant="contained">
                     Save Changes
                   </Button>
-                  <Button variant="outlined" sx={{
+                  <Button 
+                  variant="outlined" 
+                  sx={{
                     ml: 2
-                  }}>
+                  }}
+                  onClick={()=>hadleOpenModal()}
+                  >
                     Cancel
                   </Button>
                 </Grid>

@@ -24,6 +24,10 @@ export const navigations = [
   name: "상품 관리",
   icon: duotone.AdminEcommerce,
   path: "/dashboard/products/product-list-view"
+},{
+  name: "정산",
+  icon: duotone.Pricing,
+  path: "/dashboard/calculate"
 },
 
 {

@@ -3,7 +3,7 @@ export const PRODUCTS = [{
   stock: 2,
   id: "WOo-1z8xYBufBQvOu9u-e",
   published: true,
-  category: "Apparel",
+  category: "house",
   name: "원룸",
   createdAt: "2023-06-08T18:00:00.000Z",
   image: "/static/products/type-writer.png"
@@ -12,7 +12,7 @@ export const PRODUCTS = [{
   stock: 3,
   id: "Wu4GdphiI0F48eMQZ_zBJ",
   published: false,
-  category: "Watch",
+  category: "house",
   name: "아파트",
   createdAt: "2023-06-11T18:00:00.000Z",
   image: "/static/products/apple-watch.png"
@@ -21,7 +21,7 @@ export const PRODUCTS = [{
   stock: 1,
   id: "kuo9jHLFy8CYembf-YNoy",
   published: true,
-  category: "Headphone",
+  category: "house",
   name: "시간추가",
   createdAt: "2023-06-16T18:00:00.000Z",
   image: "/static/products/headset-2.png"
@@ -30,7 +30,7 @@ export const PRODUCTS = [{
   stock: 3,
   id: "UN_Ou1jXBQlygxA_FZHQF",
   published: true,
-  category: "Headphone",
+  category: "house",
   name: "아파트",
   createdAt: "2023-06-20T18:00:00.000Z",
   image: "/static/products/headphone.png"
@@ -39,7 +39,7 @@ export const PRODUCTS = [{
   stock: 3,
   id: "W27M341PHO5M2oH2DjTMH",
   published: false,
-  category: "Apparel",
+  category: "house",
   name: "빌라",
   createdAt: "2023-06-08T18:00:00.000Z",
   image: "/static/products/camera.png"

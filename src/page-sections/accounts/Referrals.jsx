@@ -1,7 +1,6 @@
-import { Box, Card, Grid, Table, Alert, styled, Button, Select, Divider, useTheme, MenuItem, TableRow, InputBase, TableBody, TableHead, AlertTitle, IconButton } from "@mui/material";
+import { Box, Card, Grid, Table,  styled,  Select, Divider, useTheme, MenuItem, TableRow,  TableBody, TableHead } from "@mui/material";
 import { useState } from "react";
-import { ContentCopy, Info } from "@mui/icons-material";
-import { CopyToClipboard } from "react-copy-to-clipboard"; // CUSTOM COMPONENTS
+
 
 import { FlexBetween } from "components/flexbox";
 import { Scrollbar } from "components/scrollbar";
@@ -108,50 +107,7 @@ const Referrals = () => {
             </Grid>)}
         </Grid>
 
-        {
-        /* ALERT AREA SECTION */
-      }
-        <Alert severity="info" variant="outlined" icon={<Info />} action={<Button>Withdraw $44,550</Button>}>
-          <AlertTitle>We Need Your Attention</AlertTitle>
-          Writing headlines for blog posts is as much an art as it is a science, and warrants its
-          own post, but for now, all I’d advise is experimenting what works for your audience,
-          especially if it’s not resonating with your audience
-        </Alert>
-
-        {
-        /* REFERRAL LINK COPY CLIPBOARD */
-      }
-        <Box py={3}>
-          <Grid container spacing={2}>
-            <Grid item md={6} xs={12}>
-              <H5 fontSize={14} mb={0.5}>
-                Your Referral Link
-              </H5>
-
-              <Paragraph>
-                Plan your blog post by choosing a topic, creating an outline conduct research, and
-                checking facts
-              </Paragraph>
-            </Grid>
-
-            <Grid item md={6} xs={12}>
-              <InputBase fullWidth value={referLink} disabled sx={{
-              fontSize: 12,
-              fontWeight: 500,
-              borderRadius: 4,
-              padding: ".5rem 1rem",
-              backgroundColor: "grey.100",
-              ".MuiInputBase-input.Mui-disabled": {
-                WebkitTextFillColor: theme.palette.grey[500]
-              }
-            }} endAdornment={<CopyToClipboard text={referLink} onCopy={() => true}>
-                    <IconButton>
-                      <ContentCopy fontSize="small" />
-                    </IconButton>
-                  </CopyToClipboard>} />
-            </Grid>
-          </Grid>
-        </Box>
+      
       </Box>
 
       {
