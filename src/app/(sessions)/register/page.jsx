@@ -1,5 +1,12 @@
 import { RegisterPageView } from "page-sections/sessions/page-view";
-
-const RegisterPage = () => <RegisterPageView />;
+import SignUpStepper from "page-sections/sessions/page-view/signUp/signUpStepper";
+// const RegisterPage = () => <RegisterPageView />;
+const RegisterPage = () => {
+    return(
+        <div>
+            <SignUpStepper />
+        </div>
+    )
+}
 
 export default RegisterPage;
