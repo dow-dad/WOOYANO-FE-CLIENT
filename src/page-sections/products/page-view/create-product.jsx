@@ -14,22 +14,15 @@ import { IconWrapper } from "components/icon-wrapper"; // CUSTOM ICON COMPONENT
 
 import ShoppingBasket from "icons/ShoppingBasket";
 
-const CreateProductPageView = () => {
-  const [files, setFiles] = useState([]);
-
+const CreateProductPageView = ({createProductModal,setCreateProdjctModal}) => {
+  
   const handleChangeDescription = value => {
     console.log(value);
   };
 
-  const handleDropFile = useCallback(acceptedFiles => {
-    const files = acceptedFiles.map(file => Object.assign(file, {
-      preview: URL.createObjectURL(file)
-    }));
-    setFiles(files);
-  }, []);
-  console.log(files);
+
   const validationSchema = Yup.object({
-    manufacturer: Yup.string().required("Manufacturer is Required!"),
+    manufacturer: Yup.string().required("상품이름을 작성해주세요."),
     model: Yup.string().required("Model is Required!"),
     id: Yup.string().required("ID Number is Required!"),
     priority: Yup.string().min(9).required("Prority is required!"),
@@ -58,130 +51,114 @@ const CreateProductPageView = () => {
   } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: () => {}
+    onSubmit: () => { }
   });
   return <Box pt={2} pb={4}>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Card sx={{
+    <form onSubmit={handleSubmit}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Card sx={{
             p: 3
           }}>
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <FlexBox gap={0.5} alignItems="center">
-                    <IconWrapper>
-                      <ShoppingBasket sx={{
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <FlexBox gap={0.5} alignItems="center">
+                  <IconWrapper>
+                    <ShoppingBasket sx={{
                       color: "primary.main"
                     }} />
-                    </IconWrapper>
+                  </IconWrapper>
 
-                    <H6 fontSize={16}>Create New Product</H6>
-                  </FlexBox>
-                </Grid>
+                  <H6 fontSize={16} >상품등록</H6>
+                </FlexBox>
+              </Grid>
 
-                <Grid item md={6} xs={12}>
-                  <H6 fontSize={16} mb={3}>
-                    Main Parameters
-                  </H6>
+              <Grid item md={6} xs={12}>
+                <H6 fontSize={16} mb={3}>
+                  상품내용
+                </H6>
 
-                  <Grid container spacing={2}>
-                    <Grid item sm={6} xs={12}>
-                      <TextField fullWidth name="manufacturer" label="Manufacturer" onBlur={handleBlur} onChange={handleChange} value={values.manufacturer} helperText={touched.manufacturer && errors.manufacturer} error={Boolean(touched.manufacturer && errors.manufacturer)} />
-                    </Grid>
+                <Grid container spacing={2}>
 
-                    <Grid item sm={6} xs={12}>
-                      <TextField fullWidth label="Model" name="model" onBlur={handleBlur} value={values.model} onChange={handleChange} helperText={touched.model && errors.model} error={Boolean(touched.model && errors.model)} />
-                    </Grid>
 
-                    <Grid item sm={6} xs={12}>
-                      <TextField fullWidth name="id" label="ID Number" value={values.id} onBlur={handleBlur} onChange={handleChange} helperText={touched.id && errors.id} error={Boolean(touched.id && errors.id)} />
-                    </Grid>
-
-                    <Grid item sm={6} xs={12}>
-                      <TextField fullWidth name="priority" label="Priority" onBlur={handleBlur} onChange={handleChange} value={values.priority} helperText={touched.priority && errors.priority} error={Boolean(touched.priority && errors.priority)} />
-                    </Grid>
-
-                    <Grid item sm={6} xs={12}>
-                      <TextField select fullWidth label="Name" SelectProps={{
+                  <Grid item sm={6} xs={12}>
+                    <TextField select fullWidth label="Name" SelectProps={{
                       native: true,
                       IconComponent: KeyboardArrowDown
                     }}>
-                        <option value="electronics">Electronics</option>
-                        <option value="gadget">Gadget</option>
-                        <option value="shoes">Shoes</option>
-                      </TextField>
-                    </Grid>
-
-                    <Grid item sm={6} xs={12}>
-                      <TextField fullWidth label="Model" name="pro_model" onBlur={handleBlur} onChange={handleChange} value={values.pro_model} helperText={touched.pro_model && errors.pro_model} error={Boolean(touched.pro_model && errors.pro_model)} />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <TextField label="Meta Title" fullWidth />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <TextField label="Meta Tags" fullWidth />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <TextField label="Meta Description" fullWidth />
-                    </Grid>
+                      <option value="electronics">서비스 타입</option>
+                      <option value="gadget">가사도우미</option>
+                      <option value="shoes">이사/입주</option>
+                      <option value="shoes">사무실</option>
+                      <option value="shoes">가전제품</option>
+                    </TextField>
                   </Grid>
-                </Grid>
 
-                <Grid item md={6} xs={12}>
-                  <H6 fontSize={16} mb={3}>
-                    Prices and Warehouses
-                  </H6>
+                  <Grid item sm={6} xs={12}>
+                    <TextField select fullWidth label="Name" SelectProps={{
+                      native: true,
+                      IconComponent: KeyboardArrowDown
+                    }}>
+                      <option value="electronics">서비스 대상</option>
+                      <option value="gadget">단독</option>
+                      <option value="gadget">원룸</option>
+                      <option value="gadget">빌라</option>
+                      <option value="gadget">아파트</option>
+                      <option value="gadget">사무실</option>
+                      <option value="gadget">세탁기</option>
+                      <option value="gadget">에어컨</option>
+                    </TextField>
+                  </Grid>
 
-                  <Grid container spacing={2}>
-                    <Grid item sm={6} xs={12}>
-                      <TextField label="Cost" fullWidth />
-                    </Grid>
+                  
 
-                    <Grid item sm={6} xs={12}>
-                      <TextField label="Extra" fullWidth />
-                    </Grid>
-
-                    <Grid item sm={6} xs={12}>
-                      <TextField label="Price" fullWidth />
-                    </Grid>
-
-                    <Grid item sm={6} xs={12}>
-                      <TextField label="Availability" fullWidth />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <QuillEditor value="" onChange={handleChangeDescription} />
-                    </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <TextField fullWidth name="manufacturer" label="상품 이름" onBlur={handleBlur} onChange={handleChange} value={values.manufacturer} helperText={touched.manufacturer && errors.manufacturer} error={Boolean(touched.manufacturer && errors.manufacturer)} />
                   </Grid>
                 </Grid>
               </Grid>
-            </Card>
-          </Grid>
 
-          <Grid item xs={12}>
-            <Card>
-              <DropZone onDrop={handleDropFile} />
-            </Card>
-          </Grid>
+              {/* 가격 및 시간설정 */}
+              <Grid item md={6} xs={12}>
+                <H6 fontSize={16} mb={3}>
+                  가격 및 최소시간
+                </H6>
 
-          <Grid item xs={12}>
-            <FlexBox flexWrap="wrap" gap={2}>
-              <Button type="submit" variant="contained">
-                Create New Product
-              </Button>
+                <Grid container spacing={2}>
+                  <Grid item sm={6} xs={12}>
+                    <TextField label="가격" fullWidth />
+                  </Grid>
 
-              <Button variant="outlined" color="secondary">
-                Cancel
-              </Button>
-            </FlexBox>
-          </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <TextField label="최소시간" fullWidth />
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              {/* 상품 설명 */}
+              <Grid item xs={12}>
+                <QuillEditor value="" fullWidth onChange={handleChangeDescription} />
+              </Grid>
+            </Grid>
+          </Card>
         </Grid>
-      </form>
-    </Box>;
+
+        
+
+        <Grid item xs={12}>
+          <FlexBox flexWrap="wrap" gap={2}>
+            <Button type="submit" variant="contained">
+              상품 등록
+            </Button>
+
+            <Button variant="outlined" color="secondary" style={{ background: "white",color:"black" }} onClick={()=>{setCreateProdjctModal(!createProductModal)}}>
+              취소
+            </Button>
+          </FlexBox>
+        </Grid>
+      </Grid>
+    </form>
+  </Box>;
 };
 
 export default CreateProductPageView;

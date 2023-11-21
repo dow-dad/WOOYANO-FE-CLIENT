@@ -98,67 +98,27 @@ const AccountsPageView = () => {
 
 const tabList = [{
   id: 1,
-  name: "Basic Information",
+  name: "업체 정보",
   Icon: Icons.UserOutlined,
   Component: TabComponent.BasicInformation
 }, {
   id: 2,
-  name: "Password",
+  name: "비밀번호 수정",
   Icon: Icons.LockOutlined,
   Component: TabComponent.Password
 }, {
   id: 3,
-  name: "Preferences",
-  Icon: Icons.SettingsOutlined,
-  Component: TabComponent.Preferences
-}, {
-  id: 4,
-  name: "Recent Devices",
-  Icon: Icons.DevicesApple,
-  Component: TabComponent.RecentDevices
-}, {
-  id: 5,
-  name: "Notifications",
-  Icon: Icons.NotificationOutlined,
-  Component: TabComponent.Notifications
-}, {
-  id: 6,
-  name: "Two-step verification",
-  Icon: Icons.Fingerprint,
-  Component: TabComponent.TwoStepVerification
-}, {
-  id: 7,
-  name: "Connected accounts",
-  Icon: Icons.Link,
-  Component: TabComponent.ConnectedAccounts
-}, {
-  id: 8,
-  name: "Social Account",
-  Icon: Icons.Instagram,
-  Component: TabComponent.SocialAccounts
-}, {
-  id: 9,
-  name: "Billing",
+  name: "등록 계좌",
   Icon: Icons.DollarOutlined,
   Component: TabComponent.Billing
 }, {
-  id: 10,
-  name: "Statements",
-  Icon: Icons.FileOutlined,
-  Component: TabComponent.Statements
-}, {
-  id: 11,
-  name: "Referrals",
+  id: 4,
+  name: "정산",
   Icon: Icons.PremiumOutlined,
   Component: TabComponent.Referrals
 }, {
-  id: 12,
-  name: "API Keys",
-  Icon: Icons.Key,
-  Component: TabComponent.ApiKeys
-}, {
-  id: 13,
-  name: "Delete account",
+  id: 5,
+  name: "회원 탈퇴",
   Icon: Icons.DeleteOutlined,
   Component: TabComponent.DeleteAccount
 }];
