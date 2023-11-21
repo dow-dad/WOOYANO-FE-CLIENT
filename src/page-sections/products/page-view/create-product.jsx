@@ -14,15 +14,16 @@ import { IconWrapper } from "components/icon-wrapper"; // CUSTOM ICON COMPONENT
 
 import ShoppingBasket from "icons/ShoppingBasket";
 
-const CreateProductPageView = ({createProductModal,setCreateProdjctModal}) => {
-  
+const CreateProductPageView = ({ createProductModal, setCreateProdjctModal }) => {
+
   const handleChangeDescription = value => {
-    console.log(value);
+    if (value.length > 20)
+      console.log(value);
   };
 
 
   const validationSchema = Yup.object({
-    manufacturer: Yup.string().required("상품이름을 작성해주세요."),
+    manufacturer: Yup.string().max(10).required("상품이름을 작성해주세요."),
     model: Yup.string().required("Model is Required!"),
     id: Yup.string().required("ID Number is Required!"),
     priority: Yup.string().min(9).required("Prority is required!"),
@@ -82,7 +83,7 @@ const CreateProductPageView = ({createProductModal,setCreateProdjctModal}) => {
 
 
                   <Grid item sm={6} xs={12}>
-                    <TextField select fullWidth label="Name" SelectProps={{
+                    <TextField select fullWidth label="대분류" SelectProps={{
                       native: true,
                       IconComponent: KeyboardArrowDown
                     }}>
@@ -95,7 +96,7 @@ const CreateProductPageView = ({createProductModal,setCreateProdjctModal}) => {
                   </Grid>
 
                   <Grid item sm={6} xs={12}>
-                    <TextField select fullWidth label="Name" SelectProps={{
+                    <TextField select fullWidth label="중분류" SelectProps={{
                       native: true,
                       IconComponent: KeyboardArrowDown
                     }}>
@@ -110,7 +111,28 @@ const CreateProductPageView = ({createProductModal,setCreateProdjctModal}) => {
                     </TextField>
                   </Grid>
 
-                  
+                  <Grid item sm={6} xs={12}>
+                    <TextField select fullWidth label="소분류" SelectProps={{
+                      native: true,
+                      IconComponent: KeyboardArrowDown
+                    }}>
+                      <option value="electronics">서비스 대상</option>
+                      <option value="gadget">10평 미만</option>
+                      <option value="gadget">20평 미만</option>
+                      <option value="gadget">30평 미만</option>
+                      <option value="gadget">40평 미만</option>
+                      <option value="gadget">50평 미만</option>
+                      <option value="gadget">50평 이상</option>
+                      <option value="gadget">시간 추가</option>
+                      <option value="gadget">시스템 에어컨</option>
+                      <option value="gadget">벽걸이 에어컨</option>
+                      <option value="gadget">스탠드 에어컨</option>
+                      <option value="gadget">통돌이 세탁기</option>
+                      <option value="gadget">드럼 세탁기</option>
+                    </TextField>
+                  </Grid>
+
+
 
                   <Grid item sm={6} xs={12}>
                     <TextField fullWidth name="manufacturer" label="상품 이름" onBlur={handleBlur} onChange={handleChange} value={values.manufacturer} helperText={touched.manufacturer && errors.manufacturer} error={Boolean(touched.manufacturer && errors.manufacturer)} />
@@ -136,26 +158,24 @@ const CreateProductPageView = ({createProductModal,setCreateProdjctModal}) => {
               </Grid>
 
               {/* 상품 설명 */}
-              <Grid item xs={12}>
-                <QuillEditor value="" fullWidth onChange={handleChangeDescription} />
+              <Grid item xs={12} sx={{ marginTop:14 }}>
+                <FlexBox flexWrap="wrap" gap={2}>
+                  <Button type="submit" variant="contained">
+                    상품 등록
+                  </Button>
+
+                  <Button variant="outlined" color="secondary" style={{ background: "white", color: "black" }} onClick={() => { setCreateProdjctModal(!createProductModal) }}>
+                    취소
+                  </Button>
+                </FlexBox>
               </Grid>
             </Grid>
           </Card>
         </Grid>
 
-        
 
-        <Grid item xs={12}>
-          <FlexBox flexWrap="wrap" gap={2}>
-            <Button type="submit" variant="contained">
-              상품 등록
-            </Button>
 
-            <Button variant="outlined" color="secondary" style={{ background: "white",color:"black" }} onClick={()=>{setCreateProdjctModal(!createProductModal)}}>
-              취소
-            </Button>
-          </FlexBox>
-        </Grid>
+
       </Grid>
     </form>
   </Box>;

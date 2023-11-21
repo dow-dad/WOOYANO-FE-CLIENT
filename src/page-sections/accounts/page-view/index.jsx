@@ -113,11 +113,6 @@ const tabList = [{
   Component: TabComponent.Billing
 }, {
   id: 4,
-  name: "정산",
-  Icon: Icons.PremiumOutlined,
-  Component: TabComponent.Referrals
-}, {
-  id: 5,
   name: "회원 탈퇴",
   Icon: Icons.DeleteOutlined,
   Component: TabComponent.DeleteAccount
