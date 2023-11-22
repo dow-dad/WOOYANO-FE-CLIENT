@@ -7,13 +7,14 @@ import { isDark } from "utils/constants";
 
 function VerifyCode(props){
   const { forgetPasswordData, setForgetPasswordData } = props;
-  const [remainTime, setRemainTime] = useState(100);
+  const [remainTime, setRemainTime] = useState(180);
 
   //3분 타이머 및 progress bar 남은 시간 표시
   useEffect(() => {
     const timer = setInterval(() => {
       setRemainTime((oldProgress) => {
-        if (oldProgress === 0) {
+        if (oldProgress <= 0) {
+          clearInterval(timer);
           return 0;
         }
         return oldProgress - (100 / 180);
@@ -26,6 +27,12 @@ function VerifyCode(props){
   }, []);
 
   const [otp, setOtp] = useState("");
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}분 ${String(remainingSeconds).padStart(2, "0")}초`;
+  };
 
   useEffect(()=>{
       setForgetPasswordData({
@@ -63,8 +70,9 @@ function VerifyCode(props){
       위의 메일로 인증코드가 발송되었습니다.
         </Paragraph>
 
-        <Box maxWidth={500} mt={6} display="flex" mx={"auto"}>
-        <LinearProgress variant="determinate" value={remainTime}/>      
+        <Box maxWidth={500} mt={6} display="flex" flexDirection="column" gap={3} mx={"auto"}>
+        <p>{formatTime(Math.floor(remainTime))}후 인증코드가 만료됩니다.</p>
+        <LinearProgress variant="determinate" value={(remainTime / 180) * 100}/>      
         </Box>
         <Box maxWidth={450} margin="auto" mt={6}>
           <OtpInput value={otp} numInputs={4} onChange={setOtp} placeholder="----" renderInput={props => <Box component="input" {...props} sx={{

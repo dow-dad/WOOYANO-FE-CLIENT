@@ -23,7 +23,9 @@ function ForgetPassword(props) {
   return (
     <FlexRowAlign height="100%" bgcolor="background.paper">
       <Box textAlign="center" maxWidth={550} width="100%" padding={2}>
+        <Box display="flex" justifyContent={"center"}>
         <img src="/static/forget-passwod.svg" alt="Logo" />
+        </Box>
         <H5 mt={2}>비밀번호를 잊으셨나요?</H5>
         <Paragraph color="text.secondary" mt={1.5} px={4}>
           저희 서비스에 가입된 사업자등록번호와 이메일을 입력해주세요.

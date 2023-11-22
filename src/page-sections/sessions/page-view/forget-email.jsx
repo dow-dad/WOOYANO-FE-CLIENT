@@ -14,13 +14,14 @@ const ForgetEmailPageView = () => {
   const router = useRouter();
 
   const handleFindEmail = async () => {
-    router.push(`/forget-email/result`)
-  }
+    router.push(`/forget-email/result`);
+  };
   return (
     <FlexRowAlign height="100%" bgcolor="background.paper">
       <Box textAlign="center" maxWidth={550} width="100%" padding={2}>
-        <img src="/static/forget-passwod.svg" alt="Logo" />
-
+        <Box display="flex" justifyContent={"center"}>
+          <img src="/static/forget-passwod.svg" alt="Logo" />
+        </Box>
         <H5 mt={2}>이메일을 잊으셨나요?</H5>
 
         <Paragraph color="text.secondary" mt={1.5} px={4}>
@@ -41,9 +42,9 @@ const ForgetEmailPageView = () => {
                 />
               </Grid>
             </Grid>
-            <Button
-            fullWidth 
-            onClick={handleFindEmail}>Find Email</Button>
+            <Button fullWidth onClick={handleFindEmail}>
+              Find Email
+            </Button>
             <Button
               disableRipple
               variant="text"
