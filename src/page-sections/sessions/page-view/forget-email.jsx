@@ -7,12 +7,18 @@ import useNavigate from "hooks/useNavigate"; // CUSTOM COMPONENTS
 
 import { H5, Paragraph } from "components/typography";
 import FlexRowAlign from "components/flexbox/FlexRowAlign";
+import { useRouter } from "next/navigation";
 
 const ForgetEmailPageView = () => {
   const navigate = useNavigate();
+  const router = useRouter();
+
+  const handleFindEmail = async () => {
+    router.push(`/forget-email/result`)
+  }
   return (
     <FlexRowAlign height="100%" bgcolor="background.paper">
-      <Box textAlign="center" maxWidth={550} width="100%" padding={4}>
+      <Box textAlign="center" maxWidth={550} width="100%" padding={2}>
         <img src="/static/forget-passwod.svg" alt="Logo" />
 
         <H5 mt={2}>이메일을 잊으셨나요?</H5>
@@ -25,7 +31,7 @@ const ForgetEmailPageView = () => {
         </Paragraph>
         <form>
           <Stack gap={3} mt={5}>
-            <Grid>
+            <Grid mb={1}>
               <TextField fullWidth label="Name" type="name" />
               <Grid mt={3}>
                 <TextField
@@ -35,14 +41,16 @@ const ForgetEmailPageView = () => {
                 />
               </Grid>
             </Grid>
-            <Button fullWidth>Find Email</Button>
+            <Button
+            fullWidth 
+            onClick={handleFindEmail}>Find Email</Button>
             <Button
               disableRipple
               variant="text"
               color="secondary"
               onClick={() => navigate("/login")}
             >
-              <NavigateBefore fontSize="small" /> Back to Sign In
+              <NavigateBefore fontSize="small" /> 로그인하기
             </Button>
           </Stack>
         </form>
