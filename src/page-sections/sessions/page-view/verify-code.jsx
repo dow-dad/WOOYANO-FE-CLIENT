@@ -1,16 +1,31 @@
 "use client";
-
-import { useState } from "react";
-import { Box, Button, Container } from "@mui/material";
+import { useState,useEffect } from "react";
+import { Box, Button, Container,LinearProgress } from "@mui/material";
 import OtpInput from "react-otp-input"; // CUSTOM COMPONENTS
-
 import { H1, Paragraph, Span } from "components/typography";
 import ChevronLeft from "icons/ChevronLeft"; // CUSTOM UTILS METHOD
-
 import { isDark } from "utils/constants";
 
 const VerifyCodePageView = () => {
-  const [otp, setOtp] = useState("5");
+  const [remainTime, setRemainTime] = useState(100);
+
+  //3분 타이머 및 progress bar 남은 시간 표시
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRemainTime((oldProgress) => {
+        if (oldProgress === 0) {
+          return 0;
+        }
+        return oldProgress - (100 / 180);
+      });
+    }, 1000);
+  
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  const [otp, setOtp] = useState("");
   return <Container>
       <Box textAlign="center" py={{
       sm: 6,
@@ -33,14 +48,19 @@ const VerifyCodePageView = () => {
         <Paragraph mt={0.5} margin="auto" maxWidth={650} color="text.secondary" fontSize={{
         sm: 18,
         xs: 14
-      }}>
-          Please check your email inbox for a 5-digit verification code we have sent to your
-          registered email address. Enter the code in the field below to confirm your email and
-          complete the verification process.
+      }}>  
+      {`${`wooyano@example.com`}`}
+      <br />
+      위의 메일로 인증코드가 발송되었습니다.
         </Paragraph>
 
+        <Box maxWidth={500} mt={6} display="flex" mx={"auto"}>
+        <LinearProgress variant="determinate" value={remainTime}/>      
+        </Box>
+
+
         <Box maxWidth={450} margin="auto" mt={6}>
-          <OtpInput value={otp} numInputs={5} onChange={setOtp} placeholder="-----" renderInput={props => <Box component="input" {...props} sx={{
+          <OtpInput value={otp} numInputs={4} onChange={setOtp} placeholder="----" renderInput={props => <Box component="input" {...props} sx={{
           all: "unset",
           width: 70,
           height: 70,
@@ -61,18 +81,18 @@ const VerifyCodePageView = () => {
           marginBottom: "3rem"
         }} />
 
-          <Button fullWidth>Verify</Button>
+          <Button fullWidth onClick={()=>{console.log(otp)}}>Verify</Button>
         </Box>
 
         <Paragraph mt={4} fontSize={16}>
-          Don’t have a code?{" "}
+          인증코드가 오지 않거나 인증시간이 만료되었나요?{" "}
           <Span color="error.main" fontWeight={500}>
-            Resend code
+            인증코드 다시 보내기
           </Span>
         </Paragraph>
 
         <Button variant="text" disableRipple>
-          <ChevronLeft /> Return to sign in
+          <ChevronLeft /> 로그인하기
         </Button>
       </Box>
     </Container>;

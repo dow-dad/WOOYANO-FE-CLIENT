@@ -1,15 +1,18 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { Box, Button, Stack, TextField, Grid } from "@mui/material";
 import NavigateBefore from "@mui/icons-material/NavigateBefore"; // CUSTOM DEFINED HOOK
-
 import useNavigate from "hooks/useNavigate"; // CUSTOM COMPONENTS
-
 import { H5, Paragraph } from "components/typography";
 import FlexRowAlign from "components/flexbox/FlexRowAlign";
 
 const ForgetPasswordPageView = () => {
   const navigate = useNavigate();
+  const router = useRouter();
+
+  const handleSendCode = async () => {
+    router.push(`/forget-password/verify`)
+  }
   return (
     <FlexRowAlign height="100%" bgcolor="background.paper">
       <Box textAlign="center" maxWidth={550} width="100%" padding={4}>
@@ -26,11 +29,14 @@ const ForgetPasswordPageView = () => {
             <Grid>
               <TextField fullWidth label="Registration Number" type="number" />
               <Grid mt={3}>
-                <TextField fullWidth label="Name" type="name" />
+                <TextField fullWidth label="Email" type="email" />
               </Grid>
             </Grid>
 
-            <Button fullWidth>Send Code</Button>
+            <Button
+            fullWidt
+            onClick={handleSendCode}
+            >Send Code</Button>
 
             <Button
               disableRipple
