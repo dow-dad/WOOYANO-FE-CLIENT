@@ -8,30 +8,34 @@ import useNavigate from "hooks/useNavigate"; // CUSTOM COMPONENTS
 import { H5, Paragraph } from "components/typography";
 import FlexRowAlign from "components/flexbox/FlexRowAlign";
 
-const ForgetPasswordPageView = () => {
+const ForgetEmailPageView = () => {
   const navigate = useNavigate();
   return (
     <FlexRowAlign height="100%" bgcolor="background.paper">
       <Box textAlign="center" maxWidth={550} width="100%" padding={4}>
         <img src="/static/forget-passwod.svg" alt="Logo" />
-        <H5 mt={2}>비밀번호를 잊으셨나요?</H5>
+
+        <H5 mt={2}>이메일을 잊으셨나요?</H5>
+
         <Paragraph color="text.secondary" mt={1.5} px={4}>
-          저희 서비스에 가입된 사업자등록번호와 이메일을 입력해주세요.
-        </Paragraph>{" "}
+          저희 서비스에 가입된
+        </Paragraph>
         <Paragraph color="text.secondary" mt={1} px={4}>
-          인증 후, 비밀번호를 변경하실 수 있어요.
+          대표자 명과 사업자등록번호를 통해 찾을 수 있어요.
         </Paragraph>
         <form>
           <Stack gap={3} mt={5}>
             <Grid>
-              <TextField fullWidth label="Registration Number" type="number" />
+              <TextField fullWidth label="Name" type="name" />
               <Grid mt={3}>
-                <TextField fullWidth label="Name" type="name" />
+                <TextField
+                  fullWidth
+                  label="Registration Number"
+                  type="number"
+                />
               </Grid>
             </Grid>
-
-            <Button fullWidth>Send Code</Button>
-
+            <Button fullWidth>Find Email</Button>
             <Button
               disableRipple
               variant="text"
@@ -47,4 +51,4 @@ const ForgetPasswordPageView = () => {
   );
 };
 
-export default ForgetPasswordPageView;
+export default ForgetEmailPageView;
