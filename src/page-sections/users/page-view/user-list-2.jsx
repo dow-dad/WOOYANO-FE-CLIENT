@@ -47,10 +47,10 @@ const BodyTableRow = styled(TableRow)(({
   })
 }));
 const headCells = [{
-  id: "name",
+  id: "이름",
   numeric: true,
   disablePadding: false,
-  label: "Name"
+  label: "이름"
 }, {
   id: "position",
   numeric: true,
@@ -67,10 +67,10 @@ const headCells = [{
   disablePadding: false,
   label: "Email"
 }, {
-  id: "phone",
+  id: "전화",
   numeric: true,
   disablePadding: false,
-  label: "Phone"
+  label: "전화"
 }];
 
 const UserList2PageView = () => {
@@ -104,9 +104,9 @@ const UserList2PageView = () => {
             {
             /* SEARCH BOX AREA */
           }
-            <Box px={3}>
+            {/* <Box px={3}>
               <SearchArea value={searchFilter} onChange={e => setSearchFilter(e.target.value)} gridRoute="/dashboard/users/user-grid-2" listRoute="/dashboard/users/user-list-2" />
-            </Box>
+            </Box> */}
 
             {
             /* TABLE HEAD & BODY ROWS */

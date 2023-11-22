@@ -62,11 +62,11 @@ const UserList1PageView = () => {
 
   return <Box pt={2} pb={4}>
       <Card>
-        <Box px={2} pt={2}>
+        {/* <Box px={2} pt={2}>
           <HeadingArea value={userFilter.role} changeTab={handleChangeTab} />
 
           <SearchArea value={userFilter.search} gridRoute="/dashboard/users/user-grid-1" listRoute="/dashboard/users/user-list-1" onChange={e => handleChangeFilter("search", e.target.value)} />
-        </Box>
+        </Box> */}
 
         {
         /* TABLE ROW SELECTION HEADER  */

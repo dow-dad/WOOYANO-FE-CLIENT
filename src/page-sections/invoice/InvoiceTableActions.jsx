@@ -20,17 +20,29 @@ const InvoiceTableActions = ({
   filter
 }) => {
   const INVOICE_STATUS = [{
-    id: 1,
+    id: 0,
     name: "All",
     value: ""
   }, {
-    id: 2,
-    name: "Pending",
-    value: "pending"
+    id: 1,
+    name: "예약대기",
+    value: "예약대기"
   }, {
+    id: 2,
+    name: "예약확정",
+    value: "예약확정"
+  },{
     id: 3,
-    name: "Complete",
-    value: "complete"
+    name: "고객예약취소",
+    value: "고객예약취소"
+  },{
+    id: 4,
+    name: "업체예약거절",
+    value: "업체예약거절"
+  },{
+    id: 5,
+    name: "서비스완료",
+    value: "서비스완료"
   }];
   return <Wrapper gap={2} px={2} pb={3}>
       <TextField select fullWidth label="Status" className="select" value={filter.status} onChange={e => handleChangeFilter("status", e.target.value)}>

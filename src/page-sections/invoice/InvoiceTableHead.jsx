@@ -11,27 +11,27 @@ const headCells = [{
   id: "name",
   numeric: true,
   disablePadding: false,
-  label: "Name"
+  label: "작업자 이름"
 }, {
   id: "email",
   numeric: true,
   disablePadding: false,
-  label: "Email"
+  label: "유저 이메일"
 }, {
   id: "date",
   numeric: true,
   disablePadding: false,
-  label: "Date"
+  label: "서비스 요청 날짜"
 }, {
   id: "status",
   numeric: true,
   disablePadding: false,
-  label: "Status"
+  label: "서비스 상태"
 }, {
   id: "",
   numeric: true,
   disablePadding: false,
-  label: "Edit"
+  label: "상세보기"
 }];
 
 const InvoiceTableHead = props => {
@@ -52,9 +52,7 @@ const InvoiceTableHead = props => {
     backgroundColor: theme => isDark(theme) ? "grey.700" : "grey.100"
   }}>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox size="small" color="primary" onChange={onSelectAllRows} checked={rowCount > 0 && numSelected === rowCount} indeterminate={numSelected > 0 && numSelected < rowCount} />
-        </TableCell>
+        
 
         {headCells.map(headCell => <TableCell key={headCell.id} padding={headCell.disablePadding ? "none" : "normal"} sortDirection={orderBy === headCell.id ? order : false} sx={{
         color: "text.primary",
