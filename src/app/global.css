@@ -1,3 +1,78 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.react-datepicker {
+  width: 100%;
+
+}
+
+.react-datepicker__header {
+  text-align: center;
+  background-color: #ffe9b0 !important;
+  border-bottom: 1px solid #aeaeae;
+  border-top-left-radius: 0.3rem;
+  padding: 8px 0;
+  position: relative;
+}
+
+.react-datepicker__month-container {
+  width: 100%;
+  height: 100%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-bottom: 1rem !important;
+}
+
+.react-datepicker__current-month {
+  font-size: 1.0rem !important;
+}
+
+.react-datepicker__day-names {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.react-datepicker__week {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 1rem;
+
+}
+
+.react-datepicker__month {
+  height: 100%;
+}
+
+.react-datepicker__day--in-range {
+  border-radius: 1.3rem !important;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  border-radius: 1.3rem !important;
+  background-color: #cdcdcd !important;
+  color: #fff !important;
+}
+
+.react-datepicker__day--in-selecting-range {
+  border-radius: 1.3rem !important;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.react-datepicker__day--selected {
+  border-radius: 1.3rem !important;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* 하늘 */
+/* #bad9f1 */
+/* 살구 */
+/* #ffe9b0 */

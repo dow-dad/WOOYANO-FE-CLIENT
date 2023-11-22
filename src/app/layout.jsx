@@ -11,6 +11,8 @@ import { RTL } from "components/rtl"; // MULTI LANGUAGE FEATURE
 
 import DashboardLayout from "layouts/dashboard/DashboardLayout";
 
+import "./global.css";
+
 import "i18n"; // THIRD PARTY LIBRARY CSS
 
 import "swiper/css";

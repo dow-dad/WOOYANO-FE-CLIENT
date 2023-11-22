@@ -42,7 +42,7 @@ const ProductListPageView = () => {
     if (createProductModal) {
       return <>
         <div onClick={()=>handleOpenModal()} style={{background:"black", width: "100vw", height: "100vh",position: "fixed", top:0,left:0, zIndex:1200, opacity:0.6}}></div>
-        <div style={{ backgroundColor: "white", position: "absolute", width: "50vw", height: "65vh", zIndex: 1201, borderRadius:"10px",left:"27%" }}>
+        <div style={{ backgroundColor: "white", position: "fixed", width: "70vw", height: "70vh", zIndex: 1201, borderRadius: "10px", left: "15%", top: "10%" }}>
           <CreateProductPageView createProductModal={createProductModal} setCreateProdjctModal={setCreateProdjctModal}/>
         </div>
       </>

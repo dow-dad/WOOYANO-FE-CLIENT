@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar, Box, Checkbox, Chip, TableCell, TableRow } from "@mui/material";
+import { Avatar, Box, Button, Checkbox, Chip, TableCell, TableRow } from "@mui/material";
 import { DeleteOutline, Edit } from "@mui/icons-material";
 import { format } from "date-fns"; // CUSTOM DEFINED HOOK
 
@@ -15,7 +15,9 @@ const InvoiceTableRow = props => {
     invoice,
     handleDeleteInvoice,
     isSelected,
-    handleSelectRow
+    handleSelectRow,
+    handleModal,
+    setDetailData
   } = props;
   const navigate = useNavigate();
   const [openMenuEl, setOpenMenuEl] = useState(null);
@@ -27,9 +29,7 @@ const InvoiceTableRow = props => {
   const handleCloseOpenMenu = () => setOpenMenuEl(null);
 
   return <TableRow hover>
-      <TableCell padding="checkbox">
-        <Checkbox size="small" color="primary" checked={isSelected} onClick={event => handleSelectRow(event, invoice.id)} />
-      </TableCell>
+      
 
       <TableCell padding="normal">
         <FlexBox alignItems="center" gap={2}>
@@ -57,20 +57,11 @@ const InvoiceTableRow = props => {
       </TableCell>
 
       <TableCell padding="normal">
-        <Chip size="small" label={invoice.status} color={invoice.status === "Complete" ? "success" : "error"} />
+        <Chip size="small" label={invoice.status} color={invoice.status === "서비스완료" ? "success" : invoice.status==="업체예약거절" ||invoice.status==="고객예약취소" ? "error" : invoice.status==="예약확정"?"primary":invoice.status==="예약대기"?"warning":"default"} />
       </TableCell>
 
       <TableCell padding="normal">
-        <TableMoreMenu open={openMenuEl} handleOpen={handleOpenMenu} handleClose={handleCloseOpenMenu}>
-          <TableMoreMenuItem Icon={Edit} title="Edit" handleClick={() => {
-          handleCloseOpenMenu();
-          navigate("/dashboard/invoices/invoice-details");
-        }} />
-          <TableMoreMenuItem Icon={DeleteOutline} title="Delete" handleClick={() => {
-          handleCloseOpenMenu();
-          handleDeleteInvoice(invoice.id);
-        }} />
-        </TableMoreMenu>
+        <Button type="button" variant="outlined" onClick={()=>{handleModal(); setDetailData(invoice)}}>상세내용</Button>
       </TableCell>
     </TableRow>;
 };
