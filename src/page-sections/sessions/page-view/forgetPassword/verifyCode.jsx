@@ -1,12 +1,12 @@
 "use client";
 import { useState,useEffect } from "react";
-import { Box, Button, Container,LinearProgress } from "@mui/material";
+import { Box, Container,LinearProgress } from "@mui/material";
 import OtpInput from "react-otp-input"; // CUSTOM COMPONENTS
-import { H1, Paragraph, Span } from "components/typography";
-import ChevronLeft from "icons/ChevronLeft"; // CUSTOM UTILS METHOD
+import { H1, Paragraph } from "components/typography";
 import { isDark } from "utils/constants";
 
-const VerifyCodePageView = () => {
+function VerifyCode(props){
+  const { forgetPasswordData, setForgetPasswordData } = props;
   const [remainTime, setRemainTime] = useState(100);
 
   //3분 타이머 및 progress bar 남은 시간 표시
@@ -26,8 +26,17 @@ const VerifyCodePageView = () => {
   }, []);
 
   const [otp, setOtp] = useState("");
+
+  useEffect(()=>{
+      setForgetPasswordData({
+        ...forgetPasswordData,
+        emailCertNumber: otp,
+      });
+  },[otp])
+
+
   return <Container>
-      <Box textAlign="center" py={{
+      <Box textAlign="center" pt={{
       sm: 6,
       xs: 4
     }}>
@@ -49,7 +58,7 @@ const VerifyCodePageView = () => {
         sm: 18,
         xs: 14
       }}>  
-      {`${`wooyano@example.com`}`}
+      {`${forgetPasswordData.email}`}
       <br />
       위의 메일로 인증코드가 발송되었습니다.
         </Paragraph>
@@ -57,8 +66,6 @@ const VerifyCodePageView = () => {
         <Box maxWidth={500} mt={6} display="flex" mx={"auto"}>
         <LinearProgress variant="determinate" value={remainTime}/>      
         </Box>
-
-
         <Box maxWidth={450} margin="auto" mt={6}>
           <OtpInput value={otp} numInputs={4} onChange={setOtp} placeholder="----" renderInput={props => <Box component="input" {...props} sx={{
           all: "unset",
@@ -80,22 +87,9 @@ const VerifyCodePageView = () => {
           justifyContent: "center",
           marginBottom: "3rem"
         }} />
-
-          <Button fullWidth onClick={()=>{console.log(otp)}}>Verify</Button>
         </Box>
-
-        <Paragraph mt={4} fontSize={16}>
-          인증코드가 오지 않거나 인증시간이 만료되었나요?{" "}
-          <Span color="error.main" fontWeight={500}>
-            인증코드 다시 보내기
-          </Span>
-        </Paragraph>
-
-        <Button variant="text" disableRipple>
-          <ChevronLeft /> 로그인하기
-        </Button>
       </Box>
     </Container>;
 };
 
-export default VerifyCodePageView;
+export default VerifyCode;

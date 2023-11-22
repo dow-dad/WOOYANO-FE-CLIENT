@@ -1,5 +1,5 @@
-import { ForgetPasswordPageView } from "page-sections/sessions/page-view";
+const { default: ForgetPasswordStepper } = require("page-sections/sessions/page-view/forgetPassword/forgetPasswordStepper");
 
-const ForgetPasswordPage = () => <ForgetPasswordPageView />;
+const ForgetPasswordPage = () => <ForgetPasswordStepper/>
 
 export default ForgetPasswordPage;

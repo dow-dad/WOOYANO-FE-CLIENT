@@ -37,13 +37,16 @@ export const navigations = [
   name: "Sessions",
   icon: duotone.Session,
   children: [{
-    name: "Login",
+    name: "로그인",
     path: "/login"
   }, {
-    name: "Register",
+    name: "회원가입",
     path: "/register"
   }, {
-    name: "Forget Password",
+    name: "아이디 찾기",
+    path: "/forget-email"
+  }, {
+    name: "비밀번호 찾기",
     path: "/forget-password"
   }]
 }, 
