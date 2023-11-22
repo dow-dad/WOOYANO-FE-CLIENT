@@ -52,20 +52,20 @@ const headCells = [{
   disablePadding: false,
   label: "이름"
 }, {
-  id: "position",
+  id: "요일",
   numeric: true,
   disablePadding: false,
-  label: "Position"
+  label: "요일"
 }, {
-  id: "company",
+  id: "시작",
   numeric: true,
   disablePadding: false,
-  label: "Company"
+  label: "시작"
 }, {
-  id: "email",
+  id: "종료",
   numeric: true,
   disablePadding: false,
-  label: "Email"
+  label: "종료"
 }, {
   id: "전화",
   numeric: true,
@@ -143,11 +143,12 @@ const UserList2PageView = () => {
                                 {user.name}
                               </H6>
                             </Stack>
+                            {/* 테이블 표시 사항 */}
                           </BodyTableCell>
-                          <BodyTableCell>{user.position}</BodyTableCell>
-                          <BodyTableCell>{user.company}</BodyTableCell>
-                          <BodyTableCell>{user.email}</BodyTableCell>
-                          <BodyTableCell>{user.phone}</BodyTableCell>
+                          <BodyTableCell>{user.date || "근무 요일"}</BodyTableCell>
+                          <BodyTableCell>{user.startTime || "시작 시간"}</BodyTableCell>
+                          <BodyTableCell>{user.endTime || "종료 시간"}</BodyTableCell>
+                          <BodyTableCell>{user.phone || "전화 번호"}</BodyTableCell>
                         </BodyTableRow>)}
 
                     {filteredUsers.length === 0 && <TableDataNotFound />}
