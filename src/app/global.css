@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 .react-datepicker {
   width: 100%;
 
@@ -76,3 +77,142 @@
 /* #bad9f1 */
 /* 살구 */
 /* #ffe9b0 */
+
+/* swal custom */
+.mySwalConfirmButton {
+    justify-content: center !important;
+  }
+  
+  .mySwalConfirmButton:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 113, 255, 0.1) !important;
+  }
+  
+  .swal2-html-container {
+    font-size: 0.9rem !important;
+    font-weight: normal !important;
+    font-family: var(--billita-hangul) !important;
+  }
+  
+  .swal2-popup {
+    width: 80% !important;
+    max-width: 400px !important;
+    border-radius: 1rem !important;
+    padding: 0.5rem 0 1rem 0 !important;
+  }
+  
+  .my-swal {
+    font-weight: bold !important;
+    color: black !important;
+    z-index: 9999!important;
+    }
+  
+  .my-swal .swal2-popup {
+    background-color: white !important;
+    border-radius: 0.8rem !important;
+  }
+  
+  .my-swal .swal2-html-container {
+    font-size: 0.8rem !important;
+    font-weight: normal !important;
+    color: black !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  
+  .my-swal .swal2-icon.swal2-info {
+    visibility: hidden;
+    position: absolute;
+  }
+  
+  .my-swal-warning {
+    font-weight: bold !important;
+    font-family: var(--billita-hangul) !important;
+  }
+  .my-swal-warning .swal2-popup.swal2-toast .swal2-html-container {
+    color: var(--billita-secondary) !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .my-swal-warning .swal2-popup {
+    border-radius: 0.3rem !important;
+    background-color: #ffffff !important;
+    font-weight: 0.8rem !important;
+    mix-blend-mode: hard-light !important;
+    padding: 0.3rem !important;
+    justify-content: center !important;
+  }
+  
+  .my-swal-warning .swal2-popup.swal2-toast .swal2-icon {
+    visibility: hidden !important;
+  }
+  
+  .mySwal-only-confirm {
+    justify-content: center !important;
+  }
+
+.header_view {
+  position: fixed;
+  top: 0;
+  transition: top 0.5s ease-in-out;
+}
+
+.header_view.close {
+  position: absolute;
+  top: -100px;
+  transition: top 0.5s ease-in-out;
+}
+
+.my-swal-input-container {
+  font-family: var(--billita-hangul) !important;
+  padding : 0 0 0 0 !important;
+}
+
+.my-swal-input {
+  font-weight: 0.8rem !important;
+  display: block !important;
+  max-width: 100%;
+  border: 1px solid #d2d6dc !important;
+  border-radius: 0.4rem !important;
+  text-align: center;
+  max-height: 30px;
+}
+
+.my-swal-input:focus {
+  border-color: #3b82f6 !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5) !important;
+}
+
+
+.my-swal-input-ConfirmButton {
+  border-radius: 0.4rem !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 113, 255, 0.1) !important;
+  background-color: #4F46E5 !important;
+  color: white !important;
+  border: none !important;
+  width: 100px;
+  max-height: 35px;
+  margin-left: 13px;
+  margin-right: 13px;
+  font-weight: 600 !important;
+  padding : 0 0 0 0 !important;
+}
+
+.my-swal-input-CancelButton {
+  border-radius: 0.4rem !important;
+  justify-content: center !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 113, 255, 0.1) !important;
+  background-color: white !important;
+  color: #000000 !important;
+  border: none !important;
+  width: 100px;
+  max-height: 30px;
+  margin-left: 13px;
+  margin-right: 13px;
+  padding : 0 0 0 0 !important;
+}
+
+.my-swal-position {
+  top : -20% !important;
+}
+
