@@ -8,13 +8,14 @@ import { Scrollbar } from "components/scrollbar";
 import { TableDataNotFound } from "components/table"; // CUSTOM PAGE SECTION COMPONENTS
 
 import SearchArea from "../SearchArea";
-import UserDetails from "../UserDetails"; // CUSTOM DEFINED HOOK
+import WorkerDetails from "../WorkerDetails"; // CUSTOM DEFINED HOOK
 
 import useMuiTable, { getComparator, stableSort } from "hooks/useMuiTable"; // CUSTOM UTILS METHOD
 
 import { isDark } from "utils/constants"; // CUSTOM DUMMY DATA
 
-import { USER_LIST } from "__fakeData__/users"; // STYLED COMPONENTS
+import { WORKER_LIST } from "__fakeData__/worker"; // STYLED COMPONENTS
+
 
 const HeadTableCell = styled(TableCell)(({
   theme
@@ -52,20 +53,20 @@ const headCells = [{
   disablePadding: false,
   label: "이름"
 }, {
-  id: "position",
+  id: "평일",
   numeric: true,
   disablePadding: false,
-  label: "Position"
+  label: "평일"
+},{
+  id: "토요일",
+  numeric: true,
+  disablePadding: false,
+  label: "토요일"
 }, {
-  id: "company",
+  id: "일요일",
   numeric: true,
   disablePadding: false,
-  label: "Company"
-}, {
-  id: "email",
-  numeric: true,
-  disablePadding: false,
-  label: "Email"
+  label: "일요일"
 }, {
   id: "전화",
   numeric: true,
@@ -73,10 +74,10 @@ const headCells = [{
   label: "전화"
 }];
 
-const UserList2PageView = () => {
-  const [users] = useState([...USER_LIST]);
+const WorkerList2PageView = () => {
+  const [workers] = useState([...WORKER_LIST]);
   const [searchFilter, setSearchFilter] = useState("");
-  const [selectedUser, setSelectedUser] = useState();
+  const [selectedWorker, setSelectedWorker] = useState();
   const {
     page,
     order,
@@ -89,7 +90,7 @@ const UserList2PageView = () => {
     defaultOrderBy: "name",
     defaultRowsPerPage: 10
   });
-  let filteredUsers = stableSort(users, getComparator(order, orderBy)).filter(item => {
+  let filteredWorkers = stableSort(workers, getComparator(order, orderBy)).filter(item => {
     if (searchFilter) return item.name.toLowerCase().includes(searchFilter.toLowerCase());else return true;
   });
   return <Box pt={2} pb={4}>
@@ -105,7 +106,7 @@ const UserList2PageView = () => {
             /* SEARCH BOX AREA */
           }
             {/* <Box px={3}>
-              <SearchArea value={searchFilter} onChange={e => setSearchFilter(e.target.value)} gridRoute="/dashboard/users/user-grid-2" listRoute="/dashboard/users/user-list-2" />
+              <SearchArea value={searchFilter} onChange={e => setSearchFilter(e.target.value)} gridRoute="/dashboard/workers/worker-grid-2" listRoute="/dashboard/workers/worker-list-2" />
             </Box> */}
 
             {
@@ -131,26 +132,27 @@ const UserList2PageView = () => {
                   /* TABLE BODY AND DATA */
                 }
                   <TableBody>
-                    {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(user => <BodyTableRow key={user.id} active={selectedUser?.id === user.id ? 1 : 0} onClick={() => setSelectedUser(user)}>
+                    {filteredWorkers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(worker => <BodyTableRow key={worker.id} active={selectedWorker?.id === worker.id ? 1 : 0} onClick={() => setSelectedWorker(worker)}>
                           <BodyTableCell>
                             <Stack direction="row" alignItems="center" spacing={1}>
-                              <Avatar src={user.avatar} sx={{
+                              <Avatar src={worker.avatar} sx={{
                           borderRadius: "20%",
                           backgroundColor: "grey.100"
                         }} />
 
                               <H6 fontSize={12} color="text.primary">
-                                {user.name}
+                                {worker.name}
                               </H6>
                             </Stack>
+                            {/* 테이블 표시 사항 */}
                           </BodyTableCell>
-                          <BodyTableCell>{user.position}</BodyTableCell>
-                          <BodyTableCell>{user.company}</BodyTableCell>
-                          <BodyTableCell>{user.email}</BodyTableCell>
-                          <BodyTableCell>{user.phone}</BodyTableCell>
+                          <BodyTableCell>{worker.workingInfo[0][0] !== "" ? `${worker.workingInfo[0][0]}~${worker.workingInfo[0][1]}` : '휴무'}</BodyTableCell>
+                          <BodyTableCell>{worker.workingInfo[1][0] !== "" ? `${worker.workingInfo[1][0]}~${worker.workingInfo[1][1]}` : '휴무'}</BodyTableCell>
+                          <BodyTableCell>{worker.workingInfo[2][0] !== "" ? `${worker.workingInfo[2][0]}~${worker.workingInfo[2][1]}` : '휴무'}</BodyTableCell>
+                          <BodyTableCell>{worker.phone || "전화 번호"}</BodyTableCell>
                         </BodyTableRow>)}
 
-                    {filteredUsers.length === 0 && <TableDataNotFound />}
+                    {filteredWorkers.length === 0 && <TableDataNotFound />}
                   </TableBody>
                 </Table>
               </Scrollbar>
@@ -159,7 +161,7 @@ const UserList2PageView = () => {
             {
             /* TABLE PAGINATION SECTION */
           }
-            <TablePagination page={page} component="div" rowsPerPage={rowsPerPage} count={filteredUsers.length} onPageChange={handleChangePage} rowsPerPageOptions={[5, 10, 25]} onRowsPerPageChange={handleChangeRowsPerPage} />
+            <TablePagination page={page} component="div" rowsPerPage={rowsPerPage} count={filteredWorkers.length} onPageChange={handleChangePage} rowsPerPageOptions={[5, 10, 25]} onRowsPerPageChange={handleChangeRowsPerPage} />
           </Card>
         </Grid>
 
@@ -167,10 +169,10 @@ const UserList2PageView = () => {
         /* USER DETAILS INFO */
       }
         <Grid item lg={3} md={4} xs={12}>
-          <UserDetails data={selectedUser} />
+          <WorkerDetails data={selectedWorker} />
         </Grid>
       </Grid>
     </Box>;
 };
 
-export default UserList2PageView;
+export default WorkerList2PageView;

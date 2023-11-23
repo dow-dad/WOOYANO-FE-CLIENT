@@ -9,7 +9,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { CameraAlt } from "@mui/icons-material";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import DayPicker from "./DayPicker";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // CUSTOM COMPONENTS
@@ -23,21 +22,20 @@ const AddWorkerForm = ({ handleCancel, data }) => {
   const downSm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const initialValues = {
     name: data?.name || "",
-    birthday: "",
-    company: data?.company || "",
-    email: data?.email || "",
     phone: data?.phone || "",
+    description : data?.description || "",
+    workingInfo : data?.workingInfo || [
+      ["", ""],
+      ["", ""],
+      ["", ""],
+    ],
   };
   const validationSchema = Yup.object({
-    name: Yup.string()
-      .min(3, "성씨를 포함하여 전부 입력해주세요")
-      .required("이름을 입력해주세요."),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is Required!"),
-    birthday: Yup.date().required("Date of Birth is Required!"),
-    phone: Yup.number().min(9).required("Phone Number is required!"),
-    company: Yup.string().required("Company is Required!"),
+    name: Yup.string().min(3, "성씨를 포함하여 전부 입력해주세요.").required("이름을 입력해주세요."),
+    phone: Yup.number().min(9).required("전화번호를 입력해주세요."),
+    date : Yup.string().required("근무 요일을 선택해주세요."),
+    startTime : Yup.string().required("근무 시작 시간을 입력해주세요."),
+    endTime : Yup.string().required("근무 종료 시간을 입력해주세요."),
   });
   const {
     values,
@@ -128,7 +126,7 @@ const AddWorkerForm = ({ handleCancel, data }) => {
                 helperText={touched.phone && errors.phone}
               />
             </Grid>
-            <Grid item sm={6} xs={12}>
+            <Grid item sm={10} xs={12}>
               <DayPicker />
             </Grid>
 

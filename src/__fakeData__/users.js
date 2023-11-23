@@ -1,23 +1,23 @@
-export const USER_LIST = [ {
-  id: "CEqmLNf9Wjgf",
-  name: "소준영",
-  username: "소준영",
-  phone: "(010) 1234 1234",
-  avatar: "/static/avatar/002-boy.svg",
-  date : "토,일",
-  startTime : "09:00",
-  endTime : "21:00",
-  introduce : "이사 청소 경력만 무려 15년! 사람이 한번도 살아본 적 없는 새집으로 만들어드립니다."
+export const USER_LIST = [{
+  id: "fkki_JgjwEOMmyizDsy6J",
+  role: "Editor",
+  company: "Google Inc",
+  name: "Zachary Gomez",
+  username: "zachary-gomez",
+  email: "zachary-gomez@gmail.com",
+  avatar: "/static/avatar/001-man.svg",
+  position: "Editor",
+  phone: "(01) 4563 4556"
 }, {
   id: "CEqmLNf9WjMv0C75NcFgf",
-  name: "양창민",
-  username: "양창민",
-  phone: "(010) 4563 4556",
+  role: "Subscriber",
+  company: "Meta",
+  name: "Amanda Montgomery",
+  email: "montgomery@ya.com",
+  username: "amanda-montgomery",
   avatar: "/static/avatar/002-girl.svg",
-  date : "월,수,금",
-  startTime : "09:40",
-  endTime : "18:30",
-  introduce : "10년간 청소에만 집중하고 연구하여, 남들과는 다른 노하우를 보여드립니다."
+  position: "Subscriber",
+  phone: "(01) 4563 4556"
 }, {
   id: "WiiFzcbNyV507aeUu2rBp",
   company: "Amazon",

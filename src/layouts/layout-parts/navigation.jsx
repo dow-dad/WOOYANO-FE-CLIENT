@@ -15,7 +15,7 @@ export const navigations = [
 }, {
   name: "작업자 관리",
   icon: duotone.UserList,
-  path: "/dashboard/users"
+  path: "/dashboard/workers"
 }, {
   name: "서비스 예약 관리",
   icon: duotone.Invoice,

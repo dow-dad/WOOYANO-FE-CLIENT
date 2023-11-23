@@ -1,32 +1,23 @@
 import { useState } from "react";
-import { Box, Menu, Stack, Button, Avatar, useTheme, IconButton } from "@mui/material";
-import { DeleteOutline } from "@mui/icons-material"; // CUSTOM COMPONENTS
+import { Box, Menu, Stack, Button, Avatar, useTheme, IconButton, TextField } from "@mui/material";
+import { DeleteOutline, Message, Work, } from "@mui/icons-material"; // CUSTOM COMPONENTS
 
 import { Modal } from "components/modal";
-import AddContactForm from "./AddContactForm";
+import AddWorkerForm from "./AddWorkerForm";
 import { TableMoreMenuItem } from "components/table";
 import { H6, Paragraph } from "components/typography";
 import FlexBetween from "components/flexbox/FlexBetween"; // CUSTOM ICON COMPONENTS
 
 import Add from "icons/Add";
 import Call from "icons/Call";
-import City from "icons/City";
 import Edit from "icons/Edit";
-import Flag from "icons/Flag";
-import User from "icons/User";
-import Email from "icons/Email";
-import Skype from "icons/Skype";
-import ShareVs from "icons/ShareVs";
-import Birthday from "icons/Birthday";
-import Facebook from "icons/Facebook";
-import Whatsapp from "icons/Whatsapp";
-import Messenger from "icons/Messenger";
 import MoreHorizontal from "icons/MoreHorizontal"; // CUSTOM UTILS METHOD
 
 import { isDark } from "utils/constants"; // ==============================================================
-
+import Calendar from "icons/duotone/Calender";
+import { ClockIcon } from "@mui/x-date-pickers";
 // ==============================================================
-const UserDetails = ({
+const WorkerDetails = ({
   data
 }) => {
   const theme = useTheme();
@@ -39,6 +30,12 @@ const UserDetails = ({
 
   const handleCloseMenu = () => setAnchorEl(null);
 
+  const styles = {
+    root: {
+      minHeight: '50px', // 최소 높이 설정
+    },
+  };
+
   return <Box sx={{
     padding: 3,
     height: "100%",
@@ -46,12 +43,13 @@ const UserDetails = ({
     borderBottomRightRadius: "1rem",
     backgroundColor: isDark(theme) ? "grey.800" : "grey.100"
   }}>
+    {/* 작업자 추가버튼 */}
       <Button fullWidth variant="contained" startIcon={<Add />} onClick={() => setOpenModal(true)}>
         Add Contact
       </Button>
 
       <Modal open={openModal} handleClose={handleCloseModal}>
-        <AddContactForm handleCancel={handleCloseModal} data={isEdit ? data : null} />
+        <AddWorkerForm handleCancel={handleCloseModal} data={isEdit ? data : null} />
       </Modal>
 
       {data ? <>
@@ -65,24 +63,21 @@ const UserDetails = ({
           }} />
             </IconButton>
 
-            <IconButton sx={{
-          backgroundColor: isDark(theme) ? "grey.700" : "white"
-        }} onClick={e => setAnchorEl(e.currentTarget)}>
-              <MoreHorizontal fontSize="small" sx={{
-            color: "text.secondary"
-          }} />
+            <IconButton sx={{ backgroundColor: isDark(theme)  ? "grey.700" : "white"}} onClick={e => setAnchorEl(e.currentTarget)}>
+              <MoreHorizontal fontSize="small" sx={{color: "text.secondary"}} />
             </IconButton>
 
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleCloseMenu} transformOrigin={{
           vertical: "center",
           horizontal: "right"
         }}>
-              <TableMoreMenuItem Icon={DeleteOutline} title="Delete" handleClick={() => {
-            handleCloseMenu();
-          }} />
+
+          {/* 작업자 삭제 버튼 */}
+              <TableMoreMenuItem Icon={DeleteOutline} title="Delete" handleClick={() => {handleCloseMenu();}} />
             </Menu>
           </FlexBetween>
 
+          {/* 작업자 사진, 이름 */}
           <Stack alignItems="center">
             <Avatar src={data.avatar} sx={{
           width: 120,
@@ -98,21 +93,27 @@ const UserDetails = ({
             </Paragraph>
           </Stack>
 
+          {/* 작업자 상세 정보 표시 */}
           <Box mt={4}>
-            <ListItem Icon={Birthday} title="June 3, 1996" />
-            <ListItem Icon={User} title="Female" />
-            <ListItem Icon={City} title={data.company} />
-            <ListItem Icon={Email} title={data.email} />
+            <ListItem Icon={Work} title={data.company} />
             <ListItem Icon={Call} title={data.phone} />
-            <ListItem Icon={ShareVs} title="http://carriepage.com" />
-            <ListItem Icon={Flag} title="6956 Henderson Park" />
+            <ListItem Icon={ClockIcon} title={worker.workingInfo[0][0] !== "" ? `평일 : ${worker.workingInfo[0][0]}~${worker.workingInfo[0][1]}` : '휴무'}/>
+            <ListItem Icon={ClockIcon} title={worker.workingInfo[0][0] !== "" ? `토 : ${worker.workingInfo[1][0]}~${worker.workingInfo[1][1]}` : '휴무'}/>
+            <ListItem Icon={ClockIcon} title={worker.workingInfo[0][0] !== "" ? `일 : ${worker.workingInfo[2][0]}~${worker.workingInfo[2][1]}` : '휴무'} />
+            
           </Box>
 
           <Box mt={2}>
-            <ListItem Icon={Messenger} title={data.phone} />
-            <ListItem Icon={Facebook} title="facebook-carrie-page" />
-            <ListItem Icon={Skype} title="carrie-page" />
-            <ListItem Icon={Whatsapp} title="+1 (345) 556-2248" />
+            <ListItem Icon={Message} title="소개글" />
+            <TextField
+              fullWidth
+              value={data.description || "소개글"}
+              multiline
+              rowsmax={Infinity} // 다중 행으로 설정
+              InputProps={{
+                  style: styles.root,
+              }}
+            />
           </Box>
         </> : <Box height="100%" display="flex" alignItems="center" justifyContent="center" color="text.secondary">
           No Data
@@ -120,7 +121,7 @@ const UserDetails = ({
     </Box>;
 };
 
-export default UserDetails; // ===================================================================
+export default WorkerDetails; // ===================================================================
 
 // ===================================================================
 function ListItem({
