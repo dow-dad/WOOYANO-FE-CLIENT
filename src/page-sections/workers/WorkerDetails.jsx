@@ -14,7 +14,6 @@ import Edit from "icons/Edit";
 import MoreHorizontal from "icons/MoreHorizontal"; // CUSTOM UTILS METHOD
 
 import { isDark } from "utils/constants"; // ==============================================================
-import Calendar from "icons/duotone/Calender";
 import { ClockIcon } from "@mui/x-date-pickers";
 // ==============================================================
 const WorkerDetails = ({
@@ -45,7 +44,7 @@ const WorkerDetails = ({
   }}>
     {/* 작업자 추가버튼 */}
       <Button fullWidth variant="contained" startIcon={<Add />} onClick={() => setOpenModal(true)}>
-        Add Contact
+        Add Worker
       </Button>
 
       <Modal open={openModal} handleClose={handleCloseModal}>
@@ -87,20 +86,14 @@ const WorkerDetails = ({
             <H6 fontSize={16} mt={2}>
               {data.name}
             </H6>
-
-            <Paragraph color="text.secondary" mt={0.5}>
-              {data.position}
-            </Paragraph>
           </Stack>
 
           {/* 작업자 상세 정보 표시 */}
           <Box mt={4}>
-            <ListItem Icon={Work} title={data.company} />
             <ListItem Icon={Call} title={data.phone} />
-            <ListItem Icon={ClockIcon} title={worker.workingInfo[0][0] !== "" ? `평일 : ${worker.workingInfo[0][0]}~${worker.workingInfo[0][1]}` : '휴무'}/>
-            <ListItem Icon={ClockIcon} title={worker.workingInfo[0][0] !== "" ? `토 : ${worker.workingInfo[1][0]}~${worker.workingInfo[1][1]}` : '휴무'}/>
-            <ListItem Icon={ClockIcon} title={worker.workingInfo[0][0] !== "" ? `일 : ${worker.workingInfo[2][0]}~${worker.workingInfo[2][1]}` : '휴무'} />
-            
+            <ListItem Icon={ClockIcon} title={data.workingInfo[0][0] !== "" ? `평일 : ${data.workingInfo[0][0]}~${data.workingInfo[0][1]}` : '평일 : 휴무'}/>
+            <ListItem Icon={ClockIcon} title={data.workingInfo[1][0] !== "" ? `토 : ${data.workingInfo[1][0]}~${data.workingInfo[1][1]}` : '토 : 휴무'}/>
+            <ListItem Icon={ClockIcon} title={data.workingInfo[2][0] !== "" ? `일 : ${data.workingInfo[2][0]}~${data.workingInfo[2][1]}` : '일 : 휴무'} />  
           </Box>
 
           <Box mt={2}>

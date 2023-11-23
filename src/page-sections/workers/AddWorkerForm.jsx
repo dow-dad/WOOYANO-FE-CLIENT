@@ -1,3 +1,6 @@
+'use client'
+import React, { useState, useCallback } from 'react';
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import {
   Box,
   Grid,
@@ -7,13 +10,14 @@ import {
   TextField,
   IconButton,
   useMediaQuery,
+  NativeSelect,
+  Divider,
 } from "@mui/material";
-import { CameraAlt } from "@mui/icons-material";
+import { CameraAlt, Diversity1Outlined } from "@mui/icons-material";
 import DayPicker from "./DayPicker";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // CUSTOM COMPONENTS
-
-import { H5 } from "components/typography";
+import { H5, Paragraph } from "components/typography"; // CUSTOM ICON COMPONENTS
 import { Scrollbar } from "components/scrollbar";
 import { AvatarBadge } from "components/avatar-badge"; // ==========================================================================
 
@@ -23,20 +27,22 @@ const AddWorkerForm = ({ handleCancel, data }) => {
   const initialValues = {
     name: data?.name || "",
     phone: data?.phone || "",
-    description : data?.description || "",
-    workingInfo : data?.workingInfo || [
+    description: data?.description || "",
+    workingInfo: data?.workingInfo || [
       ["", ""],
       ["", ""],
       ["", ""],
     ],
   };
   const validationSchema = Yup.object({
-    name: Yup.string().min(3, "성씨를 포함하여 전부 입력해주세요.").required("이름을 입력해주세요."),
+    name: Yup.string()
+      .min(3, "성씨를 포함하여 전부 입력해주세요.")
+      .required("이름을 입력해주세요."),
     phone: Yup.number().min(9).required("전화번호를 입력해주세요."),
-    date : Yup.string().required("근무 요일을 선택해주세요."),
-    startTime : Yup.string().required("근무 시작 시간을 입력해주세요."),
-    endTime : Yup.string().required("근무 종료 시간을 입력해주세요."),
   });
+
+  const workingDateList = ["평일(월~금)", "토요일", "일요일"];
+
   const {
     values,
     errors,
@@ -50,10 +56,19 @@ const AddWorkerForm = ({ handleCancel, data }) => {
     validationSchema,
     onSubmit: (values) => console.log(values),
   });
+
+  const styles = {
+    root: {
+      minHeight: '50px', // 최소 높이 설정
+    },
+  };
+  const handleAddButtonClick = () => {
+  }
+
   return (
     <Box>
       <H5 fontSize={16} mb={4}>
-        Add Contact
+        Add Worker
       </H5>
 
       <form onSubmit={handleSubmit}>
@@ -103,7 +118,7 @@ const AddWorkerForm = ({ handleCancel, data }) => {
               <TextField
                 fullWidth
                 name="name"
-                label="name"
+                label="Name"
                 variant="outlined"
                 onBlur={handleBlur}
                 value={values.name}
@@ -117,7 +132,7 @@ const AddWorkerForm = ({ handleCancel, data }) => {
               <TextField
                 fullWidth
                 name="phone"
-                label="phone"
+                label="Phone"
                 variant="outlined"
                 onBlur={handleBlur}
                 value={values.phone}
@@ -126,36 +141,59 @@ const AddWorkerForm = ({ handleCancel, data }) => {
                 helperText={touched.phone && errors.phone}
               />
             </Grid>
-            <Grid item sm={10} xs={12}>
-              <DayPicker />
-            </Grid>
 
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                name="company"
-                label="Company"
-                variant="outlined"
-                onBlur={handleBlur}
-                value={values.company}
-                onChange={handleChange}
-                error={Boolean(errors.company && touched.company)}
-                helperText={touched.company && errors.company}
+            {/* 근무 요일 및 시간 설정 */}
+            <Grid ml={4} mt={6}>
+              <Paragraph fontWeight={600} fontSize={{ xs: 14, sm: 16 , md: 18}}>근무 요일 및 시간 설정</Paragraph>
+            </Grid>
+            <Grid item sm={12} xs={12} mx={1} display={"flex"} gap={2}>
+              <NativeSelect id="workingDate">
+                <option value="" disabled>
+                  근무 요일을 선택해주세요.
+                </option>
+                {workingDateList.map((date, index) => (
+                  <option key={index} placeholder="은행을 선택해주세요.">
+                    {date}
+                  </option>
+                ))}
+              </NativeSelect>
+              <TimePicker
+              id = "startTime"
+                views={["hours"]}
+                label="Start"
               />
+              <TimePicker
+              id = "endTime"
+                views={["hours"]}
+                label="End"
+              />
+              <Button onClick={handleAddButtonClick}>Add</Button>
             </Grid>
 
-            <Grid item sm={6} xs={12}>
+             {/* 추가된 근무 요일 및 시간 표시 */}
+            {/* {workingTimes.map((time, index) => (
+              <Grid key={index} item sm={12} xs={12} mx={1} display={'flex'} gap={2}>
+                <Paragraph>{time.day}</Paragraph>
+                <Paragraph>{time.startTime}</Paragraph>
+                <Paragraph>{time.endTime}</Paragraph>
+              </Grid>
+            ))} */}
+            {/*  */}
+
+            {/* 소개글 */}
+            <Grid item sm={12} xs={12}>
               <TextField
                 fullWidth
-                name="email"
-                type="email"
-                label="Email"
+                name="description"
+                label="Description"
                 variant="outlined"
-                onBlur={handleBlur}
-                value={values.email}
+                value={values.description}
                 onChange={handleChange}
-                error={Boolean(errors.email && touched.email)}
-                helperText={touched.email && errors.email}
+                placeholder="최대 80자까지 입력가능합니다"
+                multiline
+                rowsmax={Infinity} // 다중 행으로 설정
+                inputProps={{maxlength : 80}}
+                
               />
             </Grid>
           </Grid>
