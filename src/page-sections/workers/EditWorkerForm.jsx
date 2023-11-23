@@ -9,14 +9,13 @@ import { H5, Paragraph } from "components/typography"; // CUSTOM ICON COMPONENTS
 import { Scrollbar } from "components/scrollbar";
 import { AvatarBadge } from "components/avatar-badge";
 
-const AddWorkerForm = ({ handleCancel }) => {
+const EditWorkerForm = ({ handleCancel, data }) => {
   const downSm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const initialValues = {
-    name:"",
-    phone:"",
-    avatar:"",
-    description:"",
-    workingInfo:[
+    name: data?.name || "",
+    phone: data?.phone || "",
+    description: data?.description || "",
+    workingInfo: data?.workingInfo || [
       ["", ""],
       ["", ""],
       ["", ""],
@@ -28,30 +27,18 @@ const AddWorkerForm = ({ handleCancel }) => {
   });
 
   const workingDateList = ["평일(월~금)", "토요일", "일요일"];
-  const [selectDate, setSelectDate] = useState(0)
 
   const {values,errors,handleSubmit,handleChange,handleBlur,touched,setFieldValue} = useFormik({
     initialValues,validationSchema,onSubmit: (values) => console.log(values)});
 
-  const handleTimeChange = (newTime) => {
-    setFieldValue('workingInfo', [
-      ...values.workingInfo.slice(0, selectDate),
-      [newTime, values.workingInfo[selectDate][1]],
-      ...values.workingInfo.slice(selectDate + 1),
-    ])};
-
-  const handleAddWorker = async () => {
-    console.log(values)
-  }
-
-  const handleAddScheduleClick = () => {
-
+  const handleAddButtonClick = () => {
+    
   }
 
   return (
     <Box>
       <H5 fontSize={16} mb={4}>
-        Add Worker
+        Edit Worker
       </H5>
 
       <form onSubmit={handleSubmit}>
@@ -86,7 +73,7 @@ const AddWorkerForm = ({ handleCancel }) => {
               }
             >
               <Avatar
-                src={""}
+                src={data?.avatar || "/static/avatar/001-man.svg"}
                 sx={{
                   width: 80,
                   height: 80,
@@ -130,39 +117,38 @@ const AddWorkerForm = ({ handleCancel }) => {
               <Paragraph fontWeight={600} fontSize={{ xs: 14, sm: 16 , md: 18}}>근무 요일 및 시간 설정</Paragraph>
             </Grid>
             <Grid item sm={12} xs={12} mx={1} display={"flex"} gap={2}>
-              <NativeSelect id="workingDate" onChange={(e) => setSelectDate(workingDateList.indexOf(e.target.value))}>
+              <NativeSelect id="workingDate">
                 <option value="" disabled>
                   근무 요일을 선택해주세요.
                 </option>
                 {workingDateList.map((date, index) => (
-                  <option key={index}>
+                  <option key={index} placeholder="은행을 선택해주세요.">
                     {date}
                   </option>
                 ))}
               </NativeSelect>
               <TimePicker
               id = "startTime"
-              value={values.workingInfo[selectDate][0]}
                 views={["hours"]}
                 label="Start"
-                onChange={handleTimeChange}
               />
               <TimePicker
               id = "endTime"
-              value = {values.workingInfo[selectDate][1]}
                 views={["hours"]}
                 label="End"
-                onChange={handleTimeChange}
               />
-              <Button onClick={handleAddScheduleClick}>Add</Button>
+              <Button onClick={handleAddButtonClick}>Add</Button>
             </Grid>
 
              {/* 추가된 근무 요일 및 시간 표시 */}
-             {values.workingInfo.map((index) => (
+            {/* {workingTimes.map((time, index) => (
               <Grid key={index} item sm={12} xs={12} mx={1} display={'flex'} gap={2}>
-                <Paragraph>{workingDateList[index]} :  {new Date(values.workingInfo[selectDate][0]).toLocaleTimeString()} ~ {new Date(values.workingInfo[selectDate][1]).toLocaleTimeString()}</Paragraph>
+                <Paragraph>{time.day}</Paragraph>
+                <Paragraph>{time.startTime}</Paragraph>
+                <Paragraph>{time.endTime}</Paragraph>
               </Grid>
-             ))}
+            ))} */}
+            {/*  */}
 
             {/* 소개글 */}
             <Grid item sm={12} xs={12}>
@@ -184,7 +170,7 @@ const AddWorkerForm = ({ handleCancel }) => {
         </Scrollbar>
 
         <Stack direction="row" alignItems="center" spacing={1} mt={4}>
-          <Button type="submit" size="small" onClick={handleAddWorker}>
+          <Button type="submit" size="small">
             Save
           </Button>
 
@@ -202,4 +188,4 @@ const AddWorkerForm = ({ handleCancel }) => {
   );
 };
 
-export default AddWorkerForm;
+export default EditWorkerForm;
