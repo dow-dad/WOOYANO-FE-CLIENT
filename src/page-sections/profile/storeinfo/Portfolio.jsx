@@ -1,9 +1,10 @@
+'use client'
 import { Add, Download, FavoriteBorder } from "@mui/icons-material";
 import { Button, Card, CardMedia, Grid, styled, Box, IconButton, CardContent, Chip } from "@mui/material"; // CUSTOM COMPONENTS
-
 import { FlexBox, FlexBetween } from "components/flexbox";
 import { H6, Small } from "components/typography"; // CUSTOM UTILS METHOD
-
+import { is } from "date-fns/locale";
+import { useState } from "react";
 import { isDark } from "utils/constants";
 const StyledIconButton = styled(IconButton)(({
   theme
@@ -26,33 +27,62 @@ const DateWrapper = styled(FlexBox)(({
   backgroundColor: isDark(theme) ? theme.palette.grey[800] : theme.palette.common.white
 }));
 
-const Portfolio = () => {
-  return <Card sx={{
-    padding: 3
-  }}>
-      <FlexBetween mb={3}>
-        <H6 fontSize={16}>Portfolio</H6>
 
-        <Button color="secondary" variant="outlined" startIcon={<Add />}>
-          Add New
+
+const Portfolio = () => {
+
+  const [isOpened, setIsOpened] = useState(false);
+
+  const handleOpendModal = () => {
+    setIsOpened(!isOpened)
+  }
+
+  const renderEditStoreImg = () => {
+    return <>
+      <div style={{ background: "black", width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0, zIndex: 1200, opacity: 0.6 }}></div>
+      <div style={{ backgroundColor: "white", position: "fixed", width: "70vw", height: "80vh", zIndex: 1201, borderRadius: "10px", left: "15%", top: "10%", padding: "10px" }}>
+
+
+        <FlexBox gap={2} paddingLeft={1} paddingTop={5} flexWrap={"wrap"}>
+          <Button type="button" variant="outlined" onClick={() => { handleOpendModal() }}>닫기</Button>
+        </FlexBox>
+      </div>
+    </>
+  }
+
+  return <>
+    {isOpened ? renderEditStoreImg() : null}
+    <Card sx={{
+      padding: 3
+    }}>
+      <FlexBetween mb={3}>
+        <H6 fontSize={16}>업체 사진</H6>
+
+        <Button color="secondary" variant="outlined" startIcon={<Add />} onClick={() => { handleOpendModal() }}>
+          추가 및 수정
         </Button>
       </FlexBetween>
 
       <Grid container spacing={3}>
         <Grid item lg={4} md={6} xs={12}>
-          <SinglePortfolio tag="Minimal" title="Hollow Purple" date="12.00 Nov 21, 2021" imgLink="/static/portfolio/1.png" />
+          <SinglePortfolio tag="Minimal" imgLink="/static/cleanimg/cleanimg4.png" />
         </Grid>
 
         <Grid item lg={4} md={6} xs={12}>
-          <SinglePortfolio tag="Dark" title="Red Blood" date="12.00 Nov 21, 2021" imgLink="/static/portfolio/2.png" />
+          <SinglePortfolio tag="Dark" imgLink="/static/cleanimg/cleanimg2.png" />
         </Grid>
 
         <Grid item lg={4} md={6} xs={12}>
-          <SinglePortfolio tag="Light" title="Lime Blue" date="12.00 Nov 21, 2021" imgLink="/static/portfolio/3.png" />
+          <SinglePortfolio tag="Light" imgLink="/static/cleanimg/cleanimg3.png" />
         </Grid>
+
+
+
       </Grid>
-    </Card>;
-};
+
+    </Card>
+  </>
+}
 
 export default Portfolio; // ==============================================================================================
 
@@ -68,39 +98,10 @@ function SinglePortfolio({
     borderRadius: 2,
     boxShadow: 0
   }}>
-      <CardMedia component="img" image={imgLink} height={152} />
-
-      <DateWrapper>
-        <Small fontWeight={600}>12</Small>
-        <Small color="text.secondary">Jan</Small>
-      </DateWrapper>
-
-      <CardContent sx={{
+    <CardMedia sx={{
       paddingBottom: "16px !important"
-    }}>
-        <FlexBetween>
-          <Chip label={tag} size="small" />
+    }} component="img" image={imgLink} height={152} />
 
-          <Box>
-            <StyledIconButton size="small" disableRipple sx={{
-            mr: 1
-          }}>
-              <Download color="primary" />
-            </StyledIconButton>
 
-            <StyledIconButton size="small" disableRipple>
-              <FavoriteBorder color="action" />
-            </StyledIconButton>
-          </Box>
-        </FlexBetween>
-
-        <Box mt={1.5}>
-          <H6 fontSize={14} lineHeight={1}>
-            {title}
-          </H6>
-
-          <Small color="text.secondary">{date}</Small>
-        </Box>
-      </CardContent>
-    </Card>;
+  </Card>;
 }

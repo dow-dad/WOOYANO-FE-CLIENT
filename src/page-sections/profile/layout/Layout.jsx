@@ -76,7 +76,9 @@ const Layout = ({
               }} />
                   </IconButton>
                 </label>}>
-              <AvatarLoading alt="user" borderSize={2} percentage={60} src="/static/user/user-11.png" sx={{
+
+              {/* 매장 사진 */}
+              <AvatarLoading alt="user" borderSize={2} percentage={60} src="/static/logo/character.svg" sx={{
               width: 100,
               height: 100
             }} />
@@ -85,30 +87,18 @@ const Layout = ({
 
           <Box mt={2}>
             <H6 fontSize={18} textAlign="center">
-              Pixy Krovasky
+              우야노 클린
             </H6>
 
-            <StyledFlexBetween paddingTop={1} maxWidth={340}>
-              <ListItem title="Developer" Icon={Bratislava} />
-              <ListItem title="New York" Icon={MapMarkerIcon} />
-              <ListItem title="Joined March 17" Icon={DateRange} />
-            </StyledFlexBetween>
           </Box>
 
-          <StyledFlexBetween paddingTop={4} maxWidth={400}>
-            <StatBox amount={`$${format(4550, "0,00")}`} title="Earnings" color="primary.main" />
-            <StatBox amount={format(60, "0,00")} title="Projects" color="success.600" />
-            <StatBox amount={`$${format(2800, "0,00")}`} title="Success Rate" color="warning.600" />
-          </StyledFlexBetween>
+          
         </ContentWrapper>
 
         <StyledTabList variant="scrollable" onChange={handleTabList}>
-          <Tab disableRipple label="Overview" value="1" />
-          <Tab disableRipple label="Projects" value="2" />
-          <Tab disableRipple label="Campaigns" value="3" />
-          <Tab disableRipple label="Documents" value="4" />
-          <Tab disableRipple label="Connections" value="5" />
-          <Tab disableRipple label="Activity" value="6" />
+          <Tab disableRipple label="매장정보 관리" value="1" />
+          <Tab disableRipple label="리뷰 관리" value="2" />
+          <Tab disableRipple label="운영/휴무시간 관리" value="3" />     
         </StyledTabList>
       </Card>
 

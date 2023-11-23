@@ -1,6 +1,6 @@
 import { Grid, Box, useTheme } from "@mui/material"; // CUSTOM ICON COMPONENT
 
-import CampaignCard from "./CampaignCard"; // CUSTOM ICON COMPONENTS
+import StoreTimeCard from "./StoreTimeCard"; // CUSTOM ICON COMPONENTS
 
 import Reddit from "icons/Reddit";
 import Twitch from "icons/Twitch";
@@ -8,7 +8,7 @@ import Twitter from "icons/Twitter";
 import Youtube from "icons/Youtube";
 import PinterestCircle from "icons/PinterestCircle";
 
-const Campaigns = () => {
+const StoreTime = () => {
   const theme = useTheme(); // CUSTOM DUMMY DATA
 
   const CAMPAIGN_LIST = [{
@@ -85,12 +85,12 @@ const Campaigns = () => {
     color: theme.palette.error.main
   }];
   return <Box py={3}>
-      <Grid container spacing={3}>
-        {CAMPAIGN_LIST.map(item => <Grid item md={4} sm={6} xs={12} key={item.id}>
-            <CampaignCard Icon={item.icon} title={item.title} color={item.color} amount={item.amount} impression={item.impression} progressValue={item.progressValue} />
-          </Grid>)}
+    <Grid container spacing={3}>
+      <Grid item md={12} sm={12} xs={12}>
+        <StoreTimeCard  />
       </Grid>
-    </Box>;
+    </Grid>
+  </Box>;
 };
 
-export default Campaigns;
+export default StoreTime;

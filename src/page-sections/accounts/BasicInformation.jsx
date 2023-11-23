@@ -80,7 +80,7 @@ const BasicInformation = () => {
   const renderClientEdit = () => {
     return <>
       <div onClick={() => hadleOpenModal()} style={{ background: "black", width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0, zIndex: 1200, opacity: 0.6 }}></div>
-      <div style={{ backgroundColor: "white", position: "fixed", width: "70vw", height: "70vh", zIndex: 1201, borderRadius: "10px", left: "15%", top: "10%" }}>
+      <div style={{ backgroundColor: "white", position: "fixed", width: "70vw", height: "70vh", zIndex: 1201, borderRadius: "10px", left: "15%", top: "10%",overflowY:"auto" }}>
         {
           /* BASIC INFORMATION FORM SECTION */
         }

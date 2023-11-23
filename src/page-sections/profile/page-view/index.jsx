@@ -5,12 +5,10 @@ import Box from "@mui/material/Box";
 import { TabContext, TabPanel } from "@mui/lab"; // CUSTOM PAGE SECTION COMPONENTS
 
 import { Layout } from "../layout";
-import Overview from "../overview";
-import Projects from "../projects";
-import Activity from "../activity";
-import Campaigns from "../campaigns";
-import Documents from "../documents";
-import Connections from "../connections";
+import StoreInfo from "../storeinfo";
+import Review from "../review";
+import StoreTime from "../storetime";
+
 
 const ProfilePageView = () => {
   const [tabValue, setTabValue] = useState("1");
@@ -21,27 +19,15 @@ const ProfilePageView = () => {
       <TabContext value={tabValue}>
         <Layout handleTabList={handleTabChange}>
           <TabPanel value="1">
-            <Overview />
+            <StoreInfo />
           </TabPanel>
           <TabPanel value="2">
-            <Projects />
+            <Review />
           </TabPanel>
-
           <TabPanel value="3">
-            <Campaigns />
+            <StoreTime />
           </TabPanel>
-
-          <TabPanel value="4">
-            <Documents />
-          </TabPanel>
-
-          <TabPanel value="5">
-            <Connections />
-          </TabPanel>
-
-          <TabPanel value="6">
-            <Activity />
-          </TabPanel>
+          
         </Layout>
       </TabContext>
     </Box>;

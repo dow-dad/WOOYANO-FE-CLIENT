@@ -17,7 +17,7 @@ const AdditionalDetails = () => {
     padding: 3
   }}>
       <FlexBetween>
-        <H6 fontSize={16}>Additional Details</H6>
+        <H6 fontSize={16}>업체 정보</H6>
         <MoreButton size="small" />
       </FlexBetween>
 
