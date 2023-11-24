@@ -2,7 +2,6 @@ import { Avatar, Box, Card, styled, useTheme } from "@mui/material";
 import { nanoid } from "nanoid";
 import merge from "lodash.merge";
 import Chart from "react-apexcharts";
-import { useTranslation } from "react-i18next"; // CUSTOM COMPONENTS
 
 import { Paragraph } from "components/typography";
 import { MoreButton } from "components/more-button";
@@ -39,9 +38,6 @@ const DATA = [{
 
 const SessionBrowser = () => {
   const theme = useTheme();
-  const {
-    t
-  } = useTranslation(); // REACT CHART OPTIONS
 
   const chartOptions = merge(baseChartOptions(theme), {
     stroke: {
@@ -71,7 +67,7 @@ const SessionBrowser = () => {
   }}>
       <FlexBetween p={3}>
         <Paragraph fontSize={18} fontWeight={500}>
-          {t("Session by browser")}
+          {"Session by browser"}
         </Paragraph>
 
         <MoreButton size="small" />

@@ -1,27 +1,17 @@
 import { useMemo } from "react";
-import { useTranslation } from "react-i18next"; // CUSTOM DEFINED HOOK
-
-import useAuth from "hooks/useAuth";
 import useNavigate from "hooks/useNavigate";
 import useLocation from "hooks/useLocation"; // LAYOUT BASED HOOK
-
 import useLayout from "./context/useLayout"; // CUSTOM COMPONENTS
-
 import SidebarAccordion from "./SidebarAccordion";
 import { navigations } from "../layout-parts/navigation"; // CUSTOM STYLED COMPONENTS
-
 import { ItemText, ListLabel, BulletIcon, ICON_STYLE, ExternalLink, NavItemButton } from "../layout-parts/styles/sidebar"; // ===========================================================================
 
 // ===========================================================================
 const MultiLevelMenu = ({
   sidebarCompact
 }) => {
-  const {
-    user
-  } = useAuth();
-  const {
-    t
-  } = useTranslation();
+
+  const user = null;
   const navigate = useNavigate();
   const {
     pathname
@@ -46,7 +36,7 @@ const MultiLevelMenu = ({
       // MENU LABEL DESIGN
       if (item.type === "label") {
         return <ListLabel key={index} compact={COMPACT}>
-            {t(item.label)}
+            {item.label}
           </ListLabel>;
       } // MENU LIST WITH CHILDREN
 
@@ -74,7 +64,7 @@ const MultiLevelMenu = ({
           {item?.icon ? <item.icon sx={ICON_STYLE(activeRoute(item.path))} /> : <BulletIcon active={activeRoute(item.path)} />}
 
           <ItemText compact={COMPACT} active={activeRoute(item.path)}>
-            {t(item.name)}
+            {item.name}
           </ItemText>
         </NavItemButton>;
     });

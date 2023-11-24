@@ -1,5 +1,5 @@
-import EcommercePageView from "page-sections/dashboards/ecommerce/page-view";
+// import EcommercePageView from "page-sections/dashboards/ecommerce/page-view";
 
-const HomePage = () => <EcommercePageView />;
+const HomePage = () => <></>;
 
 export default HomePage;

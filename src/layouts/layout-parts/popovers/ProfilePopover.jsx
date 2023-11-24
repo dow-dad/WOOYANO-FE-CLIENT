@@ -6,7 +6,6 @@ import { FlexBox } from "components/flexbox";
 import { AvatarLoading } from "components/avatar-loading";
 import { H6, Paragraph, Small } from "components/typography"; // CUSTOM DEFINED HOOK
 
-import useAuth from "hooks/useAuth";
 import useNavigate from "hooks/useNavigate"; // CUSTOM UTILS METHOD
 
 import { isDark } from "utils/constants"; // STYLED COMPONENTS
@@ -36,9 +35,7 @@ const StyledSmall = styled(Paragraph)(({
 const ProfilePopover = () => {
   const anchorRef = useRef(null);
   const navigate = useNavigate();
-  const {
-    logout
-  } = useAuth();
+
   const [open, setOpen] = useState(false);
 
   const handleMenuItem = path => () => {
@@ -82,7 +79,7 @@ const ProfilePopover = () => {
           my: 1
         }} />
 
-          <StyledSmall onClick={logout}>Sign Out</StyledSmall>
+          <StyledSmall>Sign Out</StyledSmall>
         </Box>
       </PopoverLayout>
     </Fragment>;

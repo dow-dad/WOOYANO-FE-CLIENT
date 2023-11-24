@@ -16,7 +16,6 @@ import MenuLeftRight from "icons/MenuLeftRight"; // CUSTOM COMPONENTS
 import SearchBar from "../layout-parts/SearchBar";
 import ProfilePopover from "../layout-parts/popovers/ProfilePopover";
 import ServicePopover from "../layout-parts/popovers/ServicePopover";
-import LanguagePopover from "../layout-parts/popovers/LanguagePopover";
 import NotificationsPopover from "../layout-parts/popovers/NotificationsPopover"; // STYLED COMPONENTS
 
 import { DashboardHeaderRoot, StyledToolBar } from "../layout-parts/styles/header";
@@ -95,7 +94,6 @@ const DashboardHeader = () => {
         </IconButton>
 
         {upSm && <Fragment>
-            <LanguagePopover />
             <NotificationsPopover />
             <ServicePopover />
           </Fragment>}
