@@ -1,7 +1,6 @@
 import { Box, Button, Card, useTheme } from "@mui/material";
 import merge from "lodash.merge";
 import Chart from "react-apexcharts";
-import { useTranslation } from "react-i18next"; // CUSTOM COMPONENTS
 
 import { FlexBetween } from "components/flexbox";
 import { MoreButton } from "components/more-button";
@@ -11,9 +10,6 @@ import { baseChartOptions } from "utils/baseChartOptions";
 
 const LiveUser = () => {
   const theme = useTheme();
-  const {
-    t
-  } = useTranslation(); // REACT CHART DATA SERIES
 
   const chartSeries = [{
     name: "Tasks",
@@ -62,7 +58,7 @@ const LiveUser = () => {
       </FlexBetween>
 
       <Paragraph mt={4}>
-        {t("Page views")} <Span color="text.secondary">/ Second</Span>
+        {"Page views"} <Span color="text.secondary">/ Second</Span>
       </Paragraph>
 
       <Chart type="bar" options={chartOptions} series={chartSeries} height={250} />
@@ -70,7 +66,7 @@ const LiveUser = () => {
       <Button color="secondary" sx={{
       width: "100%"
     }}>
-        {t("View Details")}
+        {"View Details"}
       </Button>
     </Card>;
 };

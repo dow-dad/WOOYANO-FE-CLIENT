@@ -100,46 +100,8 @@ const ProductListPageView = () => {
 
   return (
     <>
-      {renderCreatProductModal()}
-      <Box pt={2} pb={4}>
-        {/* 필터링 탭과 "상품 추가" 버튼 */}
-        <ListWrapper sx={{ justifyContent: "flex-end", marginTop: 8 }}>
-
-
-          <Button variant="contained" startIcon={<Add />} onClick={() => handleOpenModal()}>
-            상품 추가
-          </Button>
-        </ListWrapper>
-
-        {/* 카드 컴포넌트 */}
-        <Card sx={{ mt: 4 }}>
-          {/* 검색 및 필터 섹션 */}
-          {/* <ProductTableActions filter={productFilter} handleChangeFilter={handleChangeFilter} /> */}
-
-          {/* 테이블 툴바 */}
-          {selected.length > 0 && <TableToolbar selected={selected.length} handleDeleteRows={handleAllProductDelete} />}
-
-          {/* 테이블 헤드 및 행 섹션 */}
-          <TableContainer>
-            <Scrollbar>
-              <Table sx={{ minWidth: 820 }}>
-                <ProductTableHead order={order} orderBy={orderBy} numSelected={selected.length} rowCount={filteredProducts.length} onRequestSort={handleRequestSort} onSelectAllRows={handleSelectAllRows(filteredProducts.map(row => row.id))} />
-
-                <TableBody>
-                  {/* 상품 행 렌더링 */}
-                  {filteredProducts.map(product => <ProductTableRow key={product.id} product={product} handleSelectRow={handleSelectRow} isSelected={isSelected(product.id)} handleDeleteProduct={handleDeleteProduct} />)}
-
-                  {/* 상품이 없을 경우 데이터 없음 메시지 표시 */}
-                  {filteredProducts.length === 0 && <TableDataNotFound />}
-                </TableBody>
-              </Table>
-            </Scrollbar>
-          </TableContainer>
-
-          {/* 페이지네이션 섹션 */}
-          {/* <TablePagination page={page} component="div" rowsPerPage={rowsPerPage} count={filteredProducts.length} onPageChange={handleChangePage} rowsPerPageOptions={[5, 10, 25]} onRowsPerPageChange={handleChangeRowsPerPage} /> */}
-        </Card>
-      </Box>
+      {/* {renderCreatProductModal()} */}
+      
     </>
   );
 };

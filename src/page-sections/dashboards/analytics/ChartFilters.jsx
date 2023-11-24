@@ -3,14 +3,11 @@ import { Box, Card, Stack, styled, useTheme } from "@mui/material";
 import { nanoid } from "nanoid";
 import merge from "lodash.merge";
 import Chart from "react-apexcharts";
-import { useTranslation } from "react-i18next"; // CUSTOM COMPONENTS
 
 import { FlexBetween } from "components/flexbox";
 import { Paragraph } from "components/typography";
 import { MoreButton } from "components/more-button"; // CUSTOM UTILS METHODS
 
-import { format } from "utils/currency";
-import { numberFormat } from "utils/numberFormat";
 import { baseChartOptions } from "utils/baseChartOptions"; // STYLED COMPONENTS
 
 const ChartWrapper = styled(Box)({
@@ -52,12 +49,12 @@ const BoxWrapper = styled(Box)(({
 const LIST = [{
   id: nanoid(),
   title: "Users",
-  value: numberFormat(12060),
+  value: 12060,
   percentage: 12.5
 }, {
   id: nanoid(),
   title: "Sessions",
-  value: numberFormat(30000),
+  value: 30000,
   percentage: 5.56
 }, {
   id: nanoid(),
@@ -76,9 +73,7 @@ const ChartFilters = ({
   type = "area"
 }) => {
   const theme = useTheme();
-  const {
-    t
-  } = useTranslation();
+
   const [selectedItem, setSelectedItem] = useState(LIST[1].id);
 
   const handleChange = id => () => setSelectedItem(id); // REACT CHART DATA SERIES
@@ -116,7 +111,7 @@ const ChartFilters = ({
       max: 50000,
       tickAmount: 5,
       labels: {
-        formatter: value => format(value),
+        formatter: value,
         style: {
           colors: theme.palette.text.secondary
         }
@@ -131,7 +126,7 @@ const ChartFilters = ({
       }}>
           {LIST.map(item => <BoxWrapper key={item.id} className="list-item" onClick={handleChange(item.id)} active={selectedItem === item.id ? 1 : 0}>
               <Paragraph ellipsis lineHeight={1} fontWeight={500} color="text.secondary">
-                {t(item.title)}
+                {item.title}
               </Paragraph>
 
               <Paragraph fontSize={22} fontWeight={600}>

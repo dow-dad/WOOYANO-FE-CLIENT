@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Fragment, useRef, useState } from "react";
 import { enUS, esES } from "@mui/material/locale";
 import { Box, IconButton, MenuItem, Popover, styled } from "@mui/material";
-import { useTranslation } from "react-i18next"; // ==============================================================
 
 // ==============================================================
 // LANGUAGE OPTIONS
@@ -34,9 +33,6 @@ const IconWrapper = styled(Box)({
 const LanguagePopover = () => {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const {
-    i18n
-  } = useTranslation();
 
   const handleOpen = () => setOpen(true);
 

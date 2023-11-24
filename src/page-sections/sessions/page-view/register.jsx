@@ -5,7 +5,6 @@ import { Button, Grid, Divider, TextField, Box } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // CUSTOM DEFINED HOOK
 
-import useAuth from "hooks/useAuth";
 import useNavigate from "hooks/useNavigate"; // CUSTOM COMPONENTS
 
 import { H5, H6, Paragraph } from "components/typography"; // CUSTOM SESSIONS LAYOUT
@@ -14,9 +13,7 @@ import Layout from "../Layout";
 
 const RegisterPageView = () => {
   const navigate = useNavigate();
-  const {
-    createUserWithEmail
-  } = useAuth();
+  
   const initialValues = {
     email: "demo@example.com",
     password: "password123456",

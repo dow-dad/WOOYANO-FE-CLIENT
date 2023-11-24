@@ -1,5 +1,5 @@
-import { ProductListPageView } from "page-sections/products/page-view";
+// import { ProductListPageView } from "page-sections/products/page-view";
 
-const ProductListPage = () => <ProductListPageView />;
+const ProductListPage = () => <></>;
 
 export default ProductListPage;

@@ -1,5 +1,5 @@
-import { Analytics1PageView } from "page-sections/dashboards/analytics/page-view";
+// import { Analytics1PageView } from "page-sections/dashboards/analytics/page-view";
 
-const Analytics1Page = () => <Analytics1PageView />;
+const Analytics1Page = () => <></>;
 
 export default Analytics1Page;

@@ -1,6 +1,5 @@
 import { Box, Card, Table, Avatar, styled, TableRow, useTheme, TableBody, TableCell, TableHead } from "@mui/material";
 import Chart from "react-apexcharts";
-import { useTranslation } from "react-i18next";
 import { nanoid } from "nanoid";
 import merge from "lodash.merge"; // CUSTOM COMPONENTS
 
@@ -36,9 +35,6 @@ const BodyTableCell = styled(TableCell)(({
 
 const TopReferral = () => {
   const theme = useTheme();
-  const {
-    t
-  } = useTranslation(); // REACT CHART CATEGORIES LABEL
 
   const chartCategories = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]; // REACT CHART DATA SERIES
 
