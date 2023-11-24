@@ -11,6 +11,7 @@ import {
   Select,
   MenuItem,
   OutlinedInput,
+  Divider,
 } from "@mui/material";
 import { H5, Paragraph } from "components/typography";
 
@@ -27,7 +28,7 @@ export default function SignUpResult(props) {
       >
         Sign up Result
       </H5>
-      <Paragraph mt={1} mb={6} color="text.secondary">
+      <Paragraph mt={1} mb={4} color="text.secondary">
         저희 우야노에 가입해주셔서 감사합니다!
       </Paragraph>
 
@@ -44,10 +45,21 @@ export default function SignUpResult(props) {
       </Box>
 
       {/* 로그인 정보 */}
-      <Box>
-        <Paragraph mt={4} color="text.secondary">
-          User Information
+      <Divider
+        sx={{
+          mt : 6,
+          mb: 1,
+          mx: 2,
+          borderColor: "grey.200",
+          borderWidth: 1,
+        }}
+      >
+        <Paragraph color="text.secondary">
+        CEO Information
         </Paragraph>
+      </Divider>
+
+      <Box>
         <Box
           sx={{
             display: "flex",
@@ -79,10 +91,20 @@ export default function SignUpResult(props) {
       </Box>
 
       {/* 회사 정보 */}
-      <Box>
-        <Paragraph mt={4} color="text.secondary">
-          Company Information
+      <Divider
+        sx={{
+          mt : 3,
+          mb: 1,
+          mx: 2,
+          borderColor: "grey.200",
+          borderWidth: 1,
+        }}
+      >
+        <Paragraph color="text.secondary">
+        Company Information
         </Paragraph>
+      </Divider>
+      <Box>
         <Grid maxWidth={1 / 2} mt={1.5}>
           <Paragraph>Company Name</Paragraph>
           <TextField
@@ -150,10 +172,20 @@ export default function SignUpResult(props) {
       </Box>
 
       {/* 은행 정보 */}
-      <Box>
-        <Paragraph mt={4} color="text.secondary">
-          Bank Information
+      <Divider
+        sx={{
+          mt : 3,
+          mb: 1,
+          mx: 2,
+          borderColor: "grey.200",
+          borderWidth: 1,
+        }}
+      >
+        <Paragraph color="text.secondary">
+        Bank Information
         </Paragraph>
+      </Divider>
+      <Box>
         <Box>
           <Grid maxWidth={1 / 2} mt={1.5}>
             <Paragraph>Bank Holder</Paragraph>

@@ -77,6 +77,7 @@ export default function SignUpCertNumber(props) {
     borderRadius: "2xl", // rounded-2xl
     textAlign: "center", // text-center,
     borderRadius: "12px",
+    marginBottom: "6vh", // 추가된 부분
   };
 
   return (

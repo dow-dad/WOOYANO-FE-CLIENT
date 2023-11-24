@@ -3,57 +3,67 @@ import React, { SetStateAction } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { Box, Button } from "@mui/material";
-import SwalBasic from 'components/error/SwalBasic'
+import SwalBasic from "components/error/SwalBasic";
 
-export default function StepperBtn({btnText, stepId, setStepId, signUpData, setSignUpData}) {
+export default function StepperBtn({
+  btnText,
+  stepId,
+  setStepId,
+  signUpData,
+  setSignUpData,
+}) {
   const router = useRouter();
 
   //이메일 확인 및 인증코드 전송
   const handleEmailSendFetch = async () => {
-    const checkEmailURL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/client/email/check?email=${signUpData.email}`
-    const sendVerifyCodeURL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/send/client/join/code?name=${signUpData.name}&email=${signUpData.email}`
+    const checkEmailURL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/client/email/check?email=${signUpData.email}`;
+    const sendVerifyCodeURL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/send/client/join/code?name=${signUpData.name}&email=${signUpData.email}`;
     try {
-      const checkEmail = await fetch(checkEmailURL);
-      if(checkEmail.ok) {
-          const checkResult = await checkEmail.json();
-          // 중복검사 결과 중복없음
-          if (checkResult.result.checkResult === false) {
-            //인증코드 전송 요청
-            const sendVerifyCode = await fetch(sendVerifyCodeURL);
-            const sendResult = await sendVerifyCode.json()
-            if (sendVerifyCode.ok && sendResult.success === true) {
-              setStepId(stepId + 1);
-            } else {
-              SwalBasic({text : "인증코드 요청에 실패하였습니다." , position: "center"})
-            }
-          } else if (checkResult.result.checkResult === false) {
-            SwalBasic({text : "이미 가입된 정보가 있습니다." , position: "center"})
+      const res = await fetch(checkEmailURL);
+      if (res.ok) {
+        const checkResult = await res.json();
+        // 중복검사 결과 중복없음
+        if (checkResult.result.checkResult === false) {
+          //인증코드 전송 요청
+          const sendVerifyCode = await fetch(sendVerifyCodeURL);
+          const sendResult = await sendVerifyCode.json();
+          if (sendVerifyCode.ok && sendResult.success === true) {
+            setStepId(stepId + 1);
           } else {
-            SwalBasic({text : "서버 통신에 실패하였습니다." , position: "center"})
+            SwalBasic({
+              text: "인증코드 요청에 실패하였습니다.",
+              position: "center",
+            });
           }
         } else {
-          SwalBasic({text : "서버 통신에 실패하였습니다." , position: "center"})
+          SwalBasic({
+            text: "이미 가입된 정보가 있습니다.",
+            position: "center",
+          });
         }
-      } catch(error) {
-      console.log(error)
-    }
-  }
-  //인증코드 확인
-  const handleVerifyCode = async () => {
-    const verifyCheckURL  =  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/confirm/code?email=${signUpData.email}&code=${signUpData.emailCertNumber}`
-    try {
-      const verifyCheck = await fetch(verifyCheckURL);
-      const checkResult = await verifyCheck.json()
-      if(verifyCheck.ok) {
-        setStepId(stepId + 1);
       } else {
-        console.log(checkResult)
-        SwalBasic({text : "인증코드가 일치하지않습니다." , position: "center"})
+        SwalBasic({ text: "서버 통신에 실패하였습니다.", position: "center" });
       }
-    }catch(error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
+  //인증코드 확인
+  const handleVerifyCode = async () => {
+    const verifyCheckURL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/confirm/code?email=${signUpData.email}&code=${signUpData.emailCertNumber}`;
+    try {
+      const verifyCheck = await fetch(verifyCheckURL);
+      const checkResult = await verifyCheck.json();
+      if (verifyCheck.ok) {
+        setStepId(stepId + 1);
+      } else {
+        console.log(checkResult);
+        SwalBasic({ text: "인증코드가 일치하지않습니다.", position: "center" });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //입력값 초기화 및 인증 이전단계로 이동
   const handleEmailCertAgain = async () => {
@@ -69,64 +79,80 @@ export default function StepperBtn({btnText, stepId, setStepId, signUpData, setS
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        signUpData.email = "",
-        signUpData.password= "",
-        signUpData.secondPassword= "",
-        signUpData.name= "",
-
-        signUpData.localAddress= "",
-        signUpData.extraAddress= "",
-        signUpData.localCode= 0,
-
-        signUpData.companyName= "",
-        signUpData.companyPhone= "",
-        signUpData.registerationNumber= "",
-        signUpData.registerationImage= "",
-
-        signUpData.bankHolder="",
-        signUpData.bankAccount="",
-        signUpData.bankName="",
-        signUpData.bankImage="",
- 
-        signUpData.emailCertNumber= "",
-        signUpData.passwordCheck= false,
-        signUpData.nicknameCheck= false,
-        signUpData.emailformcheck= false,
-        setStepId(stepId - 2);
+        (signUpData.email = ""),
+          (signUpData.password = ""),
+          (signUpData.secondPassword = ""),
+          (signUpData.name = ""),
+          (signUpData.localAddress = ""),
+          (signUpData.extraAddress = ""),
+          (signUpData.localCode = 0),
+          (signUpData.companyName = ""),
+          (signUpData.companyPhone = ""),
+          (signUpData.registerationNumber = ""),
+          (signUpData.registerationImage = ""),
+          (signUpData.bankHolder = ""),
+          (signUpData.bankAccount = ""),
+          (signUpData.bankName = ""),
+          (signUpData.bankImage = ""),
+          (signUpData.emailCertNumber = ""),
+          (signUpData.passwordCheck = false),
+          (signUpData.nicknameCheck = false),
+          (signUpData.emailformcheck = false),
+          setStepId(stepId - 2);
         //모든 입력값 초기화
-      } 
-      else {
+      } else {
       }
     });
   };
 
   const handleSignUpPost = async () => {
-    const postSignUpURL  =  `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/client/join`
-    // const postResult = await 
-    // const postSignUp = await fetch (postSignUpURL, {
-    //   method: "POST",
-    //   headers : {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     "email" : signUpData.email,
-    //     "password" : signUpData.password,
-    //     "ceoName" : signUpData.name,
-    //     "clientName" : signUpData.companyName,
-    //     "clientPhone" : signUpData.companyPhone,
-    //     "clientAddress" : `${signUpData.localAddress, signUpData.extraAddress}`,
-    //     "clientRegistrationNumber" : signUpData.registerationNumber,
-    //     "clientRegistrationImgUrl" : signUpData.registerationImage,
-    //     "bankName" : signUpData.bankName,
-    //     "bankAccount" : signUpData.bankAccount,
-    //     "bankHolder" : signUpData.bankHolder,
-    //     "bankImgUrl" : signUpData.bankImgUrl
-    //   })
-    // })
-  }
-  
+    const postSignUpURL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/client/join`;
+    const address =  `${signUpData.localAddress} ${signUpData.extraAddress}`
+    try {
+      const postSignUp = await fetch(postSignUpURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: `${signUpData.email}`,
+          password: `${signUpData.password}`,
+          ceoName: `${signUpData.name}`,
+          clientName: `${signUpData.companyName}`,
+          clientPhone: `${signUpData.companyPhone}`,
+          clientAddress: address,
+          clientRegistrationNumber: `${signUpData.registerationNumber}`,
+          bankName: `${signUpData.bankName}`,
+          bankAccount: `${signUpData.bankAccount}`,
+          bankHolder: `${signUpData.bankHolder}`,
+          bankImgUrl: "https://wooyano.s3.ap-northeast-2.amazonaws.com/profile/profile.png",
+          clientRegistrationImgUrl: "https://wooyano.s3.ap-northeast-2.amazonaws.com/profile/profile.png",
+          // bankImgUrl: `${signUpData.bankImgUrl}`,
+          // clientRegistrationImgUrl: `${signUpData.registerationImage}`,
+        }),
+      });
+      if (postSignUp.ok) {
+        const postSignUpResult = await postSignUp.json();
+        console.log(postSignUpResult)
+        if (postSignUpResult.success === true) {
+          setStepId(stepId + 1);
+        } else {
+          SwalBasic({
+            text: "회원가입에 실패하였습니다. 잠시후 다시 시도해주세요.",
+            position: "center",
+          });
+          console.log(postSignUpResult)
+        }
+      }
+    } catch (error) {
+      SwalBasic({
+        text: "회원가입에 실패하였습니다. 잠시후 다시 시도해주세요.",
+        position: "center",
+      });
+      console.log(error);
+    }
+  };
 
-  
   const handleSignUpFetch = async () => {
     let errorText = {
       message: "",
@@ -137,25 +163,42 @@ export default function StepperBtn({btnText, stepId, setStepId, signUpData, setS
         errorText.message = "모든 정보를 입력해주세요.";
       }
       if (errorText.message != "") {
-        SwalBasic({text : errorText.message , position: "center"})
+        SwalBasic({ text: errorText.message, position: "center" });
       } else {
         handleEmailSendFetch();
       }
     } else if (stepId === 2) {
       // setStepId(stepId + 1);
       if (signUpData.emailCertNumber.length !== 4) {
-        SwalBasic({text : "인증코드를 전부 입력해주세요." , position: "center"})
+        SwalBasic({
+          text: "인증코드를 전부 입력해주세요.",
+          position: "center",
+        });
       } else {
         handleVerifyCode();
       }
     } else if (stepId === 3) {
-      if(signUpData.password === "" || signUpData.secondPassword === "" || setSignUpData.localAddress === "" ||
-      signUpData.extraAddress === "" || signUpData.companyName === "" || setSignUpData.companyPhone === "" ||
-      signUpData.registerationNumber === "" || signUpData.registerationImage === "" || setSignUpData.bankHolder === ""||
-      signUpData.bankAccount === "" || signUpData.bankName === "" || setSignUpData.bankImage === "") {
-        SwalBasic({text : "빈칸 없이 모두 입력해주세요." , position: "center"})
-      } else if(signUpData.password !== setSignUpData.secondPassword) {
-        SwalBasic({text : "입력하신 비밀번호가 일치하지 않습니다." , position: "center"})
+      if (
+        signUpData.password === "" ||
+        signUpData.secondPassword === "" ||
+        setSignUpData.localAddress === "" ||
+        signUpData.extraAddress === "" ||
+        signUpData.companyName === "" ||
+        setSignUpData.companyPhone === "" ||
+        signUpData.registerationNumber === "" ||
+        signUpData.registerationImage === "" ||
+        setSignUpData.bankHolder === "" ||
+        signUpData.bankAccount === "" ||
+        signUpData.bankName === "" ||
+        setSignUpData.bankImage === ""
+      ) {
+        SwalBasic({ text: "빈칸 없이 모두 입력해주세요.", position: "center" });
+      }
+      if (signUpData.password !== signUpData.secondPassword) {
+        SwalBasic({
+          text: "입력하신 비밀번호가 일치하지 않습니다.",
+          position: "center",
+        });
       } else {
         handleSignUpPost()
       }
@@ -165,9 +208,7 @@ export default function StepperBtn({btnText, stepId, setStepId, signUpData, setS
   return (
     <div>
       <Box
-        maxWidth={1000}
         mx={2}
-        mt={10}
         display={"flex"}
         gap={"10px"}
         justifyContent={"center"}
