@@ -41,6 +41,8 @@ export default function StepperBtn({
             position: "center",
           });
         }
+      } else if (!res.ok){
+        SwalBasic({ text: "이미 가입된 정보가 있습니다.", position: "center" });
       } else {
         SwalBasic({ text: "서버 통신에 실패하였습니다.", position: "center" });
       }

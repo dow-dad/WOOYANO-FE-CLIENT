@@ -11,6 +11,10 @@ import Layout from "../Layout"; // CUSTOM COMPONENTS
 
 import { H5, H6, Paragraph } from "components/typography";
 import { FlexBetween, FlexBox, FlexRowAlign } from "components/flexbox"; // CUSTOM ICON COMPONENTS
+import { signIn } from "next-auth/react";
+import SwalBasic from "components/error/SwalBasic";
+import { useRouter, useSearchParams } from "next/navigation";
+
 
 const StyledButton = styled(ButtonBase)(({
   theme
@@ -23,10 +27,6 @@ const StyledButton = styled(ButtonBase)(({
 const LoginPageView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleGoogle = async () => {
-    await signInWithGoogle();
-  };
 
   const initialValues = {
     email: "",
@@ -43,20 +43,40 @@ const LoginPageView = () => {
     touched,
     handleBlur,
     handleChange,
-    handleSubmit
+    
   } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: async values => {
+  });
+
+  const query = useSearchParams();
+  const callBackUrl = query.get("callbackUrl");
+  const router = useRouter();
+
+  // 로그인
+  const handleLogin = async () => {
+    if(values.email === "" || values.password === "") {
+      SwalBasic({ text: "이메일 , 비밀번호를 모두 입력해주세요.", position: "center" });
+    } else {
       try {
-        setIsLoading(true);
-        await signInWithEmail(values.email, values.password);
+        const result = await signIn("credentials", {
+          email: values.email,
+          password: values.password,
+          redirect: false,
+          callbackUrl: callBackUrl ? callBackUrl : "/",
+        });
+        if (!result || !result.ok) {
+          SwalBasic({ text: "아이디 비밀번호 확인 후 다시 시도해주세요.", position: "center" });
+        } else {
+          SwalBasic({ text: "우야노에 오신걸 환영합니다.", position: "center" });
+          router.push("/")
+        }
       } catch (error) {
-        setIsLoading(false);
         console.log(error);
       }
     }
-  });
+  }
+
   return <Layout login>
       <Box maxWidth={550} p={4}>
         <H5 fontSize={{
@@ -71,7 +91,7 @@ const LoginPageView = () => {
           </Box>
         </Paragraph>
 
-        <form onSubmit={handleSubmit}>
+        <form>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <H6 fontSize={16} mb={1.5}>
@@ -108,7 +128,7 @@ const LoginPageView = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <LoadingButton loading={isLoading} type="submit" variant="contained" fullWidth>
+              <LoadingButton loading={isLoading} variant="contained" fullWidth onClick={handleLogin}>
                 Sign In
               </LoadingButton>
             </Grid>
