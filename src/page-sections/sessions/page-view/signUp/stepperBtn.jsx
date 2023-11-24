@@ -194,9 +194,9 @@ export default function StepperBtn({
       ) {
         SwalBasic({ text: "빈칸 없이 모두 입력해주세요.", position: "center" });
       }
-      if (signUpData.password !== signUpData.secondPassword) {
+      if (signUpData.password != signUpData.secondPassword) {
         SwalBasic({
-          text: "입력하신 비밀번호가 일치하지 않습니다.",
+          text: "입력하신 비밀번호가 서로 일치하지 않습니다.",
           position: "center",
         });
       } else {
