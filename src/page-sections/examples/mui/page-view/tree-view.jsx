@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { TreeItem, TreeView } from "@mui/lab";
+import { TreeItem, TreeView } from '@mui/x-tree-view';
 import { ChevronRight, ExpandMore } from "@mui/icons-material"; // CUSTOM COMPONENTS
 
 import ComponentPageLayout from "../../ComponentPageLayout";
