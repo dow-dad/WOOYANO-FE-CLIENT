@@ -28,6 +28,35 @@ const LoginPageView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  const query = useSearchParams();
+  const callBackUrl = query.get("callbackUrl");
+  const router = useRouter();
+
+    // 로그인
+    const handleLogin = async () => {
+      if(values.email === "" || values.password === "") {
+        SwalBasic({ text: "이메일 , 비밀번호를 모두 입력해주세요.", position: "center" });
+      } else {
+        try {
+          const result = await signIn("credentials", {
+            email: values.email,
+            password: values.password,
+            redirect: false,
+            callbackUrl: callBackUrl ? callBackUrl : "/",
+          });
+          if (!result || !result.ok) {
+            console.log(result)
+            SwalBasic({ text: "아이디 비밀번호 확인 후 다시 시도해주세요.", position: "center" });
+          } else {
+            SwalBasic({ text: "우야노에 오신걸 환영합니다.", position: "center" });
+            router.push("/")
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+
   const initialValues = {
     email: "",
     password: "",
@@ -49,33 +78,8 @@ const LoginPageView = () => {
     validationSchema,
   });
 
-  const query = useSearchParams();
-  const callBackUrl = query.get("callbackUrl");
-  const router = useRouter();
 
-  // 로그인
-  const handleLogin = async () => {
-    if(values.email === "" || values.password === "") {
-      SwalBasic({ text: "이메일 , 비밀번호를 모두 입력해주세요.", position: "center" });
-    } else {
-      try {
-        const result = await signIn("credentials", {
-          email: values.email,
-          password: values.password,
-          redirect: false,
-          callbackUrl: callBackUrl ? callBackUrl : "/",
-        });
-        if (!result || !result.ok) {
-          SwalBasic({ text: "아이디 비밀번호 확인 후 다시 시도해주세요.", position: "center" });
-        } else {
-          SwalBasic({ text: "우야노에 오신걸 환영합니다.", position: "center" });
-          router.push("/")
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
+
 
   return <Layout login>
       <Box maxWidth={550} p={4}>

@@ -1,9 +1,9 @@
 // THEME PROVIDER
 import ThemeProvider from "theme/ThemeProvider"; // SITE SETTINGS CONTEXT
 
-import AuthProvider from "contexts/AuthProvider";
-
 import SettingsProvider from "contexts/settingsContext"; // FIREBASE AUTH PROVIDER
+
+import AuthProvider from "contexts/AuthProvider"
 
 import { inter } from "utils/font"; // RIGHT-TO-LEFT SUPPORT COMPONENT
 
