@@ -45,7 +45,6 @@ const LoginPageView = () => {
             callbackUrl: callBackUrl ? callBackUrl : "/",
           });
           if (!result || !result.ok) {
-            console.log(result)
             SwalBasic({ text: "아이디 비밀번호 확인 후 다시 시도해주세요.", position: "center" });
           } else {
             SwalBasic({ text: "우야노에 오신걸 환영합니다.", position: "center" });
@@ -106,8 +105,19 @@ const LoginPageView = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <TextField fullWidth placeholder="Password" type={showPassword ? "text" : "password"} name="password" onBlur={handleBlur} value={values.password} onChange={handleChange} helperText={touched.password && errors.password} error={Boolean(touched.password && errors.password)} InputProps={{
-              endAdornment: <FlexRowAlign onClick={() => setShowPassword(!showPassword)} sx={{
+              <TextField
+              fullWidth
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              onBlur={handleBlur}
+              value={values.password}
+              onChange={handleChange}
+              helperText={touched.password && errors.password}
+              error={Boolean(touched.password && errors.password)}
+              InputProps={{
+              endAdornment: <FlexRowAlign onClick={() => setShowPassword(!showPassword)}
+              sx={{
                 cursor: "pointer"
               }}>
                       {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
