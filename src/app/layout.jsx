@@ -1,8 +1,6 @@
 // THEME PROVIDER
 import ThemeProvider from "theme/ThemeProvider"; // SITE SETTINGS CONTEXT
 
-import SettingsProvider from "contexts/settingsContext"; // FIREBASE AUTH PROVIDER
-
 import { inter } from "utils/font"; // RIGHT-TO-LEFT SUPPORT COMPONENT
 
 import { RTL } from "components/rtl"; // MULTI LANGUAGE FEATURE
@@ -31,7 +29,9 @@ const RootLayout = ({
     <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider>
             <RTL>
-              <DashboardLayout>{children}</DashboardLayout>
+              <DashboardLayout>
+                {children}
+              </DashboardLayout>
             </RTL>
         </ThemeProvider>
 

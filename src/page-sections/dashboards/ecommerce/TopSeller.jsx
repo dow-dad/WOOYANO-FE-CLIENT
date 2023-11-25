@@ -1,3 +1,4 @@
+'use client'
 import { Avatar, Badge, Box, Card, Stack } from "@mui/material";
 import { nanoid } from "nanoid"; // CUSTOM COMPONENTS
 

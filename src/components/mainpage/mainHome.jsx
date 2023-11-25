@@ -1,13 +1,13 @@
-"use client";
-
+'use client'
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid"; // CUSTOM PAGE SECTION COMPONENTS
-import Sales from "../Sales";
-import TopSeller from "../TopSeller";
-import RecentOrders from "../RecentOrders";
-import CustomerReview from "../CustomerReview";
+import Sales from "page-sections/dashboards/ecommerce/Sales";
+import TopSeller from "page-sections/dashboards/ecommerce/TopSeller";
+import RecentOrders from "page-sections/dashboards/ecommerce/RecentOrders";
+import CustomerReview from "page-sections/dashboards/ecommerce/CustomerReview";
 
-const EcommercePageView = () => {
+const MainHome = () => {
+  
   return <Box pt={2} pb={4}>
       <Grid container spacing={3}>
         {
@@ -41,10 +41,8 @@ const EcommercePageView = () => {
           <TopSeller />
         </Grid>
 
-        
-        
       </Grid>
     </Box>;
 };
 
-export default EcommercePageView;
+export default MainHome;

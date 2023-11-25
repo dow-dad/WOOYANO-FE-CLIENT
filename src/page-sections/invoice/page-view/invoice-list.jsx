@@ -41,7 +41,7 @@ const InvoiceListPageView = () => {
     if (detailData) {
       return <>
         <div style={{ background: "black", width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0, zIndex: 1200, opacity: 0.6 }}></div>
-        <div style={{ backgroundColor: "white", position: "fixed", width: "70vw", height: "80vh", zIndex: 1201, borderRadius: "10px", left: "15%", top: "10%", padding: "5px" }}>
+        <div style={{ backgroundColor: "white", position: "fixed", width: "70vw", height: "80vh", zIndex: 1201, borderRadius: "10px", left: "15%", top: "10%", padding: "5px", overflowY:"auto" }}>
           <Card sx={{ p: 2 }}>
             <Paragraph fontSize={22} fontWeight={700}>서비스 상세 내역</Paragraph>
             <Stack paddingTop={2} >
