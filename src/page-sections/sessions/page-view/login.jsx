@@ -45,7 +45,7 @@ const LoginPageView = () => {
             callbackUrl: callBackUrl ? callBackUrl : "/",
           });
           if (!result || !result.ok) {
-            SwalBasic({ text: "아이디 비밀번호 확인 후 다시 시도해주세요.", position: "center" });
+              SwalBasic({ text: "아이디 또는 비밀번호가 일치하지 않습니다." , position: "center" });
           } else {
             SwalBasic({ text: "우야노에 오신걸 환영합니다.", position: "center" });
             router.push("/")
