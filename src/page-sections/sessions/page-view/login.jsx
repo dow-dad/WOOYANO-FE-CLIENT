@@ -11,6 +11,10 @@ import Layout from "../Layout"; // CUSTOM COMPONENTS
 
 import { H5, H6, Paragraph } from "components/typography";
 import { FlexBetween, FlexBox, FlexRowAlign } from "components/flexbox"; // CUSTOM ICON COMPONENTS
+import { signIn } from "next-auth/react";
+import SwalBasic from "components/error/SwalBasic";
+import { useRouter, useSearchParams } from "next/navigation";
+
 
 const StyledButton = styled(ButtonBase)(({
   theme
@@ -24,9 +28,33 @@ const LoginPageView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleGoogle = async () => {
-    await signInWithGoogle();
-  };
+  const query = useSearchParams();
+  const callBackUrl = query.get("callbackUrl");
+  const router = useRouter();
+
+    // 로그인
+    const handleLogin = async () => {
+      if(values.email === "" || values.password === "") {
+        SwalBasic({ text: "이메일 , 비밀번호를 모두 입력해주세요.", position: "center" });
+      } else {
+        try {
+          const result = await signIn("credentials", {
+            email: values.email,
+            password: values.password,
+            redirect: false,
+            callbackUrl: callBackUrl ? callBackUrl : "/",
+          });
+          if (!result || !result.ok) {
+              SwalBasic({ text: "아이디 또는 비밀번호가 일치하지 않습니다." , position: "center" });
+          } else {
+            SwalBasic({ text: "우야노에 오신걸 환영합니다.", position: "center" });
+            router.push("/")
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
 
   const initialValues = {
     email: "",
@@ -43,20 +71,15 @@ const LoginPageView = () => {
     touched,
     handleBlur,
     handleChange,
-    handleSubmit
+    
   } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: async values => {
-      try {
-        setIsLoading(true);
-        await signInWithEmail(values.email, values.password);
-      } catch (error) {
-        setIsLoading(false);
-        console.log(error);
-      }
-    }
   });
+
+
+
+
   return <Layout login>
       <Box maxWidth={550} p={4}>
         <H5 fontSize={{
@@ -71,7 +94,7 @@ const LoginPageView = () => {
           </Box>
         </Paragraph>
 
-        <form onSubmit={handleSubmit}>
+        <form>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <H6 fontSize={16} mb={1.5}>
@@ -82,8 +105,19 @@ const LoginPageView = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <TextField fullWidth placeholder="Password" type={showPassword ? "text" : "password"} name="password" onBlur={handleBlur} value={values.password} onChange={handleChange} helperText={touched.password && errors.password} error={Boolean(touched.password && errors.password)} InputProps={{
-              endAdornment: <FlexRowAlign onClick={() => setShowPassword(!showPassword)} sx={{
+              <TextField
+              fullWidth
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              onBlur={handleBlur}
+              value={values.password}
+              onChange={handleChange}
+              helperText={touched.password && errors.password}
+              error={Boolean(touched.password && errors.password)}
+              InputProps={{
+              endAdornment: <FlexRowAlign onClick={() => setShowPassword(!showPassword)}
+              sx={{
                 cursor: "pointer"
               }}>
                       {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
@@ -108,7 +142,7 @@ const LoginPageView = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <LoadingButton loading={isLoading} type="submit" variant="contained" fullWidth>
+              <LoadingButton loading={isLoading} variant="contained" fullWidth onClick={handleLogin}>
                 Sign In
               </LoadingButton>
             </Grid>

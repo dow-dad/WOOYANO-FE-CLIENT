@@ -5,6 +5,8 @@ import { Box, Button } from "@mui/material";
 import { NavigateBefore } from "@mui/icons-material";
 import { FlexBox, FlexRowAlign } from "components/flexbox";
 
+import SwalBasic from "components/error/SwalBasic";
+
 export default function StepperBtn({
   btnText,
   stepId,
@@ -12,14 +14,29 @@ export default function StepperBtn({
   forgetPasswordData,
   setForgetPasswordData,
 }) {
+  async function sendVerfyCode() {
+    const emailCheckURL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/client/exist/check?registrationNumber=${forgetPasswordData.registerationNumber}&email=${forgetPasswordData.email}`
+    const emailCheckFetch = await fetch(emailCheckURL);
+    if(!emailCheckFetch.ok) {
+      emailCheckFetch.json().then((data) => {
+        console.log(data);
+      })
+    } else {
+      SwalBasic({ text: "가입정보가 없습니다.", position: "center" });
+    }
+  }
 
-  const handleForgetPasswordFetch = async () => {
+  async function handleForgetPasswordFetch() {
     let errorText = {
       message: "",
     };
 
     if (stepId == 1) {
-      setStepId(stepId + 1);
+      if(forgetPasswordData.email === "" || forgetPasswordData.registerationNumber === "") {
+        SwalBasic({ text: "모두 입력해주세요.", position: "center" });
+      } else {
+        sendVerfyCode()
+      }
     } else if (stepId == 2) {
       setStepId(stepId + 1);
     } else if (stepId == 3) {
