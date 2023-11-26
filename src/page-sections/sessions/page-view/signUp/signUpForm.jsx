@@ -288,9 +288,9 @@ const SignUpForm = (props) => {
         <TextField
           fullWidth
           placeholder="하이픈(-)을 제외하고 숫자로만 입력해 주세요."
-          id="registerationNumber"
+          id="registrationNumber"
           type="number"
-          value={signUpData.registerationNumber}
+          value={signUpData.registrationNumber}
           onChange={handleOnChange}
         />
       </Box>
@@ -300,10 +300,10 @@ const SignUpForm = (props) => {
         <OutlinedInput
           fullWidth
           placeholder="사업자 등록증 이미지를 첨부해주세요."
-          id="registerationImage"
+          id="registrationImage"
           type="file"
           accept="image/*"
-          value={signUpData.registerationImage}
+          value={signUpData.registrationImage}
           onChange={handleOnChange}
           inputProps={{
             style: {

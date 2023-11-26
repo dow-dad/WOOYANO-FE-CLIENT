@@ -90,8 +90,8 @@ export default function StepperBtn({
           (signUpData.localCode = 0),
           (signUpData.companyName = ""),
           (signUpData.companyPhone = ""),
-          (signUpData.registerationNumber = ""),
-          (signUpData.registerationImage = ""),
+          (signUpData.registrationNumber = ""),
+          (signUpData.registrationImage = ""),
           (signUpData.bankHolder = ""),
           (signUpData.bankAccount = ""),
           (signUpData.bankName = ""),
@@ -123,14 +123,14 @@ export default function StepperBtn({
           clientName: `${signUpData.companyName}`,
           clientPhone: `${signUpData.companyPhone}`,
           clientAddress: address,
-          clientRegistrationNumber: `${signUpData.registerationNumber}`,
+          clientRegistrationNumber: `${signUpData.registrationNumber}`,
           bankName: `${signUpData.bankName}`,
           bankAccount: `${signUpData.bankAccount}`,
           bankHolder: `${signUpData.bankHolder}`,
           bankImgUrl: "https://wooyano.s3.ap-northeast-2.amazonaws.com/profile/profile.png",
           clientRegistrationImgUrl: "https://wooyano.s3.ap-northeast-2.amazonaws.com/profile/profile.png",
           // bankImgUrl: `${signUpData.bankImgUrl}`,
-          // clientRegistrationImgUrl: `${signUpData.registerationImage}`,
+          // clientRegistrationImgUrl: `${signUpData.registrationImage}`,
         }),
       });
       if (postSignUp.ok) {
@@ -187,8 +187,8 @@ export default function StepperBtn({
         signUpData.extraAddress === "" ||
         signUpData.companyName === "" ||
         setSignUpData.companyPhone === "" ||
-        signUpData.registerationNumber === "" ||
-        signUpData.registerationImage === "" ||
+        signUpData.registrationNumber === "" ||
+        signUpData.registrationImage === "" ||
         setSignUpData.bankHolder === "" ||
         signUpData.bankAccount === "" ||
         signUpData.bankName === "" ||

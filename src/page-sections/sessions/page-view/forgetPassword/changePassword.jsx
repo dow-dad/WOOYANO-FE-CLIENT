@@ -1,22 +1,40 @@
 "use client";
-// 
 import { Box, Stack, TextField, Grid } from "@mui/material";
 import { H5, Paragraph } from "components/typography";
 import FlexRowAlign from "components/flexbox/FlexRowAlign";
 
+import * as Yup from "yup";
+import { useFormik } from "formik"; // CUSTOM DEFINED HOOK
+import { useEffect } from 'react';
+
 function ChangePassword(props) {
   const { forgetPasswordData, setForgetPasswordData } = props;
 
-  const handleOnChange = (e) => {
-    const value = e.target.value;
-    const id = e.target.id;
-    setForgetPasswordData({
-      ...forgetPasswordData,
-      [id]: value,
-    });
-    console.log(forgetPasswordData);
-  };
+  const initialValues = {
+    newPassword : "",
+    checkPassword: "",
+  }
+  const validationSchema = Yup.object().shape({
+    newPassword: Yup.string().min(6, "비밀번호는 최소 6자리입니다.").required("새로운 비밀번호를 입력해주세요."),
+    checkPassword: Yup.string().min(6, "비밀번호는 최소 6자리입니다.").required("확인을 위해 한번 더 입력해주세요."),
+  });
 
+  const { errors, values, touched, handleBlur, handleChange} = useFormik({
+    initialValues,
+    validationSchema})
+
+  useEffect(() => {
+      Object.keys(values).forEach((name) => {
+        const id = name;
+        const value = values[name];
+        setForgetPasswordData((prevData) => ({
+          ...prevData,
+          [id]: value,
+          }));
+          console.log(forgetPasswordData);
+      })
+  }, [values]);
+  
   return (
     <FlexRowAlign height="100%" bgcolor="background.paper">
       <Box textAlign="center" maxWidth={550} width="100%" padding={2}>
@@ -35,19 +53,29 @@ function ChangePassword(props) {
             <Grid>
               <TextField
                 fullWidth
-                id="newPassword"
                 label="New Password"
+                id="newPassword"
+                name="newPassword"
                 type="password"
-                onChange={handleOnChange}
+                onBlur={handleBlur}
+                value={values.newPassword}
+                onChange={handleChange}
+                helperText={touched.newPassword && errors.newPassword}
+                error={Boolean(touched.newPassword && errors.newPassword)}
               />
               <Grid mt={3}>
-                <TextField
-                  fullWidth
-                  id="checkPassword"
-                  label="Check Password"
-                  type="password"
-                  onChange={handleOnChange}
-                />
+              <TextField
+                fullWidth
+                label="Check Password"
+                id="checkPassword"
+                name="checkPassword"
+                type="password"
+                onBlur={handleBlur}
+                value={values.checkPassword}
+                onChange={handleChange}
+                helperText={touched.checkPassword && errors.checkPassword}
+                error={Boolean(touched.checkPassword && errors.checkPassword)}
+              />
               </Grid>
             </Grid>
           </Stack>

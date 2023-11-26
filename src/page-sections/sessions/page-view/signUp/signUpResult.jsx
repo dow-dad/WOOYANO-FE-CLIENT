@@ -136,7 +136,7 @@ export default function SignUpResult(props) {
             <TextField
               className="mt-1.5 "
               fullWidth
-              defaultValue={`${signUpData.registerationNumber}`}
+              defaultValue={`${signUpData.registrationNumber}`}
               inputProps={{ readOnly: true }}
               sx={{ flexGrow: 1 }}
             />

@@ -27,8 +27,8 @@ export default function SignUpStepper() {
 
     companyName: "",
     companyPhone: "",
-    registerationNumber: "",
-    registerationImage: "",
+    registrationNumber: "",
+    registrationImage: "",
 
     bankHolder: "",
     bankAccount: "",
