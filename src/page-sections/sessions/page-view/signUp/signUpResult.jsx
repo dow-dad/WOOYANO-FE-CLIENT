@@ -1,18 +1,6 @@
 "use client";
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
-// import { DaumAddressType } from "@/types/DaumAddrssType";
-import Swal from "sweetalert2";
-// import PostCodeDaum from "@/components/widget/postCodeDaum";
-import {
-  Button,
-  Grid,
-  TextField,
-  Box,
-  Select,
-  MenuItem,
-  OutlinedInput,
-  Divider,
-} from "@mui/material";
+import React from "react";
+import {Grid,TextField,Box,Divider} from "@mui/material";
 import { H5, Paragraph } from "components/typography";
 
 export default function SignUpResult(props) {
@@ -34,7 +22,7 @@ export default function SignUpResult(props) {
 
       <Box my={2}>
         <Paragraph mt={1} mb={1.5} color="text.secondary">
-          회원가입 신청이 완료되었습니다.
+          입점 신청이 완료되었습니다.
         </Paragraph>
         <Paragraph mt={1} mb={1.5} color="text.secondary">
           승인까지 3~5 영업일 소요됩니다.

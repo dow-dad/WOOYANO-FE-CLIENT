@@ -113,7 +113,7 @@ export default function StepperBtn({
 
     if (stepId == 1) {
       if(forgetPasswordData.email === "") {
-        SwalBasic({ text: "형식에 맞게 모두 입력해주세요.", position: "center" });
+        SwalBasic({ text: "형식에 맞춰 모두 입력해주세요.", position: "center" });
       } else {
         sendVerifyCode()
       }

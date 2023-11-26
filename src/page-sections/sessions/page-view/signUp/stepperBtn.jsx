@@ -140,7 +140,7 @@ export default function StepperBtn({
           setStepId(stepId + 1);
         } else {
           SwalBasic({
-            text: "회원가입에 실패하였습니다. 잠시후 다시 시도해주세요.",
+            text: "입점 신청에 실패하였습니다. 잠시후 다시 시도해주세요.",
             position: "center",
           });
           console.log(postSignUpResult)
@@ -148,7 +148,7 @@ export default function StepperBtn({
       }
     } catch (error) {
       SwalBasic({
-        text: "회원가입에 실패하였습니다. 잠시후 다시 시도해주세요.",
+        text: "입점 신청에 실패하였습니다. 잠시후 다시 시도해주세요.",
         position: "center",
       });
       console.log(error);
@@ -161,8 +161,8 @@ export default function StepperBtn({
     };
 
     if (stepId == 1) {
-      if (signUpData.email === "" || signUpData.name === "") {
-        errorText.message = "모든 정보를 입력해주세요.";
+      if (signUpData.email === "" ) {
+        errorText.message = "형식에 맞춰 모든 정보를 입력해주세요.";
       }
       if (errorText.message != "") {
         SwalBasic({ text: errorText.message, position: "center" });
@@ -170,7 +170,6 @@ export default function StepperBtn({
         handleEmailSendFetch();
       }
     } else if (stepId === 2) {
-      // setStepId(stepId + 1);
       if (signUpData.emailCertNumber.length !== 4) {
         SwalBasic({
           text: "인증코드를 전부 입력해주세요.",
@@ -180,6 +179,7 @@ export default function StepperBtn({
         handleVerifyCode();
       }
     } else if (stepId === 3) {
+      console.log(signUpData.password.length, signUpData.secondPassword.length)
       if (
         signUpData.password === "" ||
         signUpData.secondPassword === "" ||
@@ -196,7 +196,13 @@ export default function StepperBtn({
       ) {
         SwalBasic({ text: "빈칸 없이 모두 입력해주세요.", position: "center" });
       }
-      if (signUpData.password != signUpData.secondPassword) {
+      else if (signUpData.password.length < 6 || signUpData.secondPassword.length < 6 ) {
+        SwalBasic({
+          text: "비밀번호는 최소 6자리 이상이어야 합니다.",
+          position: "center",
+        });
+      }
+      else if (signUpData.password != signUpData.secondPassword) {
         SwalBasic({
           text: "입력하신 비밀번호가 서로 일치하지 않습니다.",
           position: "center",

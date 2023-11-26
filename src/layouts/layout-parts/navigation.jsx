@@ -40,7 +40,7 @@ export const navigations = [
     name: "로그인",
     path: "/login"
   }, {
-    name: "회원가입",
+    name: "입점 신청",
     path: "/register"
   }, {
     name: "아이디 찾기",
