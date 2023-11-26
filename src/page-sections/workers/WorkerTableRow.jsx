@@ -51,10 +51,6 @@ const UserTableRow = props => {
 
       <TableCell padding="normal">{worker.email}</TableCell>
 
-      <TableCell padding="normal">{worker.company}</TableCell>
-
-      <TableCell padding="normal">{worker.role}</TableCell>
-
       <TableCell padding="normal">
         <TableMoreMenu open={openMenuEl} handleOpen={handleOpenMenu} handleClose={handleCloseOpenMenu}>
           <TableMoreMenuItem Icon={Edit} title="Edit" handleClick={() => {

@@ -107,12 +107,14 @@ export default function SignUpCertForm(props) {
             />
           </Grid>
           <Grid item xs={12}>
-            <Paragraph mt={0} textAlign={"center"} color="text.secondary">
+            <Paragraph mt={1.5} mb={4} textAlign={"center"} color="text.secondary">
               회원가입시, 우야노 서비스 이용약관과
               <Box mt={1} fontWeight={500} textAlign={"center"} component="span" href="#">
+                <br />
                 개인정보 처리방침에 동의합니다.
               </Box>{" "}
               <Box mt={1} fontWeight={500} textAlign={"center"} component="span" href="#">
+                <br />
                 회원가입 완료 이후, 가입 승인까지 3~5일 소요됩니다.
               </Box>{" "}
             </Paragraph>

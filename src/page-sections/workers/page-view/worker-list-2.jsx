@@ -105,9 +105,9 @@ const WorkerList2PageView = () => {
             {
             /* SEARCH BOX AREA */
           }
-            {/* <Box px={3}>
-              <SearchArea value={searchFilter} onChange={e => setSearchFilter(e.target.value)} gridRoute="/dashboard/workers/worker-grid-2" listRoute="/dashboard/workers/worker-list-2" />
-            </Box> */}
+            <Box px={3}>
+              <SearchArea value={searchFilter} onChange={e => setSearchFilter(e.target.value)} />
+            </Box>
 
             {
             /* TABLE HEAD & BODY ROWS */
@@ -121,7 +121,7 @@ const WorkerList2PageView = () => {
                   <TableHead>
                     <TableRow>
                       {headCells.map(headCell => <HeadTableCell key={headCell.id} padding={headCell.disablePadding ? "none" : "normal"} sortDirection={orderBy === headCell.id ? order : false}>
-                          <TableSortLabel active={orderBy === headCell.id} onClick={e => handleRequestSort(e, headCell.id)} direction={orderBy === headCell.id ? order : "asc"}>
+                          <TableSortLabel active={orderBy === headCell.name} onClick={e => handleRequestSort(e, headCell.id)} direction={orderBy === headCell.id ? order : "asc"}>
                             {headCell.label}
                           </TableSortLabel>
                         </HeadTableCell>)}
