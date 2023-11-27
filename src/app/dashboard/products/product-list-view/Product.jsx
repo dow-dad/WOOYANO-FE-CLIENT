@@ -8,7 +8,7 @@ import { Scrollbar } from "components/scrollbar";
 import { TableDataNotFound } from "components/table"; // CUSTOM PAGE SECTION COMPONENTS
 
 
-import WorkerDetails from "page-sections/workers/WorkerDetails"; // CUSTOM DEFINED HOOK
+import ProductDetails from "./ProductDetail"; // CUSTOM DEFINED HOOK
 
 import useMuiTable, { getComparator, stableSort } from "hooks/useMuiTable"; // CUSTOM UTILS METHOD
 
@@ -53,17 +53,17 @@ const headCells = [{
   disablePadding: false,
   label: "상품명"
 }, {
-  id: "평일",
+  id: "생성일",
   numeric: true,
   disablePadding: false,
   label: "생성일"
 },{
-  id: "토요일",
+  id: "최소시간",
   numeric: true,
   disablePadding: false,
   label: "최소시간"
 }, {
-  id: "일요일",
+  id: "가격",
   numeric: true,
   disablePadding: false,
   label: "가격"
@@ -130,10 +130,7 @@ const WorkerList2PageView = () => {
                     {filteredWorkers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(worker => <BodyTableRow key={worker.id} active={selectedWorker?.id === worker.id ? 1 : 0} onClick={() => setSelectedWorker(worker)}>
                           <BodyTableCell>
                             <Stack direction="row" alignItems="center" spacing={1}>
-                              <Avatar src={worker.avatar} sx={{
-                          borderRadius: "20%",
-                          backgroundColor: "grey.100"
-                        }} />
+                              
 
                               <H6 fontSize={12} color="text.primary">
                                 {worker.name}
@@ -164,7 +161,7 @@ const WorkerList2PageView = () => {
         /* USER DETAILS INFO */
       }
         <Grid item lg={3} md={4} xs={12}>
-          <WorkerDetails data={selectedWorker} />
+          <ProductDetails data={selectedWorker} />
         </Grid>
       </Grid>
     </Box>;

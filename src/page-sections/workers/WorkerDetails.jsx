@@ -44,7 +44,7 @@ const WorkerDetails = ({
   }}>
     {/* 작업자 추가버튼 */}
       <Button fullWidth variant="contained" startIcon={<Add />} onClick={() => setOpenModal(true)}>
-        상품 추가
+        작업자 추가
       </Button>
 
       <Modal open={openModal} handleClose={handleCloseModal}>
