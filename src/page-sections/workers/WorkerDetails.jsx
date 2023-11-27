@@ -4,6 +4,7 @@ import { DeleteOutline, Message, Work, } from "@mui/icons-material"; // CUSTOM C
 
 import { Modal } from "components/modal";
 import AddWorkerForm from "./AddWorkerForm";
+import EditWorkerForm from "./EditWorkerForm"
 import { TableMoreMenuItem } from "components/table";
 import { H6, Paragraph } from "components/typography";
 import FlexBetween from "components/flexbox/FlexBetween"; // CUSTOM ICON COMPONENTS
@@ -22,11 +23,11 @@ const WorkerDetails = ({
   const theme = useTheme();
   const [isEdit, setIsEdit] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   const handleCloseModal = () => setOpenModal(false);
-
+  const handleCloseEditModal = () => setOpenModal(false);
   const [anchorEl, setAnchorEl] = useState(null);
-
   const handleCloseMenu = () => setAnchorEl(null);
 
   const styles = {
@@ -48,14 +49,18 @@ const WorkerDetails = ({
       </Button>
 
       <Modal open={openModal} handleClose={handleCloseModal}>
-        <AddWorkerForm handleCancel={handleCloseModal} data={isEdit ? data : null} />
+        <AddWorkerForm handleCancel={handleCloseModal}/>
+      </Modal>
+
+      <Modal open={openEditModal} handleClose={handleCloseEditModal}>
+        <EditWorkerForm handleCancel={handleCloseModal} data={isEdit ? data : null} />
       </Modal>
 
       {data ? <>
           <FlexBetween mt={4}>
             <IconButton onClick={() => {
           setIsEdit(true);
-          setOpenModal(true);
+          setOpenEditModal(true);
         }}>
               <Edit fontSize="small" sx={{
             color: "text.secondary"

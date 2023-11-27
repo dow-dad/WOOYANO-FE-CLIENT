@@ -7,8 +7,9 @@ import SignUpCertNumber from "./signUpCertNumber";
 import SignUpForm from "./signUpForm";
 import SignUpResult from "./signUpResult";
 import SignUpCertForm from "./signUpCertForm";
-import { Button, Divider, Box } from "@mui/material";
+import { Button, Divider, Box, Grid } from "@mui/material";
 import { Paragraph } from "components/typography";
+import { FlexRowAlign, FlexBox } from "components/flexbox";
 
 export default function SignUpStepper() {
   const router = useRouter();
@@ -26,13 +27,13 @@ export default function SignUpStepper() {
 
     companyName: "",
     companyPhone: "",
-    registerationNumber: "",
-    registerationImage: "",
+    registrationNumber: "",
+    registrationImage: "",
 
-    bankHolder:"",
-    bankAccount:"",
-    bankName:"",
-    bankImage:"",
+    bankHolder: "",
+    bankAccount: "",
+    bankName: "",
+    bankImage: "",
 
     emailCertNumber: "",
     passwordCheck: false,
@@ -70,7 +71,7 @@ export default function SignUpStepper() {
 
   return (
     <div>
-      <Box maxWidth={1000}>
+      <Box maxWidth={{ md: '60%', xs: '100%'}} mx={"auto"} my={{md:"6vh",xs:"2vh"}}>
         {stepperComponent[stepId - 1][stepId]}
         <StepperBtn
           signUpData={signUpData}
@@ -79,32 +80,35 @@ export default function SignUpStepper() {
           stepId={stepId}
           setStepId={setStepId}
         />
-        <Divider
-          sx={{
-            my: 4,
-            mx: 6,
-            borderColor: "grey.200",
-            borderWidth: 1,
-          }}
-        >
-          <Paragraph color="text.secondary" px={1}>
-            이미 회원이신가요?
-          </Paragraph>
-        </Divider>
-
-        <Box mx={2}>
-          <Button
-            fullWidth
-            variant="text"
-            onClick={() => router.push("/login")}
-            sx={{
-              backgroundColor: "primary.50",
-            }}
-          >
-            Log In
-          </Button>
-        </Box>
+        {stepId === 1 || stepId === 2 ? (
+          <>
+            <Divider
+              sx={{
+                my: 4,
+                mx: 6,
+                borderColor: "grey.200",
+                borderWidth: 1,
+              }}
+            >
+              <Paragraph color="text.secondary" px={1}>
+                이미 회원이신가요?
+              </Paragraph>
+            </Divider>
+            <Box mx={2}>
+              <Button
+              fullWidth
+                variant="text"
+                onClick={() => router.push("/login")}
+                sx={{
+                  backgroundColor: "primary.50",
+                }}
+              >
+                Log In
+              </Button>
+            </Box>
+          </>
+        ) : null}
       </Box>
-    </div>
+      </div>
   );
 }

@@ -5,13 +5,14 @@ import StepperBtn from "./stepperBtn";
 import ForgetPassword from "./forgetPassword";
 import VerifyCode from "./verifyCode";
 import ChangePassword from "./changePassword";
+import ChangePasswordResult from "./changePasswordResult";
 
 export default function ForgetPasswordStepper() {
   const [stepId, setStepId] = useState(1);
-
   const [forgetPasswordData, setForgetPasswordData] = useState({
+    name : "",
     email: "",
-    registerationNumber:"",
+    registrationNumber:"",
     emailCertNumber: "",
     newPassword: "",
     checkPassword: "",
@@ -45,6 +46,15 @@ export default function ForgetPasswordStepper() {
       ),
       btnTxt: "Continue",
     },
+    {
+      4: (
+        <ChangePasswordResult
+          forgetPasswordData={forgetPasswordData}
+          setForgetPasswordData={setForgetPasswordData}
+        />
+      ),
+      btnTxt: "Sign In",
+    }
   ];
 
   useEffect(() => {}, [forgetPasswordData]);

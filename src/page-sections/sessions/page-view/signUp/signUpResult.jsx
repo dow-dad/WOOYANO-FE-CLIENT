@@ -1,17 +1,6 @@
 "use client";
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
-// import { DaumAddressType } from "@/types/DaumAddrssType";
-import Swal from "sweetalert2";
-// import PostCodeDaum from "@/components/widget/postCodeDaum";
-import {
-  Button,
-  Grid,
-  TextField,
-  Box,
-  Select,
-  MenuItem,
-  OutlinedInput,
-} from "@mui/material";
+import React from "react";
+import {Grid,TextField,Box,Divider} from "@mui/material";
 import { H5, Paragraph } from "components/typography";
 
 export default function SignUpResult(props) {
@@ -27,13 +16,13 @@ export default function SignUpResult(props) {
       >
         Sign up Result
       </H5>
-      <Paragraph mt={1} mb={6} color="text.secondary">
+      <Paragraph mt={1} mb={4} color="text.secondary">
         저희 우야노에 가입해주셔서 감사합니다!
       </Paragraph>
 
       <Box my={2}>
         <Paragraph mt={1} mb={1.5} color="text.secondary">
-          회원가입 신청이 완료되었습니다.
+          입점 신청이 완료되었습니다.
         </Paragraph>
         <Paragraph mt={1} mb={1.5} color="text.secondary">
           승인까지 3~5 영업일 소요됩니다.
@@ -44,10 +33,21 @@ export default function SignUpResult(props) {
       </Box>
 
       {/* 로그인 정보 */}
-      <Box>
-        <Paragraph mt={4} color="text.secondary">
-          User Information
+      <Divider
+        sx={{
+          mt : 6,
+          mb: 1,
+          mx: 2,
+          borderColor: "grey.200",
+          borderWidth: 1,
+        }}
+      >
+        <Paragraph color="text.secondary">
+        CEO Information
         </Paragraph>
+      </Divider>
+
+      <Box>
         <Box
           sx={{
             display: "flex",
@@ -79,10 +79,20 @@ export default function SignUpResult(props) {
       </Box>
 
       {/* 회사 정보 */}
-      <Box>
-        <Paragraph mt={4} color="text.secondary">
-          Company Information
+      <Divider
+        sx={{
+          mt : 3,
+          mb: 1,
+          mx: 2,
+          borderColor: "grey.200",
+          borderWidth: 1,
+        }}
+      >
+        <Paragraph color="text.secondary">
+        Company Information
         </Paragraph>
+      </Divider>
+      <Box>
         <Grid maxWidth={1 / 2} mt={1.5}>
           <Paragraph>Company Name</Paragraph>
           <TextField
@@ -114,7 +124,7 @@ export default function SignUpResult(props) {
             <TextField
               className="mt-1.5 "
               fullWidth
-              defaultValue={`${signUpData.registerationNumber}`}
+              defaultValue={`${signUpData.registrationNumber}`}
               inputProps={{ readOnly: true }}
               sx={{ flexGrow: 1 }}
             />
@@ -150,10 +160,20 @@ export default function SignUpResult(props) {
       </Box>
 
       {/* 은행 정보 */}
-      <Box>
-        <Paragraph mt={4} color="text.secondary">
-          Bank Information
+      <Divider
+        sx={{
+          mt : 3,
+          mb: 1,
+          mx: 2,
+          borderColor: "grey.200",
+          borderWidth: 1,
+        }}
+      >
+        <Paragraph color="text.secondary">
+        Bank Information
         </Paragraph>
+      </Divider>
+      <Box>
         <Box>
           <Grid maxWidth={1 / 2} mt={1.5}>
             <Paragraph>Bank Holder</Paragraph>

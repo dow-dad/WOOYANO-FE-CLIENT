@@ -1,6 +1,10 @@
 // THEME PROVIDER
 import ThemeProvider from "theme/ThemeProvider"; // SITE SETTINGS CONTEXT
 
+import SettingsProvider from "contexts/settingsContext"; // FIREBASE AUTH PROVIDER
+
+import AuthProvider from "contexts/AuthProvider"
+
 import { inter } from "utils/font"; // RIGHT-TO-LEFT SUPPORT COMPONENT
 
 import { RTL } from "components/rtl"; // MULTI LANGUAGE FEATURE
@@ -27,13 +31,13 @@ const RootLayout = ({
 }) => {
   return <html lang="ko">
     <body className={inter.className} suppressHydrationWarning>
+      <AuthProvider>
         <ThemeProvider>
-            <RTL>
-              <DashboardLayout>
-                {children}
-              </DashboardLayout>
-            </RTL>
+          <RTL>
+            <DashboardLayout>{children}</DashboardLayout>
+          </RTL>
         </ThemeProvider>
+      </AuthProvider>
 
     </body>
   </html>;

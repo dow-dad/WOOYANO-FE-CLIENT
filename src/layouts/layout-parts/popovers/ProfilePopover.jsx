@@ -9,6 +9,8 @@ import { H6, Paragraph, Small } from "components/typography"; // CUSTOM DEFINED 
 import useNavigate from "hooks/useNavigate"; // CUSTOM UTILS METHOD
 
 import { isDark } from "utils/constants"; // STYLED COMPONENTS
+import { signOut } from "next-auth/react";
+
 
 const StyledButtonBase = styled(ButtonBase)(({
   theme
@@ -79,7 +81,7 @@ const ProfilePopover = () => {
           my: 1
         }} />
 
-          <StyledSmall>Sign Out</StyledSmall>
+          <StyledSmall onClick={()=>signOut()}>Sign Out</StyledSmall>
         </Box>
       </PopoverLayout>
     </Fragment>;
