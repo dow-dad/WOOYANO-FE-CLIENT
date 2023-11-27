@@ -31,7 +31,7 @@ const StyledSmall = styled(Paragraph)(({ theme }) => ({
 
 const ProfilePopover = () => {
   const { data, status } = useSession();
-  console.log(data?.user.result, status);
+  // console.log(data?.user.result, status);
 
   const anchorRef = useRef(null);
   const navigate = useNavigate();
