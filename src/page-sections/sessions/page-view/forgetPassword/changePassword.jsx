@@ -31,7 +31,7 @@ function ChangePassword(props) {
           ...prevData,
           [id]: value,
           }));
-          console.log(forgetPasswordData);
+          // console.log(forgetPasswordData);
       })
   }, [values]);
   

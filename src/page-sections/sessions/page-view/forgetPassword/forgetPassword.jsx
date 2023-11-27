@@ -39,7 +39,7 @@ function ForgetPassword(props) {
           ...prevData,
           [id]: value,
           }));
-          console.log(forgetPasswordData);
+          // console.log(forgetPasswordData);
       })
     }
   }, [values]);

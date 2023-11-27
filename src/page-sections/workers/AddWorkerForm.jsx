@@ -41,7 +41,7 @@ const AddWorkerForm = ({ handleCancel }) => {
     ])};
 
   const handleAddWorker = async () => {
-    console.log(values)
+    // console.log(values)
   }
 
   const handleAddScheduleClick = () => {

@@ -9,7 +9,7 @@ import Apps from "icons/duotone/Apps"; // DUMMY DATA SET
 
 const SERVICES = [{
   id: 1,
-  title: "Slack",
+  title: "Notion",
   body: "Email collaboration software",
   image: "/static/connect-accounts/slack.svg"
 }, {
@@ -17,11 +17,6 @@ const SERVICES = [{
   title: "Github",
   body: "Email collaboration software",
   image: "/static/connect-accounts/github.svg"
-}, {
-  id: 3,
-  title: "Stack Overflow",
-  body: "Email collaboration software",
-  image: "/static/connect-accounts/stack-overflow.svg"
 }];
 
 const ServicePopover = () => {

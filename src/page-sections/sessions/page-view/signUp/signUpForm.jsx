@@ -81,7 +81,7 @@ const SignUpForm = (props) => {
           ...prevData,
           [id]: value,
           }));
-          console.log(signUpData);
+          // console.log(signUpData);
       })
   }, [values]);
 
