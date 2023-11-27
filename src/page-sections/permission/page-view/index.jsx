@@ -1,12 +1,10 @@
 "use client";
 
 import { Container } from "@mui/material";
-import { RoleBasedGuard } from "components/auth";
 import { Paragraph } from "components/typography";
 
 const PermissionPageView = () => {
   return <Container>
-      <RoleBasedGuard roles={["editor", "administrator", "admin"]}>
         <Paragraph>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit praesentium facere enim
           quaerat fuga vel commodi voluptatibus, est quam? Vitae atque, suscipit deleniti
@@ -18,7 +16,6 @@ const PermissionPageView = () => {
           laudantium blanditiis sed voluptate aut placeat recusandae distinctio? Nisi suscipit
           dolorum itaque nostrum dolorem fugiat repellat ea ut necessitatibus!
         </Paragraph>
-      </RoleBasedGuard>
     </Container>;
 };
 

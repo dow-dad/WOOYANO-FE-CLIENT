@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
 import { Box, Collapse } from "@mui/material";
-import { useTranslation } from "react-i18next"; // CUSTOM DEFINED HOOK
 
 import useLocation from "hooks/useLocation"; // CUSTOM STYLED COMPONENTS
 
@@ -13,9 +12,7 @@ const SidebarAccordion = props => {
     children,
     sidebarCompact
   } = props;
-  const {
-    t
-  } = useTranslation();
+
   const {
     pathname
   } = useLocation();
@@ -50,7 +47,7 @@ const SidebarAccordion = props => {
           {item.iconText ? <BulletIcon active={hasActive} /> : null}
 
           <ItemText compact={sidebarCompact} active={hasActive}>
-            {t(item.name)}
+            {item.name}
           </ItemText>
         </Box>
 

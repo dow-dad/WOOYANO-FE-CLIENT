@@ -53,47 +53,47 @@ const AccountsPageView = () => {
 
 
   const TabListContent = <FlexBox flexDirection="column">
-      {tabList.map(tab => <StyledButton key={tab.id} variant="text" startIcon={<tab.Icon />} onClick={handleListItemBtn(tab)} sx={active.name === tab.name ? STYLE : {
+    {tabList.map(tab => <StyledButton key={tab.id} variant="text" startIcon={<tab.Icon />} onClick={handleListItemBtn(tab)} sx={active.name === tab.name ? STYLE : {
       "&:hover": STYLE
     }}>
-          {tab.name}
-        </StyledButton>)}
-    </FlexBox>;
+      {tab.name}
+    </StyledButton>)}
+  </FlexBox>;
   return <Box pt={2} pb={4}>
-      <Grid container spacing={3}>
-        {
+    <Grid container spacing={3}>
+      {
         /* SIDEBAR AREA */
       }
-        <Grid item md={3} xs={12}>
-          {downMd ? <Fragment>
-              <FlexBox alignItems="center" gap={1} onClick={() => setOpenDrawer(true)}>
-                <IconButton sx={{
+      <Grid item md={3} xs={12}>
+        {downMd ? <Fragment>
+          <FlexBox alignItems="center" gap={1} onClick={() => setOpenDrawer(true)}>
+            <IconButton sx={{
               padding: 0
             }}>
-                  <Apps sx={{
+              <Apps sx={{
                 color: "text.primary"
               }} />
-                </IconButton>
+            </IconButton>
 
-                <H5 fontSize={16}>More</H5>
-              </FlexBox>
+            <H5 fontSize={16}>More</H5>
+          </FlexBox>
 
-              <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
-                <Box padding={1}>{TabListContent}</Box>
-              </Drawer>
-            </Fragment> : <Card sx={{
+          <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
+            <Box padding={1}>{TabListContent}</Box>
+          </Drawer>
+        </Fragment> : <Card sx={{
           p: "1rem 0"
         }}>{TabListContent}</Card>}
-        </Grid>
+      </Grid>
 
-        {
+      {
         /* CONTENT AREA */
       }
-        <Grid item md={9} xs={12}>
-          <active.Component />
-        </Grid>
+      <Grid item md={9} xs={12}>
+        <active.Component />
       </Grid>
-    </Box>;
+    </Grid>
+  </Box>;
 };
 
 const tabList = [{

@@ -7,9 +7,6 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import * as Yup from "yup";
 import { useFormik } from "formik"; // CUSTOM DEFINED HOOK
-
-import useAuth from "hooks/useAuth"; // CUSTOM LAYOUT COMPONENT
-
 import Layout from "../Layout"; // CUSTOM COMPONENTS
 
 import { H5, H6, Paragraph } from "components/typography";
@@ -26,10 +23,6 @@ const StyledButton = styled(ButtonBase)(({
 const LoginPageView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const {
-    signInWithEmail,
-    signInWithGoogle
-  } = useAuth();
 
   const handleGoogle = async () => {
     await signInWithGoogle();

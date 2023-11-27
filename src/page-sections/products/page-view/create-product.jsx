@@ -1,15 +1,14 @@
 "use client";
 
-import { useCallback, useState } from "react";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import { Box, Button, Card, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup"; // CUSTOM COMPONENTS
 
 import { H6 } from "components/typography";
-import { DropZone } from "components/dropzone";
+
 import FlexBox from "components/flexbox/FlexBox";
-import { QuillEditor } from "components/quill-editor";
+
 import { IconWrapper } from "components/icon-wrapper"; // CUSTOM ICON COMPONENT
 
 import ShoppingBasket from "icons/ShoppingBasket";

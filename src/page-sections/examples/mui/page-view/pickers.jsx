@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { format } from "date-fns";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Grid, Stack, Tab, TextField } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -13,8 +12,8 @@ const MuiPickersPageView = () => {
 
   const handleChange = (_, newValue) => setValue(newValue);
 
-  const [selectDate, setSelectedDate] = useState(format(new Date(2023, 1, 5), "dd-MM-yyyy"));
-  const [selectTime, setSelectTime] = useState(new Date(2023, 1, 5));
+  const [selectDate, setSelectedDate] = useState(new Date(2023-1-5));
+  const [selectTime, setSelectTime] = useState(new Date(2023-1-5));
   return <ComponentPageLayout title="Date/Time Pickers" fullLink="https://mui.com/x/react-date-pickers">
       <TabContext value={value}>
         <TabList onChange={handleChange}>
