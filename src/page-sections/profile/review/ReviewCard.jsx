@@ -2,9 +2,8 @@
 import { Card, Chip, alpha, styled, useTheme, AvatarGroup, Button, CardMedia, Grid, TextField } from "@mui/material"; // CUSTOM COMPONENTS
 import { H5, H6, Paragraph } from "components/typography";
 import { FlexBetween, FlexRowAlign, FlexBox } from "components/flexbox"; // STYLED COMPONENTS
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-
 
 const IconWrapper = styled(FlexRowAlign)({
   width: 35,
@@ -23,17 +22,18 @@ const StyledAvatarGroup = styled(AvatarGroup)(({
     fontWeight: 500,
     backgroundColor: alpha(type, 0.1)
   }
-})); // =======================================================================
+})); 
+
 
 // =======================================================================
-const ReviewCard = ({
-  review
-}) => {
+
+// =======================================================================
+const ReviewCard = ({review}) => {
+  console.log("잘 가져옴?", review)
   const theme = useTheme();
 
   const [isOpened, setIsOpened] = useState(false);
   const [answer,setAnswer]=useState("");
-  
 
   const handleOpendModal = () => {
     setIsOpened(!isOpened)
@@ -42,14 +42,59 @@ const ReviewCard = ({
   const onChangeAnswer=(e)=>{
     const answers=e.target.value;
     setAnswer(answers)
-
   }
-  // console.log(review.img_url);
+
+  const registerDate = new Date(review.createdAt)
+  const reviewId = review.reviewId
+const [reviewDetail, setReviewDetail] = useState()
+
+  const token = "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwic3ViIjoic2Frc2FrQG5hdmVyLmNvbSIsImlhdCI6MTcwMDg5OTI2NywiZXhwIjoxNzAwOTg1NjY3fQ.Z0ElznuMQknCtRF2efV3MCIAVAlCILb1Dle2to-QjSg"
+
+  async function getReviewDetail() {
+    
+    try {
+      const response = await fetch(`http://3.35.62.185:8000/api/v1/review-bookmark/client/review/detail/${reviewId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token
+        },
+      });
+      if (response.ok) {
+        const result = await response.json();
+        console.log('리뷰 상세 성공 : ', result)
+        setReviewDetail(result)
+        return result
+      }
+    } catch (error) {
+      console.log('리뷰 상세 실패 : ', error)
+    }
+  }
+
+  useEffect(() => {
+    const reviewDetailFetch = async () => {
+      try {
+        if (token) {
+          const response = await getReviewDetail(token);
+          if (!reviewDetail[0] === undefined) {
+            return null``
+          }
+        }
+      } catch (error) {
+        console.log("loading error", error)
+      }
+    }
+    reviewDetailFetch();
+  }, [token]);
+  
+  
+  
+
 
   const renderReviewDetail = () => {
 
-    let img_url = review.img_url;
-    // console.log(img_url);
+    let img_url = reviewDetail.result.reviewImageUrlList || [];
+    console.log("이미지 배열 : ", img_url);
     return <>
       <div style={{ background: "black", width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0, zIndex: 1200, opacity: 0.6 }}></div>
 
@@ -62,17 +107,21 @@ const ReviewCard = ({
           <Grid container spacing={2}>
             {img_url.map((url, idx) => (
               <Grid key={idx} item lg={3} md={6} xs={12}>
-                <Image src={`${url}`} width={300} height={300} alt="리뷰 사진" />
+                <Image src={`${url}`} width={300} height={300} alt="review img" />
               </Grid>
             ))}
           </Grid>
         </Card>
 
         <Card sx={{ p: 2 }}>
-          <Paragraph marginBottom={3}><Chip label={"작성자"} size="small" color="warning" /> &nbsp;{review.user_email}</Paragraph>
-          <Chip sx={{ marginBottom: 3 }} label={review.positive_review ? "긍정" : "부정"} size="small" color={getColorType()} />
-          <Paragraph marginBottom={3}><Chip label={"작성일"} size="small" color="info" /> &nbsp;{review.registration_date}</Paragraph>
-          <Paragraph marginBottom={3} color="text.secondary">{review.review_content}</Paragraph>
+          <Paragraph marginBottom={3}><Chip label={"작성자"} size="small" color="warning" /> &nbsp;{review.userEmail}</Paragraph>
+          <Chip sx={{ marginBottom: 3 }} label={review.reuse ? "다음에도 이용할게요:)" : "이번에만 이용할게요:("} size="small" color={getColorType()} />
+          <Paragraph marginBottom={3}><Chip label={"작성일"} size="small" color="info" /> &nbsp;{registerDate.toLocaleDateString("ko-KR", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                })}</Paragraph>
+          <Paragraph marginBottom={3} color="text.secondary">{review.content}</Paragraph>
           <Chip sx={{ marginBottom: 1 }} label={"답글"} size="small" color="error" />
           <TextField multiline rows={4} marginBottom={3} placeholder="답글을 남겨주세요."  fullWidth onChange={onChangeAnswer}></TextField>
         </Card>
@@ -87,7 +136,7 @@ const ReviewCard = ({
   }
 
   const getColorType = () => {
-    if (review.positive_review === true) return "success"; else if (review.positive_review === false) return "error";
+    if (review.reuse === true) return "success"; else if (review.reuse === false) return "error";
   };
 
   return <>
@@ -96,19 +145,25 @@ const ReviewCard = ({
       padding: 2
     }}
       onClick={() => { handleOpendModal() }}>
-      <Paragraph color={"grey.400"}>#{review.reservation_number}</Paragraph>
+      <Paragraph color={"grey.400"}>#{review.reservationNum}</Paragraph>
       <FlexBetween>
-        <Paragraph color={"grey.600"}>{review.registration_date}</Paragraph>
-        <Chip label={review.positive_review ? "긍정" : "부정"} size="small" color={getColorType()} />
+        <Paragraph color={"grey.600"}>
+          {registerDate.toLocaleDateString("ko-KR", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })}
+        </Paragraph>
+        <Chip label={review.reuse ? "다음에도 이용할게요:)" : "이번에만 이용할게요:("} size="small" color={getColorType()} />
       </FlexBetween>
 
 
 
       <H6 fontSize={16} my={2}>
-        {review.user_email}
+        {review.userEmail}
       </H6>
 
-      <Paragraph color="text.secondary">{review.review_content}</Paragraph>
+      <Paragraph color="text.secondary">{review.content}</Paragraph>
 
 
     </Card>
