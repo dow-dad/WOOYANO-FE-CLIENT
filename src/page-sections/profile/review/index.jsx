@@ -124,7 +124,7 @@ useEffect(() => {
 async function getReviewList() {
   console.log("서비스 아이디 : ", serviceId)
   try {
-    const response = await fetch(`http://3.35.62.185:8000/api/v1/review-bookmark/client/review/list/${serviceId}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/review-bookmark/client/review/list/${serviceId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
