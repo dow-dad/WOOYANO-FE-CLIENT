@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-onion-staging-164728-authRole",
+      "UnauthRoleArn": "arn:aws:iam::603094332849:role/amplify-onion-staging-164728-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::603094332849:role/amplify-onion-staging-164728-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-onion-staging-164728-deployment",
+      "UnauthRoleName": "amplify-onion-staging-164728-unauthRole",
+      "StackName": "amplify-onion-staging-164728",
+      "StackId": "arn:aws:cloudformation:us-east-1:603094332849:stack/amplify-onion-staging-164728/1cb98840-271d-11ee-9401-0a91313ee779",
+      "AmplifyAppId": "d6gonm3rpz5oq"
+    },
+    "categories": {
+      "auth": {
+        "onion": {}
+      }
+    }
+  }
+}
