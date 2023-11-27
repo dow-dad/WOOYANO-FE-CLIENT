@@ -59,7 +59,7 @@ export default function StepperBtn({
       if (verifyCheck.ok) {
         setStepId(stepId + 1);
       } else {
-        console.log(checkResult);
+        // console.log(checkResult);
         SwalBasic({ text: "인증코드가 일치하지않습니다.", position: "center" });
       }
     } catch (error) {
@@ -135,7 +135,7 @@ export default function StepperBtn({
       });
       if (postSignUp.ok) {
         const postSignUpResult = await postSignUp.json();
-        console.log(postSignUpResult)
+        // console.log(postSignUpResult)
         if (postSignUpResult.success === true) {
           setStepId(stepId + 1);
         } else {
@@ -143,7 +143,7 @@ export default function StepperBtn({
             text: "입점 신청에 실패하였습니다. 잠시후 다시 시도해주세요.",
             position: "center",
           });
-          console.log(postSignUpResult)
+          // console.log(postSignUpResult)
         }
       }
     } catch (error) {
@@ -179,7 +179,7 @@ export default function StepperBtn({
         handleVerifyCode();
       }
     } else if (stepId === 3) {
-      console.log(signUpData.password.length, signUpData.secondPassword.length)
+      // console.log(signUpData.password.length, signUpData.secondPassword.length)
       if (
         signUpData.password === "" ||
         signUpData.secondPassword === "" ||

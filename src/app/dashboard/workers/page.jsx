@@ -8,7 +8,7 @@ async function workerList() {
     const serviceId = session?.user.result.serviceIdList[0] || 0
     const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/client/address/mypage/service/worker/list/${serviceId}`;
     if(serviceId === 0) {
-        console.log("매장을 먼저 등록해주세요.")
+        // console.log("매장을 먼저 등록해주세요.")
     } else {
         const res = await fetch(url, {
             method: "GET",
@@ -17,11 +17,11 @@ async function workerList() {
               Authorization: `Bearer ${session?.user.result.token}`,
             },
           });
-          console.log(url)
+          // console.log(url)
           if (res.ok) {
             const data = await res.json();
-            console.log("data:", data);
-            console.log("serviceId",serviceId);
+            // console.log("data:", data);
+            // console.log("serviceId",serviceId);
             return data;
           } else {
             console.error("Failed to fetch data:", res.status, res.statusText);

@@ -6,7 +6,6 @@ import SidebarAccordion from "./SidebarAccordion";
 import { navigations } from "../layout-parts/navigation"; // CUSTOM STYLED COMPONENTS
 import { ItemText, ListLabel, BulletIcon, ICON_STYLE, ExternalLink, NavItemButton } from "../layout-parts/styles/sidebar"; // ===========================================================================
 
-// ===========================================================================
 const MultiLevelMenu = ({
   sidebarCompact
 }) => {
