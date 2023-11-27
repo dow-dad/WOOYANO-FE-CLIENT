@@ -1,5 +1,5 @@
+'use client'
 import { Card, LinearProgress, Rating, Stack } from "@mui/material"; // CUSTOM COMPONENTS
-
 import { Paragraph } from "components/typography";
 import { FlexBetween, FlexBox, FlexRowAlign } from "components/flexbox";
 

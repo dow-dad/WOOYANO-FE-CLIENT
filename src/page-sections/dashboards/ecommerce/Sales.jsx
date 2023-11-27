@@ -1,3 +1,4 @@
+'use client'
 import { Card, useTheme } from "@mui/material";
 import merge from "lodash.merge";
 import Chart from "react-apexcharts";

@@ -65,7 +65,7 @@ const DashboardHeader = () => {
             }} />
               </IconButton> : null}
 
-            <SearchBar open={openSearchBar} handleClose={() => setSearchBar(false)} />
+            {/* <SearchBar open={openSearchBar} handleClose={() => setSearchBar(false)} /> */}
           </Box>
         </ClickAwayListener>
 

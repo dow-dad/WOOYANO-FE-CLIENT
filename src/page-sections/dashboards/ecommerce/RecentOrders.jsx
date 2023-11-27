@@ -1,3 +1,4 @@
+'use client'
 import { Box, Card, Table, TableRow, TableBody, TableHead } from "@mui/material";
 import { formatDistanceToNow } from "date-fns";
 import { nanoid } from "nanoid"; // CUSTOM COMPONENTS

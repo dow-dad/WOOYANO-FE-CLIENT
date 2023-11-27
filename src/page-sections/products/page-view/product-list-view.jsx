@@ -29,7 +29,7 @@ const ListWrapper = styled(FlexBetween)(({
 }));
 
 const ProductListPageView = () => {
-  const navigate = useNavigate();
+  
   const [products, setProducts] = useState([...PRODUCTS]); // 가상 데이터로 초기화된 상품 리스트 상태
   const [createProductModal, setCreateProdjctModal] = useState(false);
   const [productFilter, setProductFilter] = useState({
@@ -55,10 +55,9 @@ const ProductListPageView = () => {
   // console.log(createProductModal);
   // console.log(products);
   // console.log(productFilter);
+
   // 필터링 조건 변경 핸들러
-  const handleChangeFilter = (key, value) => {
-    setProductFilter(state => ({ ...state, [key]: value }));
-  };
+  
 
   // MUI 테이블 훅 사용
   const {
