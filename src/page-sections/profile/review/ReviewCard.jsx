@@ -53,7 +53,7 @@ const [reviewDetail, setReviewDetail] = useState()
   async function getReviewDetail() {
     
     try {
-      const response = await fetch(`http://3.35.62.185:8000/api/v1/review-bookmark/client/review/detail/${reviewId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/review-bookmark/client/review/detail/${reviewId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
