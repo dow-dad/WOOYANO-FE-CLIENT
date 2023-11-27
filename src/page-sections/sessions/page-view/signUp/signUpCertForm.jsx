@@ -37,7 +37,7 @@ export default function SignUpCertForm(props) {
           ...prevData,
           [id]: value,
           }));
-          console.log(signUpData);
+          // console.log(signUpData);
       })
     }
   }, [values]);

@@ -57,33 +57,34 @@ export const navigations = [
 //   path: "https://quickframe-doc.vercel.app"
 // }, 
 
-{
-  type: "label",
-  label: "Others"
-}, {
-  name: "Multi Level Item",
-  icon: duotone.Apps,
-  children: [{
-    name: "Level A",
-    path: "#dashboard/cart"
-  }, {
-    iconText: "B",
-    name: "Level B",
-    path: "#dashboard/payment",
-    children: [{
-      name: "Level B1",
-      path: "#dashboard/payment"
-    }, {
-      iconText: "B",
-      name: "Level B2",
-      path: "#dashboard/payment",
-      children: [{
-        name: "Level B21",
-        path: "#dashboard/payment"
-      }, {
-        name: "Level B22",
-        path: "#dashboard/payment"
-      }]
-    }]
-  }]
-}];
+// {
+//   type: "label",
+//   label: "Others"
+// }, {
+//   name: "Multi Level Item",
+//   icon: duotone.Apps,
+//   children: [{
+//     name: "Level A",
+//     path: "#dashboard/cart"
+//   }, {
+//     iconText: "B",
+//     name: "Level B",
+//     path: "#dashboard/payment",
+//     children: [{
+//       name: "Level B1",
+//       path: "#dashboard/payment"
+//     }, {
+//       iconText: "B",
+//       name: "Level B2",
+//       path: "#dashboard/payment",
+//       children: [{
+//         name: "Level B21",
+//         path: "#dashboard/payment"
+//       }, {
+//         name: "Level B22",
+//         path: "#dashboard/payment"
+//       }]
+//     }]
+//   }]
+// }
+];

@@ -1,9 +1,8 @@
-import EcommercePageView from "page-sections/dashboards/ecommerce/page-view";
-import MainHome from "components/mainpage/mainHome"
+import AccountsPageView from "page-sections/accounts/page-view";
 
 const HomePage = () => {
   return <>
-    hi123sadasdsasdsd11111111111111
+    <AccountsPageView />
   </>
 };
 
