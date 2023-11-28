@@ -10,8 +10,8 @@ export const options: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        console.log("step3 credentials.enmail", credentials?.email, "|", "credentials.password", credentials?.password);
-        console.log("req",req)
+        // console.log("step3 credentials.enmail", credentials?.email, "|", "credentials.password", credentials?.password);
+        // console.log("req",req)
 
         if (!credentials?.email || !credentials?.password) return null;
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/client/login`, {
@@ -25,9 +25,9 @@ export const options: NextAuthOptions = {
           }), 
         })
         const user = await res.json();
-        console.log(user)
+        // console.log(user)
         if (res.ok && user) {
-          console.log(user)
+          // console.log(user)
           return user
         } else {
           return null;
