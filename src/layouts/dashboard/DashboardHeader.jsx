@@ -28,7 +28,7 @@ import { useSession } from "next-auth/react";
 
 const DashboardHeader = () => {
   const { data, status } = useSession();
-  console.log(data?.user, status);
+  // console.log(data?.user, status);
 
   const { handleOpenMobileSidebar } = useLayout();
   const [openSearchBar, setSearchBar] = useState(false);
